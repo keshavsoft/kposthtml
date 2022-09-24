@@ -59,10 +59,7 @@
             },
             CheckUserNamePassword: async ({ inUserName, inPassword }) => {
                 let jVarLocalUserCheckRoute = this.Config.RouteStart.UserCheckRoute;
-                //              let jVarLocalFetchUrl = `/${jVarLocalUserCheckRoute}/LoginCheck/${inUserName}/${inPassword}`;
                 let jVarLocalFetchUrl = `/${jVarLocalUserCheckRoute}/Validate/Users/InUserDataJson/ForUserNameAndPassword/TokenToCookie`;
-
-                //                let jVarLocalLoginUrl = "/JSONUser/Validate/Users/InUserDataJson/ForUserNameAndPassword/TokenToCookie";
 
                 let response = await fetch(jVarLocalFetchUrl, {
                     method: 'POST',
@@ -148,8 +145,7 @@
                     return null;
                 },
                 CheckToken: () => {
-                    let jVarLocalCookieValue;
-                    jVarLocalCookieValue = this.Login.ClientSideCookieFuncs.getCookie("KToken");
+                    let jVarLocalCookieValue = this.Login.ClientSideCookieFuncs.getCookie("KToken");
                     if (jVarLocalCookieValue === null) {
                         this.UI.ModalFuncs.Show();
                     } else {

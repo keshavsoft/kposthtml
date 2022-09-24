@@ -137,7 +137,9 @@
                 LocalObjectToPost.ItemConfig = JSON.parse(jVarLocalItemConfig);
                 LocalObjectToPost.insertkey = jVarLocalInsertKey;
 
-                let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/ScreensFromDisplayJson/Tabular/Footer/KeyPress/EnterToServer`;
+                //let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/ScreensFromDisplayJson/Tabular/Footer/KeyPress/EnterToServer`;
+                let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/ScreensFromDisplayJson/SubTable/Footer/KeyPress/EnterToServer`;
+
 
                 let response = await fetch(jVarLocalFetchUrl, {
                     method: 'POST',
