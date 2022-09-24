@@ -102,6 +102,73 @@
 
         VerticalCommonFuncs = new this.VerticalCommonFuncsClass();
 
+        KeyPressFuncsClass = class {
+            EnterToServer = async ({ inCurrentTarget, inRoute, inSubRoute }) => {
+                let jVarLocalRoute = inRoute;
+                let jVarLocalSubRoute = inRoute;
+
+                let jVarLocalCurrentTarget = inCurrentTarget;
+                let jVarLocalHtmlCard = jVarLocalCurrentTarget.closest(".card");
+                let LocalClosestTableFooter = jVarLocalCurrentTarget.closest("tr");
+
+                let LocalFooterInputElements;
+                let LocalDataFromServer;
+
+                let jVarLocalJsonConfig = jVarLocalHtmlCard.dataset.jsonconfig;
+                let jVarLocalItemConfig = jVarLocalHtmlCard.dataset.itemconfig;
+                let jVarLocalInsertKey = jVarLocalHtmlCard.dataset.insertkey;
+
+                let LocalObjectToPost = {};
+                LocalObjectToPost.DataToSearch = {};
+                LocalObjectToPost.DataToSearch[jVarLocalinEvent.name] = jVarLocalinEvent.value;
+                LocalObjectToPost.JsonConfig = JSON.parse(jVarLocalJsonConfig);
+                LocalObjectToPost.ItemConfig = JSON.parse(jVarLocalItemConfig);
+                LocalObjectToPost.insertkey = jVarLocalInsertKey;
+
+                let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/ScreensFromDisplayJson/Tabular/Footer/KeyPress/EnterToServer`;
+
+                let response = await fetch(jVarLocalFetchUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(LocalObjectToPost)
+                });
+
+                let FetchData = await response.json()
+
+                if (FetchData.KTF) {
+                    LocalDataFromServer = FetchData.DataFromServer[0];
+                    //loop the inputs on screen to fill data from server if any found
+
+                    if (LocalClosestTableFooter === null) {
+                        LocalFooterInputElements = jVarLocalHtmlCard.querySelectorAll("[data-dataattribute]");
+                    } else {
+                        LocalFooterInputElements = LocalClosestTableFooter.querySelectorAll("td [data-dataattribute]");
+                    };
+
+                    LocalFooterInputElements.forEach((LoopItem) => {
+                        if (LocalDataFromServer.hasOwnProperty(LoopItem.name)) {
+                            LoopItem.value = LocalDataFromServer[LoopItem.name];
+                        };
+                    });
+                } else {
+                    Swal.fire(FetchData.KReason);
+                }
+            };
+
+            SubFuncs = {
+                ForEnterToServer: {
+                    PrepareDataToSearchObject: ({ inCurrentTarget }) => {
+
+                    }
+                }
+            }
+        };
+
+        KeyPressFuncs = new this.KeyPressFuncsClass();
+
         DataListFuns = {
             ReverseFunc: ({ inParentDiv }) => {
                 try {
@@ -368,6 +435,21 @@
                     KeyPress: {
                         EnterToServer: async ({ inEvent }) => {
                             if (inEvent.keyCode === 13) {
+                                let jVarLocalRoute = this.Config.RouteStart.Start;
+                                let jVarLocalSubRoute = this.Config.RouteStart.SubRoute;
+
+
+                                this.KeyPressFuncs.EnterToServer({
+                                    inCurrentTarget: inEvent.currentTarget,
+                                    inRoute: jVarLocalRoute,
+                                    inSubRoute: jVarLocalSubRoute
+                                });
+                            }
+                        }
+                    },
+                    KeyPress1: {
+                        EnterToServer: async ({ inEvent }) => {
+                            if (inEvent.keyCode === 13) {
                                 console.log("subtable :");
                                 let jVarLocalRoute = this.Config.RouteStart.Start;
                                 let jVarLocalSubRoute = this.Config.RouteStart.SubRoute;
@@ -423,9 +505,11 @@
                                 }
                             }
                         },
-                        SubFuncs:{
-                            ForEnterToServer:{
-                                
+                        SubFuncs: {
+                            ForEnterToServer: {
+                                PrepareDataToSearchObject: ({ inCurrentTarget }) => {
+
+                                }
                             }
                         }
                     },
