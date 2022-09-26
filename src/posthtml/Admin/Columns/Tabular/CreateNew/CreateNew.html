@@ -558,9 +558,21 @@ data-bs-target="#collapse-{{@../../key}}-{{@../key}}-{{@key}}" aria-expanded="fa
                         let LocalToName = result.value.FolderName;
                         let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
                         let jVarLocalAdminSubRoute = jVarGlobalClientObject.Config.RouteStart.AdminSubRoute;
-                        let jVarLocalUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Utility/Json/Folder/Insert/OnlyFolder/${LocalToName}`;
+                        //let jVarLocalUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Utility/Json/Folder/Insert/OnlyFolder/${LocalToName}`;
+                        let jVarLocalUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Utility/Json/FromFolder/Insert`;
 
-                        fetch(jVarLocalUrl).then((response) => {
+                        let jVarLocalFetchHeaderObject = {
+                         method: "post",
+                         headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                           },
+                         body: JSON.stringify({
+                         inFolderName: LocalToName
+                      })
+                  };
+
+                 fetch(jVarLocalUrl,jVarLocalFetchHeaderObject).then((response) => {
                             if (!response.ok) {
                                 throw new Error(response.statusText);
                             }
