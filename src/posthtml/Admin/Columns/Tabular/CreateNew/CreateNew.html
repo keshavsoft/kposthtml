@@ -616,9 +616,22 @@ data-bs-target="#collapse-{{@../../key}}-{{@../key}}-{{@key}}" aria-expanded="fa
                         let LocalToName = `${jVarLocalFileName}.json`;
                         let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
                         let jVarLocalAdminSubRoute = jVarGlobalClientObject.Config.RouteStart.AdminSubRoute;
-                        let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Utility/Json/File/Insert/OnlyFile/${jVarLocalFolderName}/${LocalToName}`;
+                        //let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Utility/Json/File/Insert/OnlyFile/${jVarLocalFolderName}/${LocalToName}`;
+                        let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Utility/Json/FromFolder/FromFile/Insert`;
 
-                        fetch(jVarLocalFetchUrl).then((response) => {
+                        let jVarLocalFetchHeaderObject = {
+                            method: "post",
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                inFolderName: jVarLocalFolderName,
+                                inFileName: LocalToName
+                            })
+                        };
+
+                        fetch(jVarLocalFetchUrl, jVarLocalFetchHeaderObject).then((response) => {
                             if (!response.ok) throw new Error(response.statusText);
 
                             return response.json();
@@ -699,23 +712,23 @@ data-bs-target="#collapse-{{@../../key}}-{{@../key}}-{{@key}}" aria-expanded="fa
 
                 let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
                 let jVarLocalAdminSubRoute = jVarGlobalClientObject.Config.RouteStart.AdminSubRoute;
-                let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Utility/Json/Screens/Insert?inFolderName=${jVarLocalFolderName}&inJsonFileName=${jVarLocalFileNameWithOutExtension}&inItemName=${jVarLocalItemName}&ToName=${LocalScreenName}`
+                //let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Utility/Json/Screens/Insert?inFolderName=${jVarLocalFolderName}&inJsonFileName=${jVarLocalFileNameWithOutExtension}&inItemName=${jVarLocalItemName}&ToName=${LocalScreenName}`
+                let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Utility/Json/FromFolder/FromFile/ScreensFromDisplayJson/Items/Screens/Insert`;
 
-                let jVarLocalFetchHeaderObject = {
-                    method: "post",
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        inFolderName: jVarLocalFolderName,
-                        inJsonFileName: jVarLocalFileNameWithOutExtension,
-                        inItemName: jVarLocalItemName,
-                        inScreenName: LocalScreenName
-                    })
-                };
+                        let jVarLocalFetchHeaderObject = {
+                            method: "post",
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                inFolderName: jVarLocalFolderName,
+                                inJsonFileName: jVarLocalFileNameWithOutExtension, inItemName: jVarLocalItemName,
+                                inScreenName: LocalScreenName
+                            })
+                        };
 
-                fetch(jVarLocalFetchUrl, jVarLocalFetchHeaderObject).then((response) => {
+                        fetch(jVarLocalFetchUrl, jVarLocalFetchHeaderObject).then((response) => {
                     if (!response.ok) {
                         throw new Error(response.statusText);
                     }
@@ -744,9 +757,26 @@ data-bs-target="#collapse-{{@../../key}}-{{@../key}}-{{@key}}" aria-expanded="fa
 
                 let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
                 let jVarLocalAdminSubRoute = jVarGlobalClientObject.Config.RouteStart.AdminSubRoute;
-                let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Utility/Json/Columns/Insert?inFolderName=${jVarLocalFolderName}&inJsonFileName=${jVarLocalFileNameWithOutExtension}&inItemName=${jVarLocalItemName}&inScreenName=${jVarLocalScreenName}&ToName=${LocalColumnName}`
+                //let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Utility/Json/Columns/Insert?inFolderName=${jVarLocalFolderName}&inJsonFileName=${jVarLocalFileNameWithOutExtension}&inItemName=${jVarLocalItemName}&inScreenName=${jVarLocalScreenName}&ToName=${LocalColumnName}`
+                let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Utility/Json/FromFolder/FromFile/ScreensFromDisplayJson/Items/Screens/Columns/Insert`
 
-                fetch(jVarLocalFetchUrl).then((response) => {
+                let jVarLocalFetchHeaderObject = {
+                            method: "post",
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                inFolderName: jVarLocalFolderName,
+                                inJsonFileName: jVarLocalFileNameWithOutExtension, 
+                                inItemName: jVarLocalItemName,
+                                inScreenName:jVarLocalScreenName,
+                                inColumnName:LocalColumnName
+                            })
+                        };
+
+
+                fetch(jVarLocalFetchUrl,jVarLocalFetchHeaderObject).then((response) => {
                     if (!response.ok) {
                         throw new Error(response.statusText);
                     }
