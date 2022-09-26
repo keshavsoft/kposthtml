@@ -2692,6 +2692,75 @@
                 KeyPress: {
                     EnterToServer: async ({ inEvent }) => {
                         if (inEvent.keyCode === 13) {
+                            let jVarLocalCurrentTarget = inEvent.currentTarget;
+                            let jVarLocalRoute = this.Config.RouteStart.Start;
+                            let jVarLocalSubRoute = this.Config.RouteStart.SubRoute;
+
+                            let jVarLocalinEvent = inEvent.currentTarget;
+                            let jVarLocalCurrentValue = jVarLocalCurrentTarget.value;
+                            let jVarLocalCurrentName = jVarLocalCurrentTarget.name;
+
+                            let jVarLocalHtmlCard = jVarLocalCurrentTarget.closest(".card");
+
+                            let LocalFooterInputElements;
+                            let LocalDataFromServer;
+
+                            let jVarLocalJsonConfig = jVarLocalHtmlCard.dataset.jsonconfig;
+                            let jVarLocalItemConfig = jVarLocalHtmlCard.dataset.itemconfig;
+                            let jVarLocalInsertKey = jVarLocalHtmlCard.dataset.insertkey;
+
+                            let LocalObjectToPost = {};
+
+                            LocalObjectToPost.DataToSearch = {};
+                            //   LocalObjectToPost.DataToSearch[jVarLocalinEvent.name] = jVarLocalCurrentValue;
+
+                            LocalObjectToPost.DataToSearch[jVarLocalCurrentTarget.name] = KeyPressFuncsClass.SubFuncs.ForEnterToServer.PrepareDataToSearchObject({ inCurrentTarget: jVarLocalCurrentTarget });;
+
+                            LocalObjectToPost.JsonConfig = JSON.parse(jVarLocalJsonConfig);
+                            LocalObjectToPost.ItemConfig = JSON.parse(jVarLocalItemConfig);
+                            LocalObjectToPost.insertkey = jVarLocalInsertKey;
+
+                            let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/ScreensFromDisplayJson/Tabular/Footer/KeyPress/EnterToServer`;
+
+                            let response = await fetch(jVarLocalFetchUrl, {
+                                method: 'POST',
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(LocalObjectToPost)
+                            });
+
+                            let FetchData = await response.json();
+
+                            if (FetchData.KTF) {
+                                LocalDataFromServer = FetchData.DataFromServer[0];
+
+                                this.ApiFuncs.Vertical.KeyPress.CommonFuncs.AfterFetch({
+                                    inDataFromServer: LocalDataFromServer,
+                                    inHtmlCard: jVarLocalHtmlCard,
+                                    inCurrentName: jVarLocalCurrentName
+                                });
+
+                            } else {
+                                Swal.fire(FetchData.KReason);
+                            }
+                        }
+                    },
+                    CommonFuncs: {
+                        AfterFetch: ({ inDataFromServer, inHtmlCard, inCurrentName }) => {
+                            let jVarLocalVerticalInputElements = inHtmlCard.querySelectorAll("[data-dataattribute]");
+                            jVarLocalVerticalInputElements.forEach((LoopItem) => {
+                                if (LoopItem.name.replace(inCurrentName, "") in inDataFromServer) {
+                                    LoopItem.value = inDataFromServer[LoopItem.name.replace(inCurrentName, "")];
+                                };
+                            });
+                        }
+                    }
+                },
+                KeyPress1: {
+                    EnterToServer: async ({ inEvent }) => {
+                        if (inEvent.keyCode === 13) {
                             let jVarLocalRoute = this.Config.RouteStart.Start;
                             let jVarLocalSubRoute = this.Config.RouteStart.SubRoute;
 
