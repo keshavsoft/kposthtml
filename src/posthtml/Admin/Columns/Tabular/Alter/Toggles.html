@@ -96,7 +96,7 @@
     <include src="./src/components/Templates/Admin/Columns/Tabular/HbsTemplates/ForScreensOnly.html"></include>
 
 
-    <script id="HbsTemplateForTableColumnsForAllInOneWithValuesOnly" type="text/x-handlebars">
+    <!-- <script id="HbsTemplateForTableColumnsForAllInOneWithValuesOnly" type="text/x-handlebars">
 <div class="card text-dark bg-light">
 <div class="card-header">
     <div class="row">
@@ -152,8 +152,120 @@
     </table>
 </div>
 </div>
-    </script>
+    </script> -->
 
+    <script id="HbsTemplateForTableColumnsForTogglesOnly" type="text/x-handlebars">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width="5%"></th>
+                    <th width="90%"></th>
+                    <th width="5%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each TableColumnsObject}}
+                {{log "this" this}}
+              
+    <tr class="{{RowClass}}">
+    <td class="text-center">
+    {{ForSNo @index}}
+    </td>
+    <td>
+    <div class="row mb-3">
+        <div class="col-12 col-xl-6">
+                                <div class="row">
+            <label class="col-md-5 col-form-label">DataAttribute</label>
+        <div class="col-7">
+            <input class="form-control" type="text" disabled value="{{DataAttribute}}">
+        </div>
+    
+    </div>
+    
+        </div>
+        <div class="col-12 col-xl-6">
+            
+        <div class="row">
+            <label class="col-md-5 col-form-label">DisplayName</label>
+            <div class="col-7">
+                <input class="form-control" type="text" name="DisplayName" value="{{DisplayName}}" >
+            </div>
+        </div>
+    
+    </div>
+    </div>
+    
+    <div class="row mb-3">
+        <div class="col row">
+            <label class="col-md-8 col-form-label">ShowInTable</label>
+            <div class="col-4">
+                <div class="form-check  form-switch">
+                    {{#if ShowInTable}}
+                    <input class="form-check-input" type="checkbox" name="ShowInTable" checked>
+                    {{else}}
+                    <input class="form-check-input" type="checkbox" name="ShowInTable">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="col row">
+            <label class="col-md-8 col-form-label">Insert</label>
+            <div class="col-4">
+                <div class="form-check  form-switch">
+                    {{#if Insert}}
+                    <input class="form-check-input" type="checkbox" name="Insert" checked>
+                    {{else}}
+                    <input class="form-check-input" type="checkbox" name="Insert">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mb-3">
+        <div class="col row">
+            <label class="col-md-8 col-form-label">CreateNew</label>
+            <div class="col-4">
+                <div class="form-check  form-switch">
+                    {{#if CreateNew}}
+                    <input class="form-check-input" type="checkbox" name="CreateNew" checked>
+                    {{else}}
+                    <input class="form-check-input" type="checkbox" name="CreateNew">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="col row">
+            <label class="col-md-8 col-form-label">IsTextArea</label>
+            <div class="col-4">
+                <div class="form-check  form-switch">
+                    {{#if IsTextArea}}
+                    <input class="form-check-input" type="checkbox" name="IsTextArea" checked>
+                    {{else}}
+                    <input class="form-check-input" type="checkbox" name="IsTextArea">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    </td>
+    <td>
+    <button type="button" class="btn btn-outline-info"
+        onclick="jFUpdateData(event , '{{@../../../../key}}','{{@../../../key}}','{{@../../key}}','{{@../key}}','{{@key}}')">
+        Update
+    </button>
+    </td>
+    </tr>
+    
+                {{/each}}
+            </tbody>
+        </table>
+    
+        </script>
+        
     <script id="HbsTemplateForTable" type="text/x-handlebars">
                         {{#each this.KData}}
                         <tr class="{{RowClass}}">
@@ -316,7 +428,9 @@
                 var jVarLocalQueryParams = this.getUrlQueryParams();
                 let jVarLocalSubRoute = jVarCommonSubRoute;
                 //let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Folders/Show/ForAdmin`;
-                let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/Utility/Json/Folder/ForTableColumns/AllInOneWithValues`;
+                // let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/Utility/Json/Folder/ForTableColumns/AllInOneWithValues`;
+                let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/Utility/Json/Folder/ForTableColumns/FromKeys/Toggles`;
+
 
                 fetch(jVarLocalFetchUrl)
                     .then(response => {
