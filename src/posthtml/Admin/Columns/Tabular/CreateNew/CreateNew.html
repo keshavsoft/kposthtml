@@ -36,6 +36,40 @@
         </div>
     </main>
 
+    
+    <div class="modal fade" id="LoginModalId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enter client user credentials</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="LoginFormPopUpId22" class="" onsubmit="return false" novalidate>
+                        <div class="mb-3 form-floating is-valid">
+                            <input type="text" class="form-control" id="KUserNameInput" required>
+                            <label for="KUserNameInput">User Name</label>
+                            <div class="invalid-feedback">
+                                User Name cannot be empty.
+                            </div>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input type="password" class="form-control" id="KPasswordInput" required>
+                            <label for="KPasswordInput">Password</label>
+                            <div class="invalid-feedback">
+                                Password cannot be empty.
+                            </div>
+                        </div>
+                        <input type="submit" class=" btn btn-primary" onclick="GlobalFuncsForLogin.Login.LoginCheck()">
+                        <!-- <button type="button" class="btn btn-primary"
+                        onclick="jVarGlobalAdmin.Login.LoginCheck()">Check</button>
+                         -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <include src="./src/components/Templates/Admin/Columns/Tabular/CreateNew/Footer.html"></include>
     <include src="./src/components/JScripts/KSJsFuncs/Login.html"></include>
 
@@ -498,7 +532,7 @@ data-bs-target="#collapse-{{@../../key}}-{{@../key}}-{{@key}}" aria-expanded="fa
         
         jVarGlobalLoginFuncs.Login.ClientSideCookieFuncs.CheckToken();
 
-        jVarGlobalApiFuncs.ApiFuncs.PreLoad.Masters.FillDataFromServer();
+        //jVarGlobalApiFuncs.ApiFuncs.PreLoad.Masters.FillDataFromServer();
 
         let jVarHtmlLoginModalId = document.getElementById("LoginModalId");
         jVarHtmlLoginModalId.addEventListener('shown.bs.modal', function (event) {
