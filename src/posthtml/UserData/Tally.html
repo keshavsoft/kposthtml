@@ -281,31 +281,6 @@
         </div>
     </div>
 
-    <div class="position-fixed bottom-0 end-0 p-3 mb-5" style="z-index: 11">
-        <div class="toast-container">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <strong class="me-auto">Bootstrap</strong>
-                    <small>11 mins ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    DataList count.
-                </div>
-            </div>
-            <div id="liveToastForDataList" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <strong class="me-auto">Bootstrap</strong>
-                    <small>11 mins ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body" id="ToastBodyForDataList">
-                    Hello, world! This is a toast message.
-                </div>
-            </div>
-        </div>
-    </div>
-
     <footer class="footer mt-auto py-2 bg-light fixed-bottom">
         <div class="container">
             <div class="bg-light d-flex justify-content-between">
@@ -395,7 +370,7 @@
     <script>
         let jVarGlobalProjectConfig = {
             RouteStart: {
-                Start: "JSONProject",
+                Start: "JSONApi",
                 SubRoute: "API",
                 HtmlPath: "",
                 UserCheckRoute: "JSONUser",
@@ -626,9 +601,11 @@
         };
 
         let jFShowFoldersInMenu = () => {
-            let jVarLocalRoute = jVarGlobalProject;
+            let jVarLocalRoute = jVarGlobalProjectConfig.RouteStart.Start;
+
+            //let jVarLocalRoute = jVarGlobalProject;
             let jVarLocalSubRoute = jVarGlobalSubRoute;
-            //            let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/GetDirs/AsArray`;
+
             let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/GetDirs/MenuWithDesign`;
 
             fetch(jVarLocalFetchUrl).then(response => {
@@ -647,21 +624,20 @@
                         return response.json();
                         break;
                 };
-            })
-                .then(dataFromApi => {
-                    if (dataFromApi !== null) {
-                        if (dataFromApi.KTF) {
-                            Object.entries(dataFromApi.Folders).forEach(
-                                ([key, value]) => {
-                                    jFPrepareMenuItem({
-                                        inFileName: value.FolderName,
-                                        inMenuClass: value.MenuClass,
-                                        inIconClass: value.IconClass
-                                    });
+            }).then(dataFromApi => {
+                if (dataFromApi !== null) {
+                    if (dataFromApi.KTF) {
+                        Object.entries(dataFromApi.Folders).forEach(
+                            ([key, value]) => {
+                                jFPrepareMenuItem({
+                                    inFileName: value.FolderName,
+                                    inMenuClass: value.MenuClass,
+                                    inIconClass: value.IconClass
                                 });
-                        };
+                            });
                     };
-                });
+                };
+            });
         };
 
         let jFTableShow = ({ inFolderName, inFileName, inItemName, inScreenName }) => {

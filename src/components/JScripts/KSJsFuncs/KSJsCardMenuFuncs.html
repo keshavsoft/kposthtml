@@ -12,7 +12,9 @@
                     let jVarLocalFolderName = inFolderName;
 
                     let jVarLocalbreadcrumbObject = {};
+
                     jVarLocalbreadcrumbObject.Home = {};
+
                     jVarLocalbreadcrumbObject[jVarLocalFolderName] = {
                         onClick: `jGlobalClassForCardMenu.ForFolders.Breadcrumb.ItemClick({inFolderName:'${inFolderName}'})`
                     };
@@ -33,8 +35,10 @@
                 let jVarLocalClosestNavbar = jVarLocalCurrentTarget.closest("ul");
 
                 let jVarLocalFolderName = inFolderName;
-                let jVarLocalRoute = jVarGlobalProject;
-                let jVarLocalSubRoute = jVarGlobalSubRoute;
+
+                let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
+                let jVarLocalSubRoute = jVarGlobalClientObject.Config.RouteStart.SubRoute;
+
                 let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/GetFilesAsTree/WithItemAndScreenCount`;
 
                 fetch(jVarLocalFetchUrl, {
@@ -141,8 +145,10 @@
             FetchAsPost: (inFolderName, inFileNameWithExtension) => {
                 let jVarLocalFolderName = inFolderName;
                 let jVarLocalFileNameWithExtension = inFileNameWithExtension;
-                let jVarLocalRoute = jVarGlobalProject;
-                let jVarLocalSubRoute = jVarGlobalSubRoute;
+                
+                let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
+                let jVarLocalSubRoute = jVarGlobalClientObject.Config.RouteStart.SubRoute;
+
                 let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/Items/GetData/AsArray`;
 
                 fetch(jVarLocalFetchUrl, {
@@ -256,9 +262,10 @@
                 let jVarLocalFileNameWithExtension = inFileNameWithExtension;
                 let jVarLocalItemName = inItemName;
                 let jVarLocalRowCount = inRowCount;
+                
+                let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
+                let jVarLocalSubRoute = jVarGlobalClientObject.Config.RouteStart.SubRoute;
 
-                let jVarLocalRoute = jVarGlobalProject;
-                let jVarLocalSubRoute = jVarGlobalSubRoute;
                 let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/Items/Screens/GetData/AsArrayOfObjects`;
 
                 fetch(jVarLocalFetchUrl, {
@@ -482,13 +489,6 @@
                                 inFileNameWithExtension:'${jVarLocalFileNameWithExtension}',
                                 inItemName:'${jVarLocalItemName}'})`
                     };
-
-                    // jVarLocalbreadcrumbObject[jVarLocalScreenName] = {
-                    //     onClick: `jGlobalClassForCardMenu.ForItems.Breadcrumb.ItemClick(
-                    //         {inFolderName:'${jVarLocalFolderName}',
-                    //         inFileNameWithExtension:'${jVarLocalFileNameWithExtension}',
-                    //         inItemName:'${jVarLocalItemName}'})`
-                    // };
 
                     jFBuildBreadcrumb(jVarLocalbreadcrumbObject);
                     let jVarLocalbreadcrumbLastItem = `<li class="breadcrumb-item">${jVarLocalScreenName}

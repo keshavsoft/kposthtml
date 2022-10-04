@@ -1,8 +1,6 @@
 const fs = require('fs-extra')
 var path = require('path');
 
-const { readFileSync, fstat, writeFileSync } = require('fs')
-
 const posthtml = require('posthtml')
 const include = require('posthtml-include')
 
@@ -37,14 +35,12 @@ walk(LocalFolderPath, function (err, results) {
     if (err) throw err;
 
     results.forEach(element => {
-        const html = readFileSync(element);
-        //console.log("html : ", html);
+        const html = fs.readFileSync(element);
 
         posthtml([include({ encoding: 'utf8' })])
             .process(html)
             .then((result) => {
                 if (fs.existsSync(element.replace(LocalFolderPath, LocalDestinationPath)) === false) {
-                    // fs.writeFileSync(element.replace(LocalFolderPath, LocalDestinationPath), result.html);
                     fs.createFileSync(element.replace(LocalFolderPath, LocalDestinationPath));
                 };
 
