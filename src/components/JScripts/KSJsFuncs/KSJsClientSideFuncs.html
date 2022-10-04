@@ -5,7 +5,7 @@
         constructor({ inProjectName }) {
             this.Config = {
                 RouteStart: {
-                    Start: "JSONProject",
+                    Start: "JSONApi",
                     SubRoute: "API",
                     HtmlPath: "",
                     UserCheckRoute: "JSONUser",
@@ -2712,9 +2712,8 @@
                             let LocalObjectToPost = {};
 
                             LocalObjectToPost.DataToSearch = {};
-                            //   LocalObjectToPost.DataToSearch[jVarLocalinEvent.name] = jVarLocalCurrentValue;
 
-                            LocalObjectToPost.DataToSearch[jVarLocalCurrentTarget.name] = KeyPressFuncsClass.SubFuncs.ForEnterToServer.PrepareDataToSearchObject({ inCurrentTarget: jVarLocalCurrentTarget });;
+                            LocalObjectToPost.DataToSearch[jVarLocalCurrentTarget.name] = this.KeyPressFuncsClass.SubFuncs.ForEnterToServer.PrepareDataToSearchObject({ inCurrentTarget: jVarLocalCurrentTarget });
 
                             LocalObjectToPost.JsonConfig = JSON.parse(jVarLocalJsonConfig);
                             LocalObjectToPost.ItemConfig = JSON.parse(jVarLocalItemConfig);
