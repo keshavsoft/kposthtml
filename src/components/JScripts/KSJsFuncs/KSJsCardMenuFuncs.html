@@ -114,7 +114,7 @@
                             let jVarLocalFromLoop = this.ForFiles.ToUi.CommonFuncs.LoopFunc({
                                 inFolderName: inFolderName,
                                 inFileName: value.FileName,
-                                inItemCount: value.Items.ItemCount
+                                inItemCount: Object.keys(value.Items).length
                             });
                             jVarLocalNewRow.appendChild(jVarLocalFromLoop);
                         });
@@ -145,7 +145,7 @@
             FetchAsPost: (inFolderName, inFileNameWithExtension) => {
                 let jVarLocalFolderName = inFolderName;
                 let jVarLocalFileNameWithExtension = inFileNameWithExtension;
-                
+
                 let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
                 let jVarLocalSubRoute = jVarGlobalClientObject.Config.RouteStart.SubRoute;
 
@@ -262,7 +262,7 @@
                 let jVarLocalFileNameWithExtension = inFileNameWithExtension;
                 let jVarLocalItemName = inItemName;
                 let jVarLocalRowCount = inRowCount;
-                
+
                 let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
                 let jVarLocalSubRoute = jVarGlobalClientObject.Config.RouteStart.SubRoute;
 
