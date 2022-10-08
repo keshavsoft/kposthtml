@@ -183,10 +183,6 @@
                                 collection: inCurrentTarget.list.options,
                                 searchText: inCurrentTarget.value
                             });
-
-
-                            console.log("inCurrentTarget : ", jVarLocalDataListValue, jVarLocalDataListValue, inCurrentTarget.value, inCurrentTarget.list.options);
-
                         };
 
                         return jVarLocalDataListValue;
@@ -732,7 +728,7 @@
                                         jVarGlobalPresentViewData = KeshavSoftCrud.BuildFromArray(inDataFromSave.DataFromServer);
 
                                         let jVarLocalUUID = ForLocalStorageClass.jFInsertToLocalStorage({ inData: jVarGlobalPresentViewData });
-                                        console.log("jVarLocalUUID : ", jVarLocalUUID);
+                                        
                                         if (jVarLocalUUID in localStorage) {
                                             jVarGlobalPresentViewData = JSON.parse(localStorage.getItem(jVarLocalUUID));
                                         };
@@ -2022,7 +2018,7 @@
                                             if (jVarLocalClosestCard.dataset.localstorageid in localStorage) {
                                                 let jVarLocalLocalStorageArrayNeeded = JSON.parse(localStorage.getItem(jVarLocalClosestCard.dataset.localstorageid));
                                                 jVarGlobalPresentViewData = jVarLocalLocalStorageArrayNeeded[jVarLocalClosestCard.dataset.localstoragearrayindex];
-                                                console.log("jVarLocalLocalStorageArrayNeeded : ", jVarLocalLocalStorageArrayNeeded);
+                                            
                                             } else {
                                                 console.log("localstoragearrayindex not found in card dataset");
                                             };
