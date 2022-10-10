@@ -6,8 +6,7 @@
 
 <template id="TemplateForMenuItem">
     <li>
-        <a href="#" keshavsoftfoldername="{{MenuName}}"
-            class="nav-link {{MenuClass}}">
+        <a href="#" keshavsoftfoldername="{{MenuName}}" class="nav-link {{MenuClass}}">
 
             <svg class="bi d-block mx-auto mb-1 d-none d-md-block" width="24" height="24">
                 <use xlink:href="#{{IconClass}}" />
@@ -18,29 +17,14 @@
     </li>
 </template>
 
-<template id="TemplateForMenuItem1">
-    <li>
-        <a href="#" onclick="jGlobalClassForCardMenu.ForFiles.FetchAsPost('{{MenuName}}')"
-            class="nav-link DashboardAClass text-info">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                class="bi d-block mx-auto mb-1 d-none d-md-block" viewBox="0 0 16 16">
-                <path
-                    d="M6 1v3H1V1h5zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12v3h-5v-3h5zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8v7H1V8h5zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6v7h-5V1h5zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z" />
-            </svg>
-            {{MenuName}}
-        </a>
-    </li>
-</template>
-
-
 <template id="TemplateForFiles">
     <div class="col-4">
         <div class="card mb-3">
             <div class="card-header">
                 <div class="card-body">
                     <h5 class="card-title">{{FileName}}</h5>
-                    <a href="#" onclick="jGlobalClassForCardMenu.ForItems.FetchAsPost('{{FolderName}}','{{FileName}}')"
-                        class="btn btn-primary">Items - {{ItemCount}}</a>
+                    <a href="#" keshavsoftfilename="{{FileName}}" class="btn btn-primary keshavsoftfilesclick">Items -
+                        {{ItemCount}}</a>
                 </div>
             </div>
         </div>
@@ -54,7 +38,7 @@
                 <div class="card-body">
                     <h5 class="card-title ItemNameClass">{{ItemName}}</h5>
                     <p>Rows : <span class="RowCountClass">{{RowCount}}</span> </p>
-                    <a href="#" class="btn btn-primary">Screens : <span class="ScreenCountClass">{{ScreenCount}}</span>
+                    <a href="#" class="btn btn-primary keshavsoftItemclick">Screens : <span class="ScreenCountClass">{{ScreenCount}}</span>
                     </a>
                 </div>
             </div>

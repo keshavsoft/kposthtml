@@ -6,6 +6,7 @@ const include = require('posthtml-include')
 
 let LocalFolderPath = "src\\posthtml";
 let LocalDestinationPath = "public\\JSONProject\\Html";
+//let LocalDestinationPath = "C:\\KeshavSoft\\nodejs\\multi\\2022\\oct\\8\\KJson\\public\\JSONApi\\Html"
 
 var walk = function (dir, done) {
     var results = [];
@@ -45,6 +46,7 @@ walk(LocalFolderPath, function (err, results) {
                 };
 
                 fs.writeFileSync(element.replace(LocalFolderPath, LocalDestinationPath), result.html);
+                //  fs.writeFileSync(element.replace(LocalFolderPath, LocalDestinationPath), result.html);
             });
     });
 });
