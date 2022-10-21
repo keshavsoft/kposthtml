@@ -1,5 +1,15 @@
 <script>
     class ForLocalStorageClass {
+        static jFDeleteuuidInLocalStorage = () => {
+            const re = /uuid-/g;
+
+            Object.keys(localStorage).forEach(function (key) {
+                if (key.match(re)) {
+                    delete localStorage[key];
+                }
+            });
+        };
+
         static jFCreateuuid = () => {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
                 var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -8,7 +18,7 @@
         };
 
         static jFInsertToLocalStorage = ({ inData }) => {
-            let jVarLocalUUID = this.jFCreateuuid();
+            let jVarLocalUUID = `uuid-${this.jFCreateuuid()}`;
 
             inData.forEach((element, LoopIndex) => {
                 if ("KData" in element) {
