@@ -4,8 +4,8 @@ var path = require('path');
 const posthtml = require('posthtml')
 const include = require('posthtml-include')
 
-let LocalFolderPath = "src\\Projects";
-let LocalDestinationPath = "public\\Projects";
+let LocalFolderPath = "src\\posthtml";
+let LocalDestinationPath = "public\\JSONProject\\Html";
 //let LocalDestinationPath = "C:\\KeshavSoft\\nodejs\\multi\\2022\\oct\\8\\KJson\\public\\JSONApi\\Html"
 
 var walk = function (dir, done) {

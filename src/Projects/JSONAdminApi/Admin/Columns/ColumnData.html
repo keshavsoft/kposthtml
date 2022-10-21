@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <title>ColumnsData</title>
+    <!-- Custom styles for this template -->
+    <include src="./src/components/Templates/Admin/Columns/HeaderCss.html"></include>
+
+</head>
+
+<body class="mb-5">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="bootstrap" viewBox="0 0 118 94">
+            <title>Bootstrap</title>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z">
+            </path>
+        </symbol>
+    </svg>
+  
+    <include src="./src/components/Templates/Admin/Columns/ColumnData/Header.html"></include>
+
+
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+
+            <include src="./src/components/Templates/Admin/Columns/ColumnData/Breadcrumb.html"></include>
+
+            <!-- Breadcrumb end -->
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light rounded  mb-3" aria-label="Twelfth navbar example">
+    <div class="container-fluid">
+        <button class="navbar-toggler mb-2 mt-2" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>Filters
+        </button>
+        <div id="navbarsExample10" class="collapse navbar-collapse justify-content-md-center">
+            <div id="KDataListNavBar">
+                <ul class="navbar-nav gap-2">
+                    <li class="nav-item me-2 ">
+                        <div class="input-group">
+                            <input type="text" class="form-control" list="FolderList" name="FolderName"
+                                id="FolderSelected" placeholder="Select Folder" autocomplete="off">
+                            <datalist id="FolderList"> </datalist>
+
+                            <button class="btn btn-outline-secondary" type="button"
+                                onclick="jVarGlobalClientObject.DataApi.Files.PullData()" id="button-addon2">Go</button>
+                        </div>
+                    </li>
+                    <li class="nav-item me-2 ">
+                        <div class="input-group">
+                            <input type="text" class="form-control" list="FileList" name="FileName" id="FileSelected"
+                                placeholder="Select File"autocomplete="off">
+                            <datalist id="FileList"> </datalist>
+                            <button class="btn btn-outline-secondary" type="button"
+                                onclick="jVarGlobalClientObject.DataApi.Items.ForDataList(event)"
+                                id="button-addon2">Go</button>
+
+                        </div>
+                    </li>
+
+                    <li class="nav-item me-2 ">
+                        <div class="input-group">
+                            <input type="text" class="form-control" list="ItemList" name="ItemName" id="ItemSelected"
+                                placeholder="Select Item" autocomplete="off">
+                            <datalist id="ItemList"> </datalist>
+                            <button class="btn btn-outline-secondary" type="button"
+                                onclick="jVarGlobalClientObject.DataApi.Screens.ForDataList()"
+                                id="button-addon2">Go</button>
+                        </div>
+                    </li>
+
+                    <li class="nav-item me-2 ">
+                        <div class="input-group">
+                            <input type="text" class="form-control" list="ScreenList" name="ScreenName"
+                                id="ScreenSelected" placeholder="Select Screen" autocomplete="off">
+                            <datalist id="ScreenList">
+
+                            </datalist>
+                            <button class="btn btn-outline-secondary" type="button"
+                                onclick="jVarGlobalClientObject.DataApi.Columns.ForDataList()"
+                                id="button-addon2">Go</button>
+                        </div>
+                    </li>
+
+                    <li class="nav-item me-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" list="ColumnsList" name="ColumnName"
+                                id="ColumnSelected" placeholder="Select Column" autocomplete="off">
+                            <datalist id="ColumnsList">
+                            </datalist>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+        </div>
+        <!--new accordoin-->
+        <div class="container">
+            <div class="col-auto">
+                <div class="card border-success" data-EndPoint="ColumnData"
+                    data-KQueryObject="{{inItemName.{{inScreenName.TableColumns[DataAttribute:inColumnName">
+                    <div class="card-body">
+                        <div class="mb-2 row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <label class="col col-form-label">DisplayName</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="DisplayName" id="DisplayName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <label class="col col-form-label">DataAttribute</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="DataAttribute" id="DataAttribute">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row justify-content-center">
+                            <div class="col-3">
+                                <div class="form-check  form-switch">
+                                    <input class="form-check-input" type="checkbox" name="IsSelect" id="IsSelect">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">IsSelect</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-check  form-switch">
+                                    <input class="form-check-input" type="checkbox" name="CreateNew" id="CreateNew">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">CreateNew</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-check  form-switch">
+                                    <input class="form-check-input" type="checkbox" name="Insert" id="Insert">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Insert</label>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="form-check  form-switch">
+                                    <input class="form-check-input" type="checkbox" name="ShowInTable" id="ShowInTable">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">ShowInTable</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row justify-content-center">
+                            <div class="col-3">
+                                <div class="form-check  form-switch">
+                                    <input class="form-check-input" type="checkbox" name="ShowTotal" id="ShowTotal">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">ShowTotal</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-check  form-switch">
+                                    <input class="form-check-input" type="checkbox" name="SaveOnEnter" id="SaveOnEnter">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">SaveOnEnter</label>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="form-check  form-switch">
+                                    <input class="form-check-input" type="checkbox" name="EnterToServer"
+                                        id="EnterToServer">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">EnterToServer</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="mb-2 row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <label class="col col-form-label">DefaultValue</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input class="form-control" name="DefaultValue" id="ColumnDataDefaultValue"
+                                                autocomplete="off" list="ColumnDataDefaultValueDataList">
+                                            <datalist id="ColumnDataDefaultValueDataList">
+                                                <option value=""></option>
+                                                <option value="Object"></option>
+                                            </datalist>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <label class="col col-form-label">TextAlign</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group md-3">
+                                            <input class="form-control" name="TextAlign" id="ColumnDataTextAlign"
+                                                autocomplete="off" list="ColumnDataTextAlignList">
+                                            <datalist id="ColumnDataTextAlignList">
+                                                <option value="Right"></option>
+                                                <option value="Left"></option>
+                                            </datalist>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="mb-2 row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <label class="col col-form-label">Name</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input class="form-control" name="Name" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <label class="col col-form-label">TransformType</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group md-3">
+                                            <input class="form-control" name="TransformType" autocomplete="off"
+                                                list="TransformTypeList">
+                                            <datalist id="TransformTypeList">
+                                                <option value="ObjectToArrayGroupBy"></option>
+                                                <option value="ObjectCount"></option>
+                                            </datalist>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row justify-content-center">
+                            <div class="col-3">
+                                <div class="form-check  form-switch">
+                                    <input class="form-check-input" type="checkbox" name="TransformTF">
+                                    <label class="form-check-label">TransformTF</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn  btn-outline-primary me-5" onclick="jFshow(event)">
+                            <i class="bi bi-caret-right-square-fill" style="font-size: 1rem;"></i>
+                        </button>
+
+                        <button id="ColumnDataUpdateId" disabled class="btn btn-success " style="float:right;"
+                            type="button" onclick="jFupdate(event)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z" />
+                            </svg></button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <include src="./src/components/Templates/Admin/Columns/ColumnData/Footer.html"></include>
+
+    <!-- LOGIN  STARTED -->
+    <div class="modal fade" id="LoginModalId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enter client user credentials</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="LoginFormPopUpId" class="" onsubmit="return false" novalidate>
+                        <div class="mb-3 form-floating is-valid">
+                            <input type="text" class="form-control" id="KUserNameInput" required>
+                            <label for="KUserNameInput">User Name</label>
+                            <div class="invalid-feedback">
+                                User Name cannot be empty.
+                            </div>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input type="password" class="form-control" id="KPasswordInput" required>
+                            <label for="KPasswordInput">Password</label>
+                            <div class="invalid-feedback">
+                                Password cannot be empty.
+                            </div>
+                        </div>
+                        <input type="submit" class=" btn btn-primary"
+                            onclick="jVarGlobalClientObject.Login.LoginCheck()">
+                        <!-- <button type="button" class="btn btn-primary"
+                        onclick="jVarGlobalAdmin.Login.LoginCheck()">Check</button>
+                         -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LOGIN FINISHED -->
+
+    <!-- <script src="/ClassesStatic/CommonClass.js"></script> -->
+    <script src="/ClassesStatic/CommonClass.js"></script>
+<script src="/js/Admin/HeadFocus.js"></script>
+
+<script>
+    let SingleValue = ({ inDataList, inSearchValue }) => {
+        let i = 0;
+
+        for (i = 0; i < inDataList.options.length; i++) {
+            if (inDataList.options[i].value === inSearchValue) {
+                return true;
+            };
+        };
+
+        return false;
+    };
+
+    let jFPrepareObject = () => {
+        let jVarReturnObject = {
+            FolderName: document.getElementById("FolderSelected").value,
+            FileName: document.getElementById("FileSelected").value,
+            ItemName: document.getElementById("ItemSelected").value,
+            ScreenName: document.getElementById("ScreenSelected").value,
+            ColumnName: document.getElementById("ColumnSelected").value
+        };
+
+        return jVarReturnObject;
+    };
+
+    let jFPrepareQueryString = ({ inMenuObject }) => {
+        let jVarLocalQueryStringToReturn = "";
+
+        Object.entries(inMenuObject).forEach(
+            ([key, value]) => {
+                if (jVarLocalQueryStringToReturn.length === 0) {
+                    jVarLocalQueryStringToReturn = `${key}=${value}`
+                } else {
+                    jVarLocalQueryStringToReturn += `&${key}=${value}`
+                };
+            }
+        );
+
+        return jVarLocalQueryStringToReturn;
+    };
+
+    let CheckBeforeFetch = () => {
+        let jVarReturnObject = {
+            KTF: false,
+            FolderName: document.getElementById("FolderSelected").value,
+            FileName: document.getElementById("FileSelected").value,
+            ItemName: document.getElementById("ItemSelected").value,
+            ScreenName: document.getElementById("ScreenSelected").value,
+            ColumnName: document.getElementById("ColumnSelected").value
+        };
+
+        if (SingleValue({ inDataList: document.getElementById("ItemSelected").list, inSearchValue: jVarReturnObject.ItemName })) {
+            if (SingleValue({ inDataList: document.getElementById("ScreenSelected").list, inSearchValue: jVarReturnObject.ScreenName })) {
+                if (SingleValue({ inDataList: document.getElementById("ColumnSelected").list, inSearchValue: jVarReturnObject.ColumnName })) {
+                    jVarReturnObject.KTF = true;
+                } else {
+                    document.getElementById("ColumnSelected").focus();
+                    document.getElementById("ColumnSelected").classList.add("is-invalid");
+                };
+            } else {
+                document.getElementById("ScreenSelected").focus();
+                document.getElementById("ScreenSelected").classList.add("is-invalid");
+            };
+        } else {
+            document.getElementById("ItemSelected").focus();
+            document.getElementById("ItemSelected").classList.add("is-invalid");
+        };
+
+        return jVarReturnObject;
+    };
+    let jFMenuClick = {
+        KDataset: () => {
+            let jVarLocalNavObject = jFPrepareObject();
+            let jVarLocalQueryString = jFPrepareQueryString({ inMenuObject: jVarLocalNavObject });
+
+            window.location.href = `KDataset.html?${jVarLocalQueryString}`;
+        },
+        ItemClick: (inEvent) => {
+            let jVarLocalCurrentTarget = inEvent.currentTarget;
+            let jVarLocalHtmlName = jVarLocalCurrentTarget.innerText;
+            let jVarLocalNavObject = jFPrepareObject();
+            let jVarLocalQueryString = jFPrepareQueryString({ inMenuObject: jVarLocalNavObject });
+
+            window.location.href = `${jVarLocalHtmlName}.html?${jVarLocalQueryString}`;
+
+            console.log(" jVarLocalCurrentTarget : ", jVarLocalCurrentTarget.innerText);
+            // let jVarLocalNavObject = jFPrepareObject();
+            // let jVarLocalQueryString = jFPrepareQueryString({ inMenuObject: jVarLocalNavObject });
+
+            // window.location.href = `KDataset.html?${jVarLocalQueryString}`;
+
+        }
+    };
+
+    jVarGlobalClientObject.Login.ClientSideCookieFuncs.CheckToken();
+
+    jVarGlobalClientObject.DataApi.Folders.PullData();
+    let jVarHtmlLoginModalId = document.getElementById("LoginModalId");
+    jVarHtmlLoginModalId.addEventListener('shown.bs.modal', function (event) {
+        let jVarLocalSubmitButton = event.currentTarget.querySelector(".modal-body input[type='submit']");
+        jVarLocalSubmitButton.focus();
+
+    });
+</script>
+
+<script>
+    let jFShowPullUrl = ({ inUrlObject }) => {
+        let jVarLocalFolderName = inUrlObject.FolderName;
+        let jVarLocalFileName = inUrlObject.FileName;
+        let jVarLocalItemName = inUrlObject.ItemName;
+        let jVarLocalScreenName = inUrlObject.ScreenName;
+        let jVarLocalColumnName = inUrlObject.ColumnName;
+
+        let jVarLocalRoute = this.Config.RouteStart.Start;
+        let jVarLocalAdminSubRoute = this.Config.RouteStart.AdminSubRoute;
+        let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Config/TableColumns/ShowData?inFolderName=${jVarLocalFolderName}&inJsonFileName=${jVarLocalFileName}&inItemName=${jVarLocalItemName}&inScreenName=${jVarLocalScreenName}&inColumnName=${jVarLocalColumnName}`;
+
+        return jVarLocalFetchUrl;
+    };
+    let jFShowPushUrl = ({ inUrlObject }) => {
+        let jVarLocalFolderName = inUrlObject.FolderName;
+        let jVarLocalFileName = inUrlObject.FileName;
+        let jVarLocalItemName = inUrlObject.ItemName;
+        let jVarLocalScreenName = inUrlObject.ScreenName;
+        let jVarLocalColumnName = inUrlObject.ColumnName;
+
+        let jVarLocalRoute = this.Config.RouteStart.Start;
+        let jVarLocalAdminSubRoute = this.Config.RouteStart.AdminSubRoute;
+        let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Config/TableColumns/Update?inFolderName=${jVarLocalFolderName}&inJsonFileName=${jVarLocalFileName}&inItemName=${jVarLocalItemName}&inScreenName=${jVarLocalScreenName}&inColumnName=${jVarLocalColumnName}`;
+
+        return jVarLocalFetchUrl;
+    };
+
+    let ForShowData = ({ inUrlObject }) => {
+        let jVarLocalFolderName = inUrlObject.FolderName;
+        let jVarLocalFileName = inUrlObject.FileName;
+        let jVarLocalItemName = inUrlObject.ItemName;
+        let jVarLocalScreenName = inUrlObject.ScreenName;
+        let jVarLocalColumnName = inUrlObject.ColumnName;
+
+        //let jVarLocalRoute = this.Config.RouteStart.Start;
+
+        let jVarLocalRoute = window.location.pathname.split("/")[1];
+
+        //let jVarLocalAdminSubRoute = this.Config.RouteStart.AdminSubRoute;
+        let jVarLocalAdminSubRoute = "AdminApi";
+
+        console.log("jVarLocalRoute : ", jVarLocalRoute);
+        let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Config/TableColumns/ShowData?inFolderName=${jVarLocalFolderName}&inJsonFileName=${jVarLocalFileName}&inItemName=${jVarLocalItemName}&inScreenName=${jVarLocalScreenName}&inColumnName=${jVarLocalColumnName}`;
+
+        return jVarLocalFetchUrl;
+    };
+
+    let jFshow = (injVarThis) => {
+        let jVarLocalHtmlCard = injVarThis.currentTarget.closest(".card");
+        let jVarLocalHtmlFormControl = jVarLocalHtmlCard.querySelector(".card-body");
+        let jVarLocalEndPoint = jVarLocalHtmlCard.dataset.kqueryobject;
+
+        //let jVarLocalUrlObject = CheckBeforeFetch({ inHtmlParentControl: document.getElementById("KDataListNavBar") });
+        let jVarLocalUrlObject = jFPrepareObject();
+
+        // if (jVarLocalUrlObject.KTF) {
+
+        // };
+
+        let jVarLocalFetchUrl = ForShowData({ inUrlObject: jVarLocalUrlObject });
+
+        fetch(`${jVarLocalFetchUrl}&inKQueryObject=${jVarLocalEndPoint}`)
+            .then(response => response.json())
+            .then(dataFromApi => {
+                //this.AdminApi.Config.TableColumns.ShowData.CommonFuncs.ShowOnScreen({ injVarData: dataFromApi, inJVarHtmlControl: jVarLocalHtmlFormControl });
+                //this.AdminApi.Config.TableColumns.ShowData.CommonFuncs.ChangeClasses({ inJVarHtmlCard: jVarLocalHtmlCard });
+                //         this.AdminApi.Config.TableColumns.ShowData.CommonFuncs.DefaultFocus({ inJVarHtmlControl: jVarLocalHtmlFormControl });
+
+                jVarGlobalClientObject.AdminApi.CommonFuncs.ShowOnScreenFuncs.ShowOnScreen({ injVarData: dataFromApi, inJVarHtmlControl: jVarLocalHtmlFormControl });
+                jVarGlobalClientObject.AdminApi.CommonFuncs.ChangeClassesFuncs.ShowData({ inJVarHtmlCard: jVarLocalHtmlCard });
+                jVarGlobalClientObject.AdminApi.CommonFuncs.DefaultFocus({ inJVarHtmlControl: jVarLocalHtmlFormControl });
+            });
+
+    };
+
+    let jFupdate = (injVarThis) => {
+        let jVarLocalHtmlCard = injVarThis.currentTarget.closest(".card");
+        let jVarLocalHtmlFormControl = jVarLocalHtmlCard.querySelector(".card-body");
+        let jVarLocalEndPoint = jVarLocalHtmlCard.dataset.kqueryobject;
+
+        let jVarLocalUrlObject = jVarGlobalClientObject.AdminApi.Config.TableColumns.Update.CommonFuncs.CheckBeforeFetch();
+        let jVarLocalFetchUrl = jVarGlobalClientObject.AdminApi.Config.TableColumns.Update.CommonFuncs.PrepareUrl.ForUpdate({ inUrlObject: jVarLocalUrlObject });;
+        let jVarLocalFetchBodydata = jVarGlobalClientObject.AdminApi.Config.CommonFuncs.PreparePostData.ForUpdateTakeInput({ inJVarHtmlControl: jVarLocalHtmlFormControl });
+
+        fetch(`${jVarLocalFetchUrl}&inKQueryObject=${jVarLocalEndPoint}`, {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jVarLocalFetchBodydata)
+        })
+            .then(response => response.text())
+            .then(dataFromApi => {
+                let jVarLocalData = JSON.parse(dataFromApi);
+
+                if (jVarLocalData.KTF) {
+                    //this.AdminApi.Config.TableColumns.Update.CommonFuncs.ChangeClasses({ inJVarLocalHtmlCard: jVarLocalHtmlCard });
+                    jVarGlobalClientObject.AdminApi.CommonFuncs.ChangeClassesFuncs.Update({ inJVarLocalHtmlCard: jVarLocalHtmlCard });
+
+                    jVarGlobalClientObject.ModalPopUp.StartFunc({ inType: "AdminPostUpdate" });
+                }
+            });
+    }
+
+    let jFFillNavMenuWithValues = () => {
+        let jVarCommonUrlSearch = decodeURI(document.location.search).split("?");
+        let jVarCommonUrlSearchArray = jVarCommonUrlSearch[1].split("&");
+        let jVarLocalHtmlParentControl = document.getElementById("KDataListNavBar");
+        let jVarLocalHtmlInputs = jVarLocalHtmlParentControl.querySelectorAll("input[list]");
+        let jVarCommonSearchToObject = {};
+        let jVarLoopSplit;
+
+        jVarCommonUrlSearchArray.forEach(element => {
+            jVarLoopSplit = element.split("=");
+            jVarCommonSearchToObject[jVarLoopSplit[0]] = jVarLoopSplit[1];
+        });
+
+        jVarLocalHtmlInputs.forEach((LoopItem) => {
+            if (LoopItem.name in jVarCommonSearchToObject) {
+                LoopItem.value = jVarCommonSearchToObject[LoopItem.name];
+            };
+        });
+    };
+
+    jFFillNavMenuWithValues();
+</script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+
+</body>
+
+</html>
