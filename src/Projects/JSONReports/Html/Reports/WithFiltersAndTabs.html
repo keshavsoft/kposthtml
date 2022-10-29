@@ -196,7 +196,7 @@
     </svg>
 
     <include src="./src/components/Templates/Reports/header.html"></include>
-    
+
     <div class="container">
         <datalist id="ReportsList"> </datalist>
 
@@ -405,7 +405,7 @@
     {{/if}}
 </script>
 
-<script id="Global/Common" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Global/Common" KS="KeshavSoft" type="text/x-handlebars-template">
             <div class="row">
                 {{#each @root as |val key|}}
                 {{#switch HTMLControlType}}
@@ -437,7 +437,7 @@
             </div>
             </script>
 
-<script id="Table/KTableWithCardAndSearchRow" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Table/KTableWithCardAndSearchRow" KS="KeshavSoft" type="text/x-handlebars-template">
                 <div class="{{this.KData.TableInfo.ParentClasses.Parent3Class}}">
                     {{this.KData.TableInfo.DataAttributes.ItemConfig.inItemName}}
                     <div id="kcard1" class="card KTableDivClass {{KData.TableInfo.ParentClasses.Table.CardClass}}" data-klevel={{@index}}
@@ -457,8 +457,8 @@
                     </div>
                 </div>
                 </script>
-       
-<script id="Table/Body/Row/NormalFromTableDataRow" KS="KeshavSoft" type="text/x-handlebars-template">
+
+    <script id="Table/Body/Row/NormalFromTableDataRow" KS="KeshavSoft" type="text/x-handlebars-template">
         <tr class="KTableRow {{this.RowClass}}" data-klevel="{{Table_KLevel inTableInfo.KLevel}}"
         data-pk="{{array_value_indexret inTableColumns inTableInfo.kPK this.DisplayText}}"
         data-details="{{this.DataAttributes.TableKType}}" data-kjsonfilename="{{this.TableKJsonFileName}}"
@@ -478,7 +478,7 @@
     </tr>
     </script>
 
-<script id="Table/Footer/CreateNew/KTfooterCreateNewRow" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Table/Footer/CreateNew/KTfooterCreateNewRow" KS="KeshavSoft" type="text/x-handlebars-template">
         <td style="text-align:right; display:none" class="kClassSearchSNo"></td>
         <td style="text-align:right"></td>
         
@@ -502,7 +502,7 @@
         {{/if}}
     </script>
 
-<script id="Table/Body/Row/KTbodyRowOptions" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Table/Body/Row/KTbodyRowOptions" KS="KeshavSoft" type="text/x-handlebars-template">
         {{#if this.Delete.Simple}}
         <td>
             <a href="#" onclick="jVarGlobalClientObject.Api.UserData.Table.Row.DeleteNew({inEvent:event})">
@@ -572,7 +572,7 @@
         {{/if}}
     </script>
 
-<script id="Table/Body/Row/KTCellValue" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Table/Body/Row/KTCellValue" KS="KeshavSoft" type="text/x-handlebars-template">
         <td class="KCol-{{@index}} {{this.CellClass}} {{lookup (lookup (lookup inTableColumns @index) 'TableClasses') 'ColumnClass'}}" data-kcol={{@index}}
         style="text-align:{{lookup (lookup inTableColumns @index) 'TextAlign'}}">
         {{#if (TableColumnIsSelect inTableColumns @index) }}
@@ -603,7 +603,7 @@
         
         </script>
 
-<script id="Table/Body/Row/NormalFromTableInfo" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Table/Body/Row/NormalFromTableInfo" KS="KeshavSoft" type="text/x-handlebars-template">
         <tr class="KTableRow {{this.RowClass}}" data-klevel="{{Table_KLevel inTableInfo.KLevel}}"
         data-pk="{{array_value_indexret inTableColumns inTableInfo.kPK this.DisplayText}}"
         data-details="{{array_value_indexret inTableColumns inTableInfo.kDetails this.DisplayText}}"
@@ -634,7 +634,7 @@
     {{/each}}
     </script>
 
-<script id="Bs5/Icons/Svg" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Bs5/Icons/Svg" KS="KeshavSoft" type="text/x-handlebars-template">
         {{#if SvgPlusLarge}}
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
         viewBox="0 0 16 16">
@@ -669,7 +669,7 @@
     {{/if}}
     </script>
 
-<script id="Insert/HtmlControls" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Insert/HtmlControls" KS="KeshavSoft" type="text/x-handlebars-template">
     {{#if IsTextArea}}
     <textarea  kh7 id="{{DataAttribute}}" name="{{DataAttribute}}" 
         class="form-control"
@@ -746,7 +746,7 @@
     {{/if}}
         </script>
 
-<script id="Vertical/KVertical" KS="KeshavSoft" type="text/x-handlebars-template"><div class="{{KData.TableInfo.ParentClasses.Parent3Class}}">
+    <script id="Vertical/KVertical" KS="KeshavSoft" type="text/x-handlebars-template"><div class="{{KData.TableInfo.ParentClasses.Parent3Class}}">
         <div KVertical class="card KTableDivClass d-print-none" data-pk="{{KData.TableInfo.PK}}"
         data-KeyAsTree="{{KData.TableInfo.DataAttributes.KeyAsTree}}"
         data-jsonconfig="{{KData.TableInfo.DataAttributes.JsonConfig}}"
@@ -789,7 +789,7 @@
     </div>
     </script>
 
-<script id="Vertical/KPopUp" KS="KeshavSoft" type="text/x-handlebars-template"><div class="{{KData.TableInfo.ParentClasses.Parent3Class}}">
+    <script id="Vertical/KPopUp" KS="KeshavSoft" type="text/x-handlebars-template"><div class="{{KData.TableInfo.ParentClasses.Parent3Class}}">
         <div class="card KTableDivClass" data-pk="{{KData.TableInfo.PK}}"
         data-KeyAsTree="{{KData.TableInfo.DataAttributes.KeyAsTree}}"
         data-jsonconfig="{{KData.TableInfo.DataAttributes.JsonConfig}}"
@@ -834,7 +834,7 @@
     </div>
     </script>
 
-<script id="Vertical/KVertical/CardBody" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Vertical/KVertical/CardBody" KS="KeshavSoft" type="text/x-handlebars-template">
         <div class="{{KData.TableInfo.ParentClasses.Parent3Class}}">
         <form href="#" class="form-horizontal needs-validation" id="kform1"
         data-jsonconfig="{{KData.TableInfo.DataAttributes.JsonConfig}}"
@@ -852,7 +852,7 @@
     </form>
         </div>
     </script>
-<script id="KInputForVertical" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="KInputForVertical" KS="KeshavSoft" type="text/x-handlebars-template">
                 <div class="{{ParentClasses.Parent1Class}}">
                     <div class="form-group">
                         {{> Insert/HtmlControls }}
@@ -860,7 +860,7 @@
                 </div>    
             </script>
 
-<script id="Table/Search/KSearchWithButtons" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Table/Search/KSearchWithButtons" KS="KeshavSoft" type="text/x-handlebars-template">
         {{#if KData.TableInfo.SearchRowArray.Button.PrintToPrinter.Double}}
         <div class="col-1 d-none d-md-block">
             <a href="#" onclick="jVarGlobalClientObject.Print.Ui.FromSearchRow({inEvent:event})"
@@ -938,7 +938,7 @@
                 </a>
             </div>
         </script>
-<script id="Table/Footer" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Table/Footer" KS="KeshavSoft" type="text/x-handlebars-template">
             {{#if this.KData.TableInfo.FooterType.CreateNewRow.Show}}
             <tr data-footertype="CreateNewRow" style="{{this.KData.TableInfo.FooterType.CreateNewRow.Style}}">
                 {{> Table/Footer/CreateNew/KTfooterCreateNewRow }}
@@ -967,7 +967,7 @@
             {{> Table/Footer/Show/BalanceRow}}
             {{/if}}
         </script>
-<script id="Vertical/KVerticalForShow" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Vertical/KVerticalForShow" KS="KeshavSoft" type="text/x-handlebars-template">
             <div class="{{KData.TableInfo.ParentClasses.Parent3Class}}">
                 <div KVerticalForShow  class="card KTableDivClass d-print-none" data-pk="{{KData.TableInfo.kPK}}"
         data-KeyAsTree="{{KData.TableInfo.DataAttributes.KeyAsTree}}"
@@ -1034,7 +1034,7 @@
             </div>
         </script>
 
-<script id="Table/KTable" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Table/KTable" KS="KeshavSoft" type="text/x-handlebars-template">
             <div class="table-responsive">
                 <table class=" table KTableClass table-hover {{KData.TableInfo.ParentClasses.Table.TableClass}}"
                  id="{{KData.TableInfo.TableId}}"
@@ -1060,7 +1060,7 @@
 
 
 
-<script id="Table/Head/KThead" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Table/Head/KThead" KS="KeshavSoft" type="text/x-handlebars-template">
         <tr>
             <th width="5%" class="kClassSearchSNo" style="cursor:pointer; text-align:right; display:none">#</th>
             <th width="5%" style="cursor:pointer; text-align:right;">#</th>
@@ -1087,7 +1087,7 @@
         </tr>
     </script>
 
-<script id="KTablebody" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="KTablebody" KS="KeshavSoft" type="text/x-handlebars-template">
             {{#each this.KData.TableData as |val key|}}
         
         {{#if ../KData.TableInfo.DataAttributesFromTableInfo }}
@@ -1105,7 +1105,7 @@
         {{/if}}
         </script>
 
-<script id="Table/Body/Row/ForShowtotals" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Table/Body/Row/ForShowtotals" KS="KeshavSoft" type="text/x-handlebars-template">
 
         <tr>
             <td style="text-align:right; display:none" class="kClassSearchSNo"></td>
@@ -1128,7 +1128,7 @@
             </script>
 
 
-<script id="Table/Search/KSearchRow" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Table/Search/KSearchRow" KS="KeshavSoft" type="text/x-handlebars-template">
     <div class="row">
         {{#if KData.TableInfo.SearchRowArray.Label.KTF}}
         <div class="col-{{KData.TableInfo.SearchRowArray.Label.DisplayObject.ColClass}}">
@@ -1197,7 +1197,7 @@
     </div>
     </script>
 
-<script id="Vertical/KVertical/CardHeader/Search/KSearchRow" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Vertical/KVertical/CardHeader/Search/KSearchRow" KS="KeshavSoft" type="text/x-handlebars-template">
         <div class="row">
             {{#if KData.TableInfo.SearchRowArray.Label.KTF}}
             <div class="col-{{KData.TableInfo.SearchRowArray.Label.DisplayObject.ColClass}}">
@@ -1212,7 +1212,7 @@
         </div>
         </script>
 
-<script id="Table/Footer/Show/BalanceRow" KS="KeshavSoft" type="text/x-handlebars-template">
+    <script id="Table/Footer/Show/BalanceRow" KS="KeshavSoft" type="text/x-handlebars-template">
         <tr class="table-info">
             <td style="text-align:right; display:none" class="kClassSearchSNo"></td>
             <td></td>
@@ -2156,6 +2156,39 @@
         KSCommonFuncs.SelectionMenu.FillNavMenuWithValues();
 
         jFShowReportsAsMenu();
+    </script>
+    <script>
+        let jFChangeHeaderActiveClass = () => {
+            let jVarLocalPathArray = window.location.pathname.split("/");
+            let jVarLocalHTMLName = jVarLocalPathArray[jVarLocalPathArray.length - 1];
+
+            jFChangeNavAnchorClass({ inClassName: jVarLocalHTMLName.split(".")[0] });
+
+        }
+
+        let jFChangeNavAnchorClass = ({ inClassName }) => {
+            let jVarLocalNavBarId = document.getElementById("NavBarId");
+            let jVarLocalAnchorNeeded = jVarLocalNavBarId.querySelector(`#${inClassName}`);
+
+            jVarLocalNavBarId.querySelectorAll("main a").forEach(el => {
+                if (el.classList.contains("text-info")) {
+                    el.classList.remove("text-info");
+                };
+                el.classList.add("text-white");
+
+            });
+
+            if (jVarLocalAnchorNeeded !== null) {
+
+                if (jVarLocalAnchorNeeded.classList.contains("text-white")) {
+                    jVarLocalAnchorNeeded.classList.remove("text-white");
+                };
+
+                jVarLocalAnchorNeeded.classList.add("text-info");
+            };
+        };
+        jFChangeHeaderActiveClass()
+
     </script>
 </body>
 
