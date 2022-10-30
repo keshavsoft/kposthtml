@@ -195,8 +195,8 @@
         </symbol>
     </svg>
 
-    
-    
+
+
     <include src="./src/components/Templates/Reports/header.html"></include>
 
 
@@ -329,8 +329,7 @@
                                 Password cannot be empty.
                             </div>
                         </div>
-                        <input type="submit" class=" btn btn-primary"
-                            onclick="jVarGlobalClientObject.Login.LoginCheck()">
+                        <input type="submit" class=" btn btn-primary" onclick="GlobalFuncsForLogin.Login.LoginCheck()">
                         <!-- <button type="button" class="btn btn-primary"
                         onclick="jVarGlobalAdmin.Login.LoginCheck()">Check</button>
                          -->
@@ -366,7 +365,9 @@
     <script src="/js/handlebars/handlebars.min-v4.7.7.js"></script>
     <script src="/js/sweetalert2/sweetalert2@11.js"></script>
 
-    <script src="/ClassesStatic/CommonClass.js"></script>
+    <!-- <script src="/ClassesStatic/CommonClass.js"></script> -->
+
+    <script src="/JSONReports/Js/CommonClassOnly.js"></script>
     <script src="/ClassesStatic/BuildDynamic.js"></script>
 
     <script>
@@ -393,7 +394,7 @@
     <script src="/js/KeshavSoft/FetchFuncs/MenuFuncs.js"></script>
     <script src="/js/KeshavSoft/FetchFuncs/DataFuncs/TableFuncs.js"></script>
 
-    <include src="./src/components/JScripts/KSJsFuncs/Login.html"></include>
+    <include src="./src/components/JScripts/KSJsFuncs/LoginClassOnly.html"></include>
 
     <include src="./src/components/JScripts/HandleBars/HbsScript.html"></include>
 
@@ -617,6 +618,9 @@
         let jVarGlobalProject = "JSONReports";
         let jVarGlobalSubRoute = "Api";
 
+        let GlobalFuncsForLogin = new GlobalClassForLogin({ inProjectName: jVarGlobalProject });
+        let jVarGlobalClientObject = new PrepareClass({ inProjectName: jVarGlobalProject });
+
         let jFShowReportsAsMenu = () => {
             let jVarLocalRoute = jVarGlobalProject;
             let jVarLocalSubRoute = jVarGlobalSubRoute;
@@ -751,39 +755,39 @@
 
         jFShowReportsAsMenu();
     </script>
+
     <script>
         let jFChangeHeaderActiveClass = () => {
-           let jVarLocalPathArray = window.location.pathname.split("/");
-           let jVarLocalHTMLName = jVarLocalPathArray[jVarLocalPathArray.length - 1];
+            let jVarLocalPathArray = window.location.pathname.split("/");
+            let jVarLocalHTMLName = jVarLocalPathArray[jVarLocalPathArray.length - 1];
 
-           jFChangeNavAnchorClass({ inClassName: jVarLocalHTMLName.split(".")[0] });
+            jFChangeNavAnchorClass({ inClassName: jVarLocalHTMLName.split(".")[0] });
+        };
 
-       }
+        let jFChangeNavAnchorClass = ({ inClassName }) => {
+            let jVarLocalNavBarId = document.getElementById("NavBarId");
+            let jVarLocalAnchorNeeded = jVarLocalNavBarId.querySelector(`#${inClassName}`);
 
-       let jFChangeNavAnchorClass = ({ inClassName }) => {
-           let jVarLocalNavBarId = document.getElementById("NavBarId");
-           let jVarLocalAnchorNeeded = jVarLocalNavBarId.querySelector(`#${inClassName}`);
+            jVarLocalNavBarId.querySelectorAll("main a").forEach(el => {
+                if (el.classList.contains("text-info")) {
+                    el.classList.remove("text-info");
+                };
+                el.classList.add("text-white");
 
-           jVarLocalNavBarId.querySelectorAll("main a").forEach(el => {
-               if (el.classList.contains("text-info")) {
-                   el.classList.remove("text-info");
-               };
-               el.classList.add("text-white");
+            });
 
-           });
+            if (jVarLocalAnchorNeeded !== null) {
 
-           if (jVarLocalAnchorNeeded !== null) {
+                if (jVarLocalAnchorNeeded.classList.contains("text-white")) {
+                    jVarLocalAnchorNeeded.classList.remove("text-white");
+                };
 
-               if (jVarLocalAnchorNeeded.classList.contains("text-white")) {
-                   jVarLocalAnchorNeeded.classList.remove("text-white");
-               };
+                jVarLocalAnchorNeeded.classList.add("text-info");
+            };
+        };
+        jFChangeHeaderActiveClass()
 
-               jVarLocalAnchorNeeded.classList.add("text-info");
-           };
-       };
-       jFChangeHeaderActiveClass()
-
-   </script>
+    </script>
 </body>
 
 </html>
