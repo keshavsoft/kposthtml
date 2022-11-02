@@ -216,24 +216,24 @@
             <div class="collapse navbar-collapse" id="MenuNavItems">
                 <ul class="navbar-nav me-auto" id="MenuNavContainerId">
                     <li>
-                        <a href="../Admin/Dashboard.html" class="nav-link DashboardAClass text-white">
+                        <a href="./Tally.html" class="nav-link DashboardAClass text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="bi d-block mx-auto mb-1 d-none d-md-block" viewBox="0 0 16 16">
                                 <path
                                     d="M6 1v3H1V1h5zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12v3h-5v-3h5zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8v7H1V8h5zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6v7h-5V1h5zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z" />
                             </svg>
-                            Admin Dashboard
+                            From Header
                         </a>
                     </li>
                     <li>
-                        <a href="../Reports/WithOutFiltersAndTabs.html" class="nav-link DashboardAClass text-white">
+                        <a href="./FromFolders.html" class="nav-link DashboardAClass text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="bi d-block mx-auto mb-1 d-none d-md-block" viewBox="0 0 16 16">
                                 <path
                                     d="M6 1v3H1V1h5zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12v3h-5v-3h5zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8v7H1V8h5zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6v7h-5V1h5zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z">
                                 </path>
                             </svg>
-                            Reports
+                            From Folders
                         </a>
                     </li>
                     <li>
@@ -262,19 +262,7 @@
                             LocalStorage
                         </a>
                     </li>
-                    <li>
-                        <a href="./Dashboards.html" class="nav-link text-white"
-                            onclick="ForLocalStorageClass.jFDeleteuuidInLocalStorage()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                class="bi bi-sd-card mx-auto mb-1 d-none d-md-block" viewBox="0 0 16 16">
-                                <path
-                                    d="M6.25 3.5a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0v-2zm2 0a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0v-2zm2 0a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0v-2zm2 0a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0v-2z" />
-                                <path fill-rule="evenodd"
-                                    d="M5.914 0H12.5A1.5 1.5 0 0 1 14 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5V3.914c0-.398.158-.78.44-1.06L4.853.439A1.5 1.5 0 0 1 5.914 0zM13 1.5a.5.5 0 0 0-.5-.5H5.914a.5.5 0 0 0-.353.146L3.146 3.561A.5.5 0 0 0 3 3.914V14.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-13z" />
-                            </svg>
-Dashboards
-                        </a>
-                    </li>
+          
                 </ul>
                 <ul class="navbar-nav">
                     <li id="HeaderLoginButtonId">
@@ -426,129 +414,9 @@ Dashboards
     </script>
 
     <script src="/js/KeshavSoft/Login.js"></script>
-    <script src="/js/KeshavSoft/FetchFuncs/PreLoad.js"></script>
-    <script src="/js/KeshavSoft/FetchFuncs/MenuFuncs.js"></script>
-    <script src="/js/KeshavSoft/FetchFuncs/DataFuncs/TableFuncs.js"></script>
-
+    
     <!-- <include src="./src/components/Templates/UserData/script.html"></include> -->
     <include src="./src/components/JScripts/KSJsFuncs/Login.html"></include>
-
-    <include src="./src/components/JScripts/HandleBars/HbsScript.html"></include>
-    <include src="./src/components/JScripts/KSJsFuncs/KSJsClientSideFuncs.html"></include>
-    <include src="./src/components/JScripts/KSJsFuncs/KSJsCardMenuFuncs.html"></include>
-
-    <include src="./src/components/JScripts/KSJsFuncs/KSJsClientSidePrintFuncs.html"></include>
-
-    <script>
-        let jFPullPrintFiles = ({ inPrintFilesArray, inJsonData, inHtmlPath }) => {
-            let jVarLocalPrintFilesArray = inPrintFilesArray;
-            let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
-            let jVarLocalCookieFirmDetails = localStorage.getItem("FirmDetails");
-            let jVarLocalDataPk = JSON.parse(jVarLocalCookieFirmDetails);
-
-            PromiseArray = jVarLocalPrintFilesArray.map(element => {
-                return fetch(`${window.location.origin}/${jVarLocalRoute}/Html/UserData/JSON/${jVarLocalDataPk.kPK}/${inHtmlPath}/${element}`);
-            });
-
-            Promise.all(PromiseArray)
-                .then(responses => {
-                    return Promise.all(responses.map((LoopItem, LoopIndex) => {
-                        return LoopItem.text();
-                    }));
-                }).then(responses => {
-                    for (let LoopIndex = 0; LoopIndex < responses.length; LoopIndex++) {
-                        const jVarLocalLoopValue = responses[LoopIndex];
-
-                        var template = Handlebars.compile(jVarLocalLoopValue);
-                        jVarLocalToShowHtml = template(inJsonData);
-                        document.getElementById("KCont1").insertAdjacentHTML("beforeend", jVarLocalToShowHtml);
-                    };
-
-                    window.print();
-                });
-        };
-
-        let jFPrint = ({ inEvent, inJsonConfig, inItemConfig }) => {
-            let PromiseArray = [];
-            let jVarLocalCurrentTarget = inEvent.currentTarget;
-            let JsonPK = jVarLocalCurrentTarget.closest("tr").dataset.pk;
-            let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
-            let jVarLocalKTF = true;
-
-            let jVarLocalBodyObject = {
-                inFolderName: inJsonConfig.inFolderName,
-                inJsonFileName: inJsonConfig.inJsonFileName,
-                inItemName: inItemConfig.inItemName,
-                inRowPK: JsonPK
-            };
-
-            let jVarLocalCookieFirmDetails = localStorage.getItem("FirmDetails");
-            let jVarLocalDataPk = JSON.parse(jVarLocalCookieFirmDetails);
-
-            let jVarLocalUrlFromPrepareForUrl = jVarGlobalClientObject.Print.Ui.CommonFuncs.FromPublic.PrepareForUrl({ inCurrentTarget: jVarLocalCurrentTarget });
-
-            let jVarLocalFetchForHtmlFiles = `${window.location.origin}/${jVarLocalRoute}/Api/Preview/ForHtml`;
-
-            let jVarLocalHtmlFilesArray;
-            let jVarLocalJsonData;
-
-            PromiseArray.push(fetch(jVarLocalFetchForHtmlFiles));
-            PromiseArray.push(fetch(`${window.location.origin}/${jVarLocalRoute}/Api/Preview/ShowData`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jVarLocalBodyObject)
-            }));
-
-            Promise.all(PromiseArray)
-                .then(responses => {
-                    return Promise.all(responses.map((LoopItem, LoopIndex) => {
-                        return LoopItem.json();
-                    }));
-                }).then(responses => {
-                    // all responses are resolved successfully
-                    for (let LoopIndex = 0; LoopIndex < responses.length; LoopIndex++) {
-                        const jVarLocalLoopValue = responses[LoopIndex];
-
-                        switch (LoopIndex) {
-                            case 0:
-                                if (jVarLocalLoopValue.KTF) {
-                                    jVarLocalHtmlFilesArray = jVarLocalLoopValue.JsonData;
-                                } else {
-                                    jVarLocalKTF = false;
-                                };
-
-                                break;
-                            case 1:
-                                if (jVarLocalLoopValue.KTF) {
-                                    jVarLocalJsonData = jVarLocalLoopValue.JsonData;
-                                } else {
-                                    jVarLocalKTF = false;
-                                };
-
-                                break;
-                            default:
-                                break;
-                        };
-                    };
-
-                    if (jVarLocalKTF) {
-                        jFPullPrintFiles({
-                            inPrintFilesArray: jVarLocalHtmlFilesArray,
-                            inJsonData: jVarLocalJsonData,
-                            inHtmlPath: jVarLocalUrlFromPrepareForUrl
-                        });
-                    } else {
-                        console.log("insufficient data!");
-                    }
-
-                });
-        };
-
-        let jVarGlobalKeshavSoftLocalFuncsObject = new KeshavSoftLocalFuncs({});
-    </script>
 
     <script>
         let jVarGlobalPresentViewData;
@@ -565,141 +433,6 @@ Dashboards
         });
     </script>
 
-    <script src="/js/KeshavSoftCrudFuncs.js"></script>
-    <script src="/js/WebSocket.js"></script>
-
-    <include src="./src/components/Templates/UserData/MenuFromTemplates.html"></include>
-
-
-
-    <script>
-        let jVarGlobalProject = "JSONProject";
-        let jVarGlobalSubRoute = "Api";
-
-        let jFPrepareMenuItem = ({ inFileName, inMenuClass, inIconClass }) => {
-            let jVarLocalFileName = inFileName;
-            let jVarLocalMenuClass = inMenuClass;
-            let jVarLocalIconClass = inIconClass;
-
-            let jVarLocalMenuNavContainerId = document.getElementById("MenuNavContainerId");
-            let jVarLocalTemplate = document.getElementById("TemplateForMenuItem");
-
-            var template = Handlebars.compile(jVarLocalTemplate.innerHTML);
-
-            jVarLocalToShowHtml = template({
-                MenuName: jVarLocalFileName, MenuClass: jVarLocalMenuClass,
-                IconClass: jVarLocalIconClass
-            });
-
-            jVarLocalMenuNavContainerId.insertAdjacentHTML("afterbegin", jVarLocalToShowHtml);
-        };
-
-        let jFPullForTableShow = (inEvent, inFileName, inItemName, inScreenName) => {
-            let jVarLocalCurrentTarget = inEvent.currentTarget;
-            let jVarClosestCard = jVarLocalCurrentTarget.closest(".card");
-            let jVarCardBody = jVarClosestCard.querySelector(".card-body");
-
-            let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
-            let jVarLocalSubRoute = jVarGlobalClientObject.Config.RouteStart.SubRoute;
-
-            let jVarLocalFolderHtmlControl = document.getElementById("FolderSelected");
-
-            let jVarLocalFolderName = jVarLocalFolderHtmlControl.value;
-            let jVarLocalFileName = inFileName;
-            let jVarLocalItemName = inItemName;
-            //let jVarLocalScreenName = "Create";
-            let jVarLocalScreenName = inScreenName;
-            //let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/ScreensDisplayForFile/PullData/WithConfig?inFolderName=${jVarLocalFolderName}&inJsonFileName=${jVarLocalFileName}&inItemName=${jVarLocalItemName}&inScreenName=${jVarLocalScreenName}`;
-            let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/ScreensFromDisplayJson/PullData/WithConfig`;
-
-            fetch(jVarLocalFetchUrl, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    inFolderName: jVarLocalFolderName,
-                    inFileName: jVarLocalFileName,
-                    inItemName: jVarLocalItemName,
-                    inScreenName: jVarLocalScreenName
-                })
-            }).then(response => {
-                if (!response.ok) { throw new Error(response.statusText) };
-                return response.json();
-            }).then((FetchData) => {
-                if (FetchData.KTF) {
-                    jVarGlobalPresentViewData = KeshavSoftCrud.BuildFromArray(FetchData.DataFromServer);
-                    //                    jVarCardBody.innerHTML = jVarGlobalClientObject.AppendToDOM.BuildAndReturnHtml({});
-                    jVarGlobalKeshavSoftLocalFuncsObject.AppendToDOM.RequiredHtml({ inData: jVarGlobalPresentViewData, inHtmlParent: jVarCardBody });
-                    //  jVarGlobalKeshavSoftLocalFuncsObject.AppendToDOM.SetFocusFuncs.TableShow({ inHtmlParent: jVarCardBody });
-
-                    // KeshavSoftCrud.DataListFuns.ReverseFunc({ inParentDiv: jVarCardBody });
-                };
-            });
-        };
-
-        let jFTableShow = ({ inFolderName, inFileName, inItemName, inScreenName }) => {
-            let jVarCardBody = document.getElementById("KCont1");
-
-            let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
-            let jVarLocalSubRoute = jVarGlobalClientObject.Config.RouteStart.SubRoute;
-
-            let jVarLocalFolderHtmlControl = document.getElementById("FolderSelected");
-
-            let jVarLocalFolderName = inFolderName;
-            let jVarLocalFileName = inFileName;
-            let jVarLocalItemName = inItemName;
-            let jVarLocalScreenName = inScreenName;
-
-            let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/ScreensFromDisplayJson/PullData/WithConfig`;
-            fetch(jVarLocalFetchUrl, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    inFolderName: jVarLocalFolderName,
-                    inFileName: jVarLocalFileName,
-                    inItemName: jVarLocalItemName,
-                    inScreenName: jVarLocalScreenName
-                })
-            }).then(response => {
-                if (!response.ok) { throw new Error(response.statusText) };
-                return response.json();
-            }).then((FetchData) => {
-                if (FetchData.KTF) {
-                    jVarGlobalPresentViewData = KeshavSoftCrud.BuildFromArray(FetchData.DataFromServer);
-                    jVarGlobalKeshavSoftLocalFuncsObject.AppendToDOM.RequiredHtml({
-                        inData: jVarGlobalPresentViewData,
-                        inHtmlParent: jVarCardBody
-                    });
-                };
-            });
-        };
-
-        //        jFShowFoldersInMenu();
-        KSCommonFuncs.SelectionMenu.FillNavMenuWithValues();
-
-        let jFHeaderLocalStorageFunc = () => {
-
-        };
-
-        let jFBuildBreadcrumb = (inMenuObject) => {
-            let jVarLocalMenuObject = inMenuObject;
-            let jVarLocalbreadcrumbHtmlId = document.getElementById("breadcrumbHtmlId");
-
-            var jVarGlobalTemplate = Handlebars.compile(document.getElementById("TemplateForBreadcrumb").innerHTML);
-            let jVarGlobalHtml = jVarGlobalTemplate(jVarLocalMenuObject);
-
-            jVarLocalbreadcrumbHtmlId.innerHTML = "";
-            jVarLocalbreadcrumbHtmlId.insertAdjacentHTML("beforeend", jVarGlobalHtml);
-        };
-    </script>
-
-
-    <script src="/js/bundle.js"></script>
 </body>
 
 </html>

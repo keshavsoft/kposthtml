@@ -1149,7 +1149,9 @@
 
                             let jVarLocalRoute = this.Config.RouteStart.Start;
                             let jVarLocalSubRoute = this.Config.RouteStart.SubRoute;
-                            let JsonPK = parseInt(jVarClosestTr.dataset.pk);
+//                            let JsonPK = parseInt(jVarClosestTr.dataset.pk);
+
+                            let JsonPK = jVarClosestTr.dataset.pk;
                             let jVarLocalItemConfig = jVarGlobalClientObject.Api.UserData.CommonFuncs.PrepareJsonAndItemConfig({ inCurrentTarget: jVarLocalCurrentTarget });
 
                             let jVarLocalFolderName = jVarLocalItemConfig.FolderName;
