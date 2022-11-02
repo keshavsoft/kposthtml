@@ -360,16 +360,18 @@
     </div>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script> -->
-    <script src="/js/lodash.js"></script>
+
+    <!-- <script src="/js/lodash.js"></script>
 
     <script src="/js/Bs5/bootstrap.bundle.min.js"></script>
     <script src="/js/handlebars/handlebars.min-v4.7.7.js"></script>
-    <script src="/js/sweetalert2/sweetalert2@11.js"></script>
+    <script src="/js/sweetalert2/sweetalert2@11.js"></script> -->
 
     <!-- <script src="/ClassesStatic/CommonClass.js"></script> -->
 
     <!-- <script src="/JSONReports/Js/CommonClassOnly.js"></script>
     <script src="/ClassesStatic/BuildDynamic.js"></script> -->
+
     <include src="./src/components/Projects/JSONReports/AddJs.html"></include>
 
     <script>
@@ -392,7 +394,9 @@
     </script>
 
     <script src="/js/KeshavSoft/Login.js"></script>
-    <script src="/js/KeshavSoft/FetchFuncs/PreLoad.js"></script>
+
+    <!-- <script src="/js/KeshavSoft/FetchFuncs/PreLoad.js"></script> -->
+
     <script src="/js/KeshavSoft/FetchFuncs/MenuFuncs.js"></script>
     <script src="/js/KeshavSoft/FetchFuncs/DataFuncs/TableFuncs.js"></script>
 
@@ -602,9 +606,10 @@
         let jVarGlobalPresentViewData;
         let jVarGlobalHBSData = {};
 
-        jVarGlobalLoginFuncs.Login.ClientSideCookieFuncs.CheckToken();
 
-        jVarGlobalApiFuncs.ApiFuncs.PreLoad.Masters.FillDataFromServer();
+        // jVarGlobalLoginFuncs.Login.ClientSideCookieFuncs.CheckToken();
+
+        // jVarGlobalApiFuncs.ApiFuncs.PreLoad.Masters.FillDataFromServer();
 
         let jVarHtmlLoginModalId = document.getElementById("LoginModalId");
         jVarHtmlLoginModalId.addEventListener('shown.bs.modal', function (event) {
@@ -622,6 +627,8 @@
 
         let GlobalFuncsForLogin = new GlobalClassForLogin({ inProjectName: jVarGlobalProject });
         let jVarGlobalClientObject = new PrepareClass({ inProjectName: jVarGlobalProject });
+
+        GlobalFuncsForLogin.Login.ClientSideCookieFuncs.CheckToken();
 
         let jFShowReportsAsMenu = () => {
             let jVarLocalRoute = jVarGlobalProject;

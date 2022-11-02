@@ -146,7 +146,14 @@
                 CheckToken: () => {
                     let jVarLocalCookieValue = this.Login.ClientSideCookieFuncs.getCookie("KToken");
                     if (jVarLocalCookieValue === null) {
-                        this.UI.ModalFuncs.Show();
+                        localStorage.removeItem("kUserName");
+                        localStorage.removeItem("FirmDetails");
+                        this.Login.ClientSideCookieFuncs.DeleteCookie();
+
+                        let jVarLocalId = this.Config.Modal.Id;
+                        var myModal = new bootstrap.Modal(document.getElementById(jVarLocalId), { keyboard: true, focus: true });
+
+                        myModal.show();
                     } else {
                         this.Login.ShowLoginDetailsOnDOM.InHeader();
                     };
