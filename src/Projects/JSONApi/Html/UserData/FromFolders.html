@@ -263,6 +263,20 @@
                             LocalStorage
                         </a>
                     </li>
+                    <li>
+                        <a href="./Dashboards.html" class="nav-link text-white"
+                            onclick="ForLocalStorageClass.jFDeleteuuidInLocalStorage()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-sd-card mx-auto mb-1 d-none d-md-block" viewBox="0 0 16 16">
+                                <path
+                                    d="M6.25 3.5a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0v-2zm2 0a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0v-2zm2 0a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0v-2zm2 0a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0v-2z" />
+                                <path fill-rule="evenodd"
+                                    d="M5.914 0H12.5A1.5 1.5 0 0 1 14 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5V3.914c0-.398.158-.78.44-1.06L4.853.439A1.5 1.5 0 0 1 5.914 0zM13 1.5a.5.5 0 0 0-.5-.5H5.914a.5.5 0 0 0-.353.146L3.146 3.561A.5.5 0 0 0 3 3.914V14.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-13z" />
+                            </svg>
+
+                            Dashboards
+                        </a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li id="HeaderLoginButtonId">
@@ -293,15 +307,16 @@
         </div>
     </nav>
     <div class="container">
-        <nav aria-label="breadcrumb" class="m-2 d-print-none">
-            <ol class="breadcrumb" id="breadcrumbHtmlId">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Masters</a></li>
-                <li class="breadcrumb-item"><a href="#">Products.json</a></li>
-                <li class="breadcrumb-item"><a href="#">Products</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Create (<a href="#">Refresh</a>) </li>
-            </ol>
-        </nav>
+        <div class="input-group mb-3 mt-3">
+            <input type="text" list="FoldersDataListId" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+          
+            <datalist id="FoldersDataListId">
+                <option value="KeshavSoft">
+                <option value="9848163021">
+            </datalist>
+            
+            <button class="btn btn-outline-secondary" type="button" id="FoldersButtonShowId">Show</button>
+          </div>
 
         <div id="KCont1" class="m-3">
 
@@ -700,7 +715,10 @@
     </script>
 
 
-    <script src="/js/bundle.js"></script>
+    <!-- <script src="/js/bundle.js"></script> -->
+ 
+    <script src="../../Js/KeshavSoft/DataAsJson/Tally.js" type="module"></script>
+ 
 </body>
 
 </html>
