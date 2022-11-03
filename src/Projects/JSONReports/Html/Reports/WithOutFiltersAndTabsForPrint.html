@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="/css/Bs5/bootstrap.min.css">
+    <include src="./src/components/Projects/JSONReports/AddCss.html"></include>
 
     <title>KeshavSoft</title>
 
@@ -357,14 +357,19 @@
     </div>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script> -->
-    <script src="/js/lodash.js"></script>
+    <!-- <script src="/js/lodash.js"></script> -->
 
-    <script src="/js/Bs5/bootstrap.bundle.min.js"></script>
-    <script src="/js/handlebars/handlebars.min-v4.7.7.js"></script>
-    <script src="/js/sweetalert2/sweetalert2@11.js"></script>
+    <!-- <script src="/js/Bs5/bootstrap.bundle.min.js"></script> -->
+    <!-- <script src="/js/handlebars/handlebars.min-v4.7.7.js"></script> -->
+    <!-- <script src="/js/sweetalert2/sweetalert2@11.js"></script> -->
 
-    <script src="/ClassesStatic/CommonClass.js"></script>
-    <script src="/ClassesStatic/BuildDynamic.js"></script>
+    <!-- <script src="/ClassesStatic/CommonClass.js"></script> -->
+    <!-- <script src="/ClassesStatic/BuildDynamic.js"></script> -->
+
+    <include src="./src/components/JScripts/HandleBars/HbsScript.html"></include>
+    <include src="./src/components/Projects/JSONReports/AddJs.html"></include>
+
+
 
     <script>
         let jVarGlobalProjectConfig = {
@@ -385,14 +390,17 @@
         };
     </script>
 
-    <script src="/js/KeshavSoft/Login.js"></script>
-    <script src="/js/KeshavSoft/FetchFuncs/PreLoad.js"></script>
-    <script src="/js/KeshavSoft/FetchFuncs/MenuFuncs.js"></script>
-    <script src="/js/KeshavSoft/FetchFuncs/DataFuncs/TableFuncs.js"></script>
+    <!-- <script src="/js/KeshavSoft/Login.js"></script> -->
+
+    <!-- <script src="/js/KeshavSoft/FetchFuncs/PreLoad.js"></script> -->
+    <!-- <script src="/js/KeshavSoft/FetchFuncs/MenuFuncs.js"></script> -->
+    <!-- <script src="/js/KeshavSoft/FetchFuncs/DataFuncs/TableFuncs.js"></script> -->
+
+    <include src="./src/components/JScripts/KSJsFuncs/LoginClassOnly.html"></include>
+
 
     <include src="./src/components/JScripts/KSJsFuncs/Login.html"></include>
 
-    <include src="./src/components/JScripts/HandleBars/HbsScript.html"></include>
 
     <script>
         class KeshavSoftLocalFuncs {
@@ -607,8 +615,8 @@
         });
     </script>
 
-    <script src="/js/KeshavSoftCrudFuncs.js"></script>
-    <script src="/js/WebSocket.js"></script>
+    <!-- <script src="/js/KeshavSoftCrudFuncs.js"></script> -->
+    <!-- <script src="/js/WebSocket.js"></script> -->
 
     <script>
         let jVarGlobalProject = "JSONReports";
