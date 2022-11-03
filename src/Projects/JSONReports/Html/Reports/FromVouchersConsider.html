@@ -9,7 +9,6 @@
     <!-- <link rel="stylesheet" href="/css/Bs5/bootstrap.min.css"> -->
     <include src="./src/components/Projects/JSONReports/AddCss.html"></include>
 
-
     <title>KeshavSoft</title>
 
     <style>
@@ -197,8 +196,11 @@
         </symbol>
     </svg>
 
+
+
     <include src="./src/components/Templates/Reports/header.html"></include>
-    
+
+
     <div class="container">
         <datalist id="ReportsList"> </datalist>
 
@@ -227,7 +229,7 @@
                 tabindex="0">
                 <div class="input-group mt-2 d-print-none">
                     <input type="text" class="form-control ReportSelectedClass" list="ReportsList"
-                        placeholder="Select Folder">
+                        placeholder="Select Folder" autofocus>
 
                     <button class="btn btn-outline-secondary" type="button" onclick="jFShowReportDataFromInput(event)"
                         id="button-addon2">Go</button>
@@ -271,13 +273,14 @@
 
     <template id="TemplateNewTab">
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#{{TabPaneId}}" type="button"
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#{{TabPaneId}}" type="button"
                 role="tab" aria-controls="home-tab-pane" aria-selected="true">{{TabPaneId}}</button>
         </li>
     </template>
 
     <template id="TemplateNewTabPane">
-        <div class="tab-pane fade" id="{{TabPaneId}}" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+        <div class="tab-pane fade show active" id="{{TabPaneId}}" role="tabpanel" aria-labelledby="profile-tab"
+            tabindex="0">
             <div class="input-group mt-2 d-print-none">
                 <input type="text" class="form-control ReportSelectedClass" list="ReportsList"
                     placeholder="Select Folder">
@@ -287,26 +290,6 @@
             </div>
             <div class="TabPaneKCont1 mt-2">
 
-            </div>
-        </div>
-    </template>
-
-
-    <template id="TemplateNewTabPane1">
-        <div class="tab-pane fade" id="{{TabPaneId}}" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-            <div class="card">
-                <div class="card-header">
-                    <div class="input-group">
-                        <input type="text" class="form-control ReportSelectedClass" list="ReportsList"
-                            placeholder="Select Folder">
-
-                        <button class="btn btn-outline-secondary" type="button"
-                            onclick="jFShowReportDataFromInput(event)" id="button-addon2">Go</button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Shows content here...</h5>
-                </div>
             </div>
         </div>
     </template>
@@ -347,8 +330,7 @@
                                 Password cannot be empty.
                             </div>
                         </div>
-                        <input type="submit" class=" btn btn-primary"
-                            onclick="jVarGlobalClientObject.Login.LoginCheck()">
+                        <input type="submit" class=" btn btn-primary" onclick="GlobalFuncsForLogin.Login.LoginCheck()">
                         <!-- <button type="button" class="btn btn-primary"
                         onclick="jVarGlobalAdmin.Login.LoginCheck()">Check</button>
                          -->
@@ -378,19 +360,22 @@
     </div>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script> -->
-    <!-- <script src="/js/lodash.js"></script> -->
 
-    <!-- <script src="/js/Bs5/bootstrap.bundle.min.js"></script> -->
-    <!-- <script src="/js/handlebars/handlebars.min-v4.7.7.js"></script> -->
-    <!-- <script src="/js/sweetalert2/sweetalert2@11.js"></script> -->
+    <!-- <script src="/js/lodash.js"></script>
+
+    <script src="/js/Bs5/bootstrap.bundle.min.js"></script>
+    <script src="/js/handlebars/handlebars.min-v4.7.7.js"></script>
+    <script src="/js/sweetalert2/sweetalert2@11.js"></script> -->
 
     <!-- <script src="/ClassesStatic/CommonClass.js"></script> -->
-    <!-- <script src="/ClassesStatic/BuildDynamic.js"></script> -->
+
+    <!-- <script src="/JSONReports/Js/CommonClassOnly.js"></script>
+    <script src="/ClassesStatic/BuildDynamic.js"></script> -->
+
     
     <include src="./src/components/JScripts/HandleBars/HbsScript.html"></include>
 
     <include src="./src/components/Projects/JSONReports/AddJs.html"></include>
-
 
     <script>
         let jVarGlobalProjectConfig = {
@@ -412,15 +397,13 @@
     </script>
 
     <!-- <script src="/js/KeshavSoft/Login.js"></script> -->
+
     <!-- <script src="/js/KeshavSoft/FetchFuncs/PreLoad.js"></script> -->
+
     <!-- <script src="/js/KeshavSoft/FetchFuncs/MenuFuncs.js"></script> -->
     <!-- <script src="/js/KeshavSoft/FetchFuncs/DataFuncs/TableFuncs.js"></script> -->
 
-    <!-- <include src="./src/components/JScripts/KSJsFuncs/Login.html"></include> -->
-
-    <!-- <include src="./src/components/JScripts/HandleBars/HbsScript.html"></include> -->
     <include src="./src/components/JScripts/KSJsFuncs/LoginClassOnly.html"></include>
-
 
     <script>
         class KeshavSoftLocalFuncs {
@@ -624,6 +607,7 @@
         let jVarGlobalPresentViewData;
         let jVarGlobalHBSData = {};
 
+
         // jVarGlobalLoginFuncs.Login.ClientSideCookieFuncs.CheckToken();
 
         // jVarGlobalApiFuncs.ApiFuncs.PreLoad.Masters.FillDataFromServer();
@@ -634,164 +618,24 @@
             jVarLocalSubmitButton.focus();
         });
     </script>
-    <script>
-        let jFChangeHeaderActiveClass = () => {
-           let jVarLocalPathArray = window.location.pathname.split("/");
-           let jVarLocalHTMLName = jVarLocalPathArray[jVarLocalPathArray.length - 1];
-
-           jFChangeNavAnchorClass({ inClassName: jVarLocalHTMLName.split(".")[0] });
-
-       }
-
-       let jFChangeNavAnchorClass = ({ inClassName }) => {
-           let jVarLocalNavBarId = document.getElementById("NavBarId");
-           let jVarLocalAnchorNeeded = jVarLocalNavBarId.querySelector(`#${inClassName}`);
-
-           jVarLocalNavBarId.querySelectorAll("main a").forEach(el => {
-               if (el.classList.contains("text-info")) {
-                   el.classList.remove("text-info");
-               };
-               el.classList.add("text-white");
-
-           });
-
-           if (jVarLocalAnchorNeeded !== null) {
-
-               if (jVarLocalAnchorNeeded.classList.contains("text-white")) {
-                   jVarLocalAnchorNeeded.classList.remove("text-white");
-               };
-
-               jVarLocalAnchorNeeded.classList.add("text-info");
-           };
-       };
-       jFChangeHeaderActiveClass()
-
-   </script>
-
+ 
     <!-- <script src="/js/KeshavSoftCrudFuncs.js"></script> -->
+   
     <!-- <script src="/js/WebSocket.js"></script> -->
 
     <script>
         let jVarGlobalProject = "JSONReports";
         let jVarGlobalSubRoute = "Api";
 
-        let jFPromiseFunc = ({ inFolderName, inJsonFileName }) => {
-            let jVarLocalRoute = this.Config.RouteStart.Start;
-            let jVarLocalSubRoute = this.Config.RouteStart.SubRoute;
+        let GlobalFuncsForLogin = new GlobalClassForLogin({ inProjectName: jVarGlobalProject });
+        let jVarGlobalClientObject = new PrepareClass({ inProjectName: jVarGlobalProject });
 
-            let jVarLocalScreenHtmlControl = document.getElementById("ScreenSelected");
-            let jVarLocalItemHtmlControl = document.getElementById("ItemSelected");
-
-            let jVarLocalUrl1 = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/ScreensDisplayForFile/GetData/AsArray?inFolderName=${inFolderName}&inJsonFileName=${inJsonFileName}`;
-            let jVarLocalUrl2 = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/ItemsDisplayForFile/GetData/AsArray?inFolderName=${inFolderName}&inJsonFileName=${inJsonFileName}`;
-            //  console.log("PromiseFunc--------------");
-            let jVarLocalFetch1 = fetch(jVarLocalUrl1, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ inFolderName, inJsonFileName })
-            });
-
-            let jVarLocalFetch2 = fetch(jVarLocalUrl2, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ inFolderName, inJsonFileName })
-            });
-
-            Promise.all([jVarLocalFetch1, jVarLocalFetch2])
-                .then(responses => responses)
-                // map array of responses into an array of response.json() to read their content
-                .then(responses => Promise.all(responses.map(r => r.json())))
-                // all JSON answers are parsed: "users" is the array of them
-                .then(responseJson => responseJson.forEach((LoopItem, LoopIndex) => {
-                    console.log(LoopIndex, "------ : ", LoopItem);
-                    switch (LoopIndex) {
-                        case 0:
-                            if (Array.isArray(LoopItem)) {
-                                jVarLocalScreenHtmlControl.value = "";
-
-                                jVarGlobalClientObject.DataListFuncs.SingleValueEmptyBefore({
-                                    inDataList: jVarLocalScreenHtmlControl.list,
-                                    inData: LoopItem
-                                });
-
-                                if (jVarLocalScreenHtmlControl.list.options.length === 1) {
-                                    jVarLocalScreenHtmlControl.focus();
-                                };
-                            };
-                            break;
-                        case 1:
-                            if (Array.isArray(LoopItem)) {
-                                jVarLocalItemHtmlControl.value = "";
-
-                                jVarGlobalClientObject.DataListFuncs.SingleValueEmptyBefore({
-                                    inDataList: jVarLocalItemHtmlControl.list,
-                                    inData: LoopItem
-                                });
-
-                                if (jVarLocalItemHtmlControl.list.options.length === 1) {
-                                    jVarLocalItemHtmlControl.focus();
-                                };
-                            };
-                            break;
-                        default:
-                            break;
-                    }
-                }));
-        }
-
-        let jFPullForTableShow = (inEvent, inItemName, inScreenName) => {
-            let jVarLocalCurrentTarget = inEvent.currentTarget;
-            let jVarClosestCard = jVarLocalCurrentTarget.closest(".card");
-            let jVarCardBody = jVarClosestCard.querySelector(".card-body");
-
-            let jVarLocalRoute = jVarGlobalClientObject.Config.RouteStart.Start;
-            let jVarLocalSubRoute = jVarGlobalClientObject.Config.RouteStart.SubRoute;
-
-            //let jVarLocalItemConfig = jVarGlobalClientObject.Api.UserData.CommonFuncs.PrepareItemConfig();
-            let jVarLocalFolderHtmlControl = document.getElementById("FolderSelected");
-
-            let jVarLocalFolderName = jVarLocalFolderHtmlControl.value;
-            let jVarLocalFileName = "Transactions.json";
-            let jVarLocalItemName = inItemName;
-            let jVarLocalScreenName = inScreenName;
-
-            //let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/ScreensDisplayForFile/PullData/WithConfig?inFolderName=${jVarLocalFolderName}&inJsonFileName=${jVarLocalFileName}&inItemName=${jVarLocalItemName}&inScreenName=${jVarLocalScreenName}`;
-            let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/ScreensFromDisplayJson/PullData/WithConfig`;
-
-            fetch(jVarLocalFetchUrl, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    inFolderName: jVarLocalFolderName,
-                    inFileName: jVarLocalFileName,
-                    inItemName: jVarLocalItemName,
-                    inScreenName: jVarLocalScreenName
-                })
-            }).then(response => {
-                if (!response.ok) { throw new Error(response.statusText) };
-                return response.json();
-            }).then((FetchData) => {
-                if (FetchData.KTF) {
-                    jVarGlobalPresentViewData = KeshavSoftCrud.BuildFromArray(FetchData.DataFromServer);
-                    jVarCardBody.innerHTML = jVarGlobalClientObject.AppendToDOM.BuildAndReturnHtml({});
-                };
-            });
-        };
+        GlobalFuncsForLogin.Login.ClientSideCookieFuncs.CheckToken();
 
         let jFShowReportsAsMenu = () => {
             let jVarLocalRoute = jVarGlobalProject;
             let jVarLocalSubRoute = jVarGlobalSubRoute;
 
-            //  let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Reports/Menu/WithFilters/AsArray`;
             let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Reports/Menu/WithOutFilters/AsArray`;
 
             fetch(jVarLocalFetchUrl)
@@ -811,7 +655,6 @@
                 })
                 .then(dataFromApi => {
                     if (dataFromApi !== null) {
-                        console.log("dataFromApi----------- : ", dataFromApi);
                         if (dataFromApi.KTF) {
                             let str = '';
                             let htmlstring = dataFromApi.JsonData.forEach((name) => {
@@ -824,90 +667,49 @@
                 });
         };
 
-        let jFShowReportData = () => {
-            let jVarLocalRoute = jVarGlobalProject;
-            let jVarLocalSubRoute = jVarGlobalSubRoute;
-            let jVarLocalReportSelected = document.getElementById("ReportSelected").value;
-            // let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/GetFiles/AsTreeFilesWithItemsAndRowCount/${inFolderName}`;
-            // let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Data/FromFolder/FromFile/GetFilesAsTree/WithScreens/${inFolderName}`;
-            let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Reports/PullData/WithOutFilters/AsTable/${jVarLocalReportSelected}`;
-            console.log("jVarLocalFetchUrl : ", jVarLocalFetchUrl);
-            fetch(jVarLocalFetchUrl)
-                .then(response => {
-                    if (response.status === 403) {
-                        let jVarLocalModalId = this.Config.Ht.HtmlIds.Modals.LoginModalId;
-                        let jVarLocalLoginFormPopUpId = document.getElementById(jVarLocalModalId);
-
-                        if (jVarLocalLoginFormPopUpId !== null) {
-                            var myModal = new bootstrap.Modal(jVarLocalLoginFormPopUpId, { keyboard: false, focus: true });
-                            myModal.show();
-                        };
-                        return null;
-                    };
-
-                    return response.json();
-                })
-                .then(dataFromApi => {
-                    if (dataFromApi !== null) {
-                        console.log("dataFromApi : ", dataFromApi);
-                        let str = '';
-                        let htmlstring = dataFromApi.forEach((name) => {
-                            str += '<option value="' + name + '" />';
-                        });
-
-                        document.getElementById("ReportsList").innerHTML = str;
-                    };
-                });
-        };
-
-        let jFShowReportDataFromInput1 = (inEvent) => {
+        let jFAddNewTab = (inEvent) => {
             let jVarLocalCurrentTarget = inEvent.currentTarget;
-            let jVarClosestInputGroup = jVarLocalCurrentTarget.closest(".input-group");
-            let jVarClosestCard = jVarLocalCurrentTarget.closest(".tab-pane");
-            let jVarClosestContainer = jVarLocalCurrentTarget.closest(".container");
-            let jVarClosestTabPane = jVarLocalCurrentTarget.closest(".tab-pane");;
-            let jVarLocalHtmlCardBody = jVarClosestCard.querySelector(".TabPaneKCont1");
+            let jVarClosestNavTabs = jVarLocalCurrentTarget.closest(".container");
+            let jVarLocalNavTabs = jVarClosestNavTabs.querySelector(".nav-tabs");
+            let jVarLocalLastNavItem = jVarClosestNavTabs.querySelector(".LastNavItem");
+            let jVarLocalTabContents = jVarClosestNavTabs.querySelector(".tab-content");
+            let jVarLocalTabCount = jVarLocalTabContents.querySelectorAll(".tab-pane").length + 1;
 
-            let jVarLocalRoute = jVarGlobalProject;
-            let jVarLocalSubRoute = jVarGlobalSubRoute;
-            let jVarLocalReportSelected = jVarClosestInputGroup.querySelector(".ReportSelectedClass").value;
-            let jVarCurrentTabButton = jVarClosestContainer.querySelector(`ul.nav-tabs button[data-bs-target='#${jVarClosestTabPane.id}']`);
-            jVarCurrentTabButton.innerText = jVarLocalReportSelected;
+            let jVarLocalTemplateNewTab = document.getElementById("TemplateNewTab");
+            var jVarLocalTemplateNewTabClone = jVarLocalTemplateNewTab.cloneNode(true);
+            jVarLocalTemplateNewTabClone.innerHTML = jVarLocalTemplateNewTabClone.innerHTML.replace(/{{TabPaneId}}/g, `TabPane${jVarLocalTabCount}`);
 
-            //            let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Reports/PullData/WithOutFilters/AsTable/${jVarLocalReportSelected}`;
-            let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Reports/PullData/FromVouchersConsider/${jVarLocalReportSelected}`;
+            let jVarLocalTemplateNewTabPane = document.getElementById("TemplateNewTabPane");
+            var jVarLocalTemplateNewTabPaneClone = jVarLocalTemplateNewTabPane.cloneNode(true);
+            jVarLocalTemplateNewTabPaneClone.innerHTML = jVarLocalTemplateNewTabPaneClone.innerHTML.replace("{{TabPaneId}}", `TabPane${jVarLocalTabCount}`);
 
-            fetch(jVarLocalFetchUrl)
-                .then(response => {
-                    if (response.status === 403) {
-                        let jVarLocalModalId = this.Config.Ht.HtmlIds.Modals.LoginModalId;
-                        let jVarLocalLoginFormPopUpId = document.getElementById(jVarLocalModalId);
+            var fragment = document.importNode(jVarLocalTemplateNewTabPaneClone.content, true)
+            let jVarLocalmyTabContent = document.getElementById("myTabContent");
+            //let jVarLocalTabContents
+            jVarLocalmyTabContent.querySelectorAll(".tab-pane").forEach(element => {
+                if (element.classList.contains("show")) {
+                    element.classList.remove("show");
+                };
+                if (element.classList.contains("active")) {
+                    element.classList.remove("active");
+                };
+            });
 
-                        if (jVarLocalLoginFormPopUpId !== null) {
-                            var myModal = new bootstrap.Modal(jVarLocalLoginFormPopUpId, { keyboard: false, focus: true });
-                            myModal.show();
-                        };
-                        return null;
-                    };
+            let jVarLocalmyTab = document.getElementById("myTab");
 
-                    return response.json();
-                })
-                .then(FetchData => {
-                    if (FetchData !== null) {
-                        if (FetchData.KTF) {
+            jVarLocalmyTab.querySelectorAll("button.nav-link").forEach(element => {
+                if (element.classList.contains("active")) {
+                    element.classList.remove("active");
+                };
+            });
 
-                            jVarGlobalPresentViewData = KeshavSoftCrud.BuildFromArray(FetchData.DataFromServer);
-                            //jVarLocalHtmlCardBody.innerHTML = jVarGlobalClientObject.AppendToDOM.BuildAndReturnHtml({});
+            jVarLocalNavTabs.insertBefore(document.importNode(jVarLocalTemplateNewTabClone.content, true), jVarLocalLastNavItem);
+            jVarLocalTabContents.appendChild(fragment);
 
-                            jVarGlobalKeshavSoftLocalFuncsObject.AppendToDOM.RequiredHtml({
-                                inData: jVarGlobalPresentViewData,
-                                inHtmlParent: jVarLocalHtmlCardBody
-                            });
-                        };
-                    };
-                });
+            jVarLocalmyTabContent.querySelector(".tab-pane:last-child input[type=text]").focus();
+
         };
-
+          
         let jFShowReportDataFromInput = (inEvent) => {
             let jVarLocalCurrentTarget = inEvent.currentTarget;
             let jVarClosestInputGroup = jVarLocalCurrentTarget.closest(".input-group");
@@ -959,47 +761,42 @@
                 });
         };
 
-
-        let jFAddNewTab = (inEvent) => {
-            let jVarLocalCurrentTarget = inEvent.currentTarget;
-            let jVarClosestNavTabs = jVarLocalCurrentTarget.closest(".container");
-            let jVarLocalNavTabs = jVarClosestNavTabs.querySelector(".nav-tabs");
-            let jVarLocalLastNavItem = jVarClosestNavTabs.querySelector(".LastNavItem");
-            let jVarLocalTabContents = jVarClosestNavTabs.querySelector(".tab-content");
-            let jVarLocalTabCount = jVarLocalTabContents.querySelectorAll(".tab-pane").length + 1;
-
-            //          $('<li><a href="#tab'+nextTab+'" data-toggle="tab">Tab '+nextTab+'</a></li>').appendTo('#tabs');
-            //            jVarLocalNavTabs.append('<li><a href="#tab3" data-toggle="tab">Tab3</a></li>');
-            let jVarLocalNewTab = document.createElement("li");
-            jVarLocalNewTab.setAttribute("class", "nav-item");
-            jVarLocalNewTab.setAttribute("role", "presentation");
-
-            let LocalNewButton = document.createElement("button");
-            LocalNewButton.setAttribute("class", "nav-link");
-            LocalNewButton.setAttribute("data-bs-toggle", "tab");
-            LocalNewButton.innerText = "New Report";
-            jVarLocalNewTab.appendChild(LocalNewButton);
-
-            let jVarLocalTemplateNewTab = document.getElementById("TemplateNewTab");
-            var jVarLocalTemplateNewTabClone = jVarLocalTemplateNewTab.cloneNode(true);
-            jVarLocalTemplateNewTabClone.innerHTML = jVarLocalTemplateNewTabClone.innerHTML.replace(/{{TabPaneId}}/g, `TabPane${jVarLocalTabCount}`);
-
-            let jVarLocalTemplateNewTabPane = document.getElementById("TemplateNewTabPane");
-            var jVarLocalTemplateNewTabPaneClone = jVarLocalTemplateNewTabPane.cloneNode(true);
-            jVarLocalTemplateNewTabPaneClone.innerHTML = jVarLocalTemplateNewTabPaneClone.innerHTML.replace("{{TabPaneId}}", `TabPane${jVarLocalTabCount}`);
-
-
-            var fragment = document.importNode(jVarLocalTemplateNewTabPaneClone.content, true)
-
-            jVarLocalNavTabs.insertBefore(document.importNode(jVarLocalTemplateNewTabClone.content, true), jVarLocalLastNavItem);
-            jVarLocalTabContents.appendChild(fragment);
-
-            console.log("jVarLocalNavTabs : ", jVarLocalNavTabs);
-        };
-
         KSCommonFuncs.SelectionMenu.FillNavMenuWithValues();
 
         jFShowReportsAsMenu();
+    </script>
+
+    <script>
+        let jFChangeHeaderActiveClass = () => {
+            let jVarLocalPathArray = window.location.pathname.split("/");
+            let jVarLocalHTMLName = jVarLocalPathArray[jVarLocalPathArray.length - 1];
+
+            jFChangeNavAnchorClass({ inClassName: jVarLocalHTMLName.split(".")[0] });
+        };
+
+        let jFChangeNavAnchorClass = ({ inClassName }) => {
+            let jVarLocalNavBarId = document.getElementById("NavBarId");
+            let jVarLocalAnchorNeeded = jVarLocalNavBarId.querySelector(`#${inClassName}`);
+
+            jVarLocalNavBarId.querySelectorAll("main a").forEach(el => {
+                if (el.classList.contains("text-info")) {
+                    el.classList.remove("text-info");
+                };
+                el.classList.add("text-white");
+
+            });
+
+            if (jVarLocalAnchorNeeded !== null) {
+
+                if (jVarLocalAnchorNeeded.classList.contains("text-white")) {
+                    jVarLocalAnchorNeeded.classList.remove("text-white");
+                };
+
+                jVarLocalAnchorNeeded.classList.add("text-info");
+            };
+        };
+        jFChangeHeaderActiveClass()
+
     </script>
 </body>
 
