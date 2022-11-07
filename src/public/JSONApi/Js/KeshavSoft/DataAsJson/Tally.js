@@ -1,3 +1,6 @@
 import { jFShowFoldersInMenu } from "./Header/FromFolderAsDataList.js";
 
-jFShowFoldersInMenu();
+jFShowFoldersInMenu({
+    inProjectName: jVarGlobalProject,
+    inSubRoute: jVarGlobalSubRoute
+});

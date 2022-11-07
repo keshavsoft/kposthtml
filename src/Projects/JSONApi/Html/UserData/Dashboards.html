@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="/css/Bs5/bootstrap.min.css">
+    <include src="./src/components/Projects/JSONApi/AddCss.html"></include>
 
     <title>KeshavSoft</title>
 
@@ -317,114 +317,34 @@
         </div>
     </footer>
 
-    <div id="DataListsID">
+    <include src="./src/components/Projects/JSONApi/AddJs.html"></include>
 
-    </div>
+    <include src="./src/components/Projects/JSONApi/LoginClassOnly.html"></include>
 
-    <div class="modal fade" id="LoginModalId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Enter client user credentials</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="LoginFormPopUpId22" class="" onsubmit="return false" novalidate>
-                        <div class="mb-3 form-floating is-valid">
-                            <input type="text" class="form-control" id="KUserNameInput" required>
-                            <label for="KUserNameInput">User Name</label>
-                            <div class="invalid-feedback">
-                                User Name cannot be empty.
-                            </div>
-                        </div>
-                        <div class="mb-3 form-floating">
-                            <input type="password" class="form-control" id="KPasswordInput" required>
-                            <label for="KPasswordInput">Password</label>
-                            <div class="invalid-feedback">
-                                Password cannot be empty.
-                            </div>
-                        </div>
-                        <input type="submit" class=" btn btn-primary" onclick="GlobalFuncsForLogin.Login.LoginCheck()">
-                        <!-- <button type="button" class="btn btn-primary"
-                        onclick="jVarGlobalAdmin.Login.LoginCheck()">Check</button>
-                         -->
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="AlterPopUpDataId" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Alter Data</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary"
-                        onclick="jVarGlobalClientObject.Api.UserData.Table.Row.Update({inEvent:event})">Update</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id="CreateNewPopUpId" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content KTableDivClass">
-                <div class="modal-body KCardBody">
-
-                </div>
-
-            </div>
-        </div>
-    </div>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script> -->
-    <script src="/js/lodash.js"></script>
+    
+    
+    <!-- <script src="/js/lodash.js"></script> -->
 
-    <script src="/js/Bs5/bootstrap.bundle.min.js"></script>
+    <!-- <script src="/js/Bs5/bootstrap.bundle.min.js"></script>
     <script src="/js/handlebars/handlebars.min-v4.7.7.js"></script>
     <script src="/js/sweetalert2/sweetalert2@11.js"></script>
 
     <script src="/ClassesStatic/CommonClass.js"></script>
-    <script src="/ClassesStatic/BuildDynamic.js"></script>
+    <script src="/ClassesStatic/BuildDynamic.js"></script> -->
 
-    <script>
-        let jVarGlobalProjectConfig = {
-            RouteStart: {
-                Start: "JSONApi",
-                SubRoute: "API",
-                HtmlPath: "",
-                UserCheckRoute: "JSONUser",
-                AdminSubRoute: "AdminApi",
-            },
-            HtmlValues: {
-                HtmlIds: {
-                    Modals: {
-                        LoginModalId: "exampleModal"
-                    }
-                }
-            }
-        };
-    </script>
-
-    <script src="/js/KeshavSoft/Login.js"></script>
+    <!-- <script src="/js/KeshavSoft/Login.js"></script> -->
     
     <!-- <include src="./src/components/Templates/UserData/script.html"></include> -->
-    <include src="./src/components/JScripts/KSJsFuncs/Login.html"></include>
+    <!-- <include src="./src/components/JScripts/KSJsFuncs/Login.html"></include> -->
 
     <script>
         let jVarGlobalPresentViewData;
         let jVarGlobalHBSData = {};
 
-        jVarGlobalLoginFuncs.Login.ClientSideCookieFuncs.CheckToken();
+        // jVarGlobalLoginFuncs.Login.ClientSideCookieFuncs.CheckToken();
 
-        jVarGlobalApiFuncs.ApiFuncs.PreLoad.Masters.FillDataFromServer();
+        // jVarGlobalApiFuncs.ApiFuncs.PreLoad.Masters.FillDataFromServer();
 
         let jVarHtmlLoginModalId = document.getElementById("LoginModalId");
         jVarHtmlLoginModalId.addEventListener('shown.bs.modal', function (event) {
