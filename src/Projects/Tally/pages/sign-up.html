@@ -56,9 +56,15 @@
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link d-flex align-items-center me-2 active" aria-current="page"
-                            href="#">
+                            href="../index.html">
                             <i class="fa fa-chart-pie opacity-6  me-1"></i>
                             Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-2" href="../pages/sign-up.html">
+                            <i class="fas fa-user-circle opacity-6  me-1"></i>
+                            Sign Up
                         </a>
                     </li>
                     <li class="nav-item">
@@ -109,8 +115,9 @@
                                 </div>
                                 <div class="text-center">
                                     <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2"
-                                        onclick="jFCreateUser()">Sign
-                                        up</button>
+                                        onclick="jFCreateUser()">
+                                        <span class="spinner-border spinner-border-sm d-none" role="status"
+                                            aria-hidden="true" id="ShowProcessId"></span> Sign up</button>
                                 </div>
                             </form>
                             <div style="display: none;" id="ErrorAlertDiv"
@@ -207,6 +214,8 @@
         };
 
         let jFCreateUser = async () => {
+            let jVarLocalShowProcessId = document.getElementById("ShowProcessId");
+            jVarLocalShowProcessId.classList.remove("d-none");
             let jVarLocalUserName = document.getElementById("UserNameId");
             var form = document.getElementById('KForm1');
             var data = serializeObject(form);
@@ -233,6 +242,7 @@
                 };
             }).then(FetchData => {
                 jFPostCreateUser({ inFetchData: FetchData });
+                jVarLocalShowProcessId.classList.add("d-none");
             });
         };
 
@@ -252,17 +262,13 @@
                 default:
                     if (inFetchData.KTF) {
                         if ("KSClientError" in inFetchData) {
-                            // jVarLocalErrorAlertDiv.innerHTML = jVarLocalErrorAlertDiv.innerHTML.replace("{{KReason}}", inFetchData.KError);
                             jVarLocalErrorAlertDiv.innerHTML = jVarLocalErrorAlertDiv.innerHTML = inFetchData.KError;
 
                             jVarLocalErrorAlertDiv.style.display = "";
                         } else {
                             window.location = "sign-in.html";
                         };
-                        //  window.location = "sign-in.html";
                     } else {
-                        //jVarLocalErrorAlertDiv.innerHTML = jVarLocalErrorAlertDiv.innerHTML.replace("{{KReason}}", inFetchData.KReason);
-
                         jVarLocalErrorAlertDiv.innerHTML = jVarLocalErrorAlertDiv.innerHTML = inFetchData.KReason;
 
                         jVarLocalErrorAlertDiv.style.display = "";
