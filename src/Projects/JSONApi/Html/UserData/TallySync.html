@@ -237,7 +237,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="./TallySync.html" class="nav-link DashboardAClass text-white">
+                        <a href="./FromFolders.html" class="nav-link DashboardAClass text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="bi d-block mx-auto mb-1 d-none d-md-block" viewBox="0 0 16 16">
                                 <path
@@ -305,7 +305,7 @@
     </nav>
     <div class="container">
         <div id="KCont1" class="m-3">
-
+            <button type="button" class="btn btn-primary" onclick="jFTallySyncNow()">Sync Now</button>
         </div>
     </div>
 
@@ -334,6 +334,35 @@
         });
     </script>
 
+    <script>
+        let jVarGlobalWs = new WebSocket(`ws://${window.location.host}/`);
+
+        function showMessage(message) {
+            console.log("msg : ", message);
+        };
+
+        let jFCheckWebSocket = () => {
+            if ("WebSocket" in window) {
+                jVarGlobalWs.onopen = () => {
+                    console.log('Connection opened!');
+                }
+                jVarGlobalWs.onmessage = ({ data }) => showMessage(data);
+                jVarGlobalWs.onclose = function () {
+                    jVarGlobalWs = null;
+                }
+            } else {
+                // The browser doesn't support WebSocket
+                alert("WebSocket NOT supported by your Browser!");
+            };
+        };
+    </script>
+
+    <script>
+        let jFTallySyncNow = () => {
+            jFCheckWebSocket();
+            jVarGlobalWs.send("Send");
+        };
+    </script>
 </body>
 
 </html>

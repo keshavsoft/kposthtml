@@ -23,4 +23,7 @@ for JSONApi :
 
 4.  copy JSONUtility folder from public/Projects to your JSONApi Repo:public
 
+5.  copy JSONAdminApi folder from public/Projects to your JSONApi Repo:public
+6.  copy * folders from src/public/JSONAdminApi to your Repo/public/JSONAdminApi
+
 
