@@ -21,7 +21,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-    KESHAVSOFT AND by Creative Tim
+        KESHAVSOFT AND by Creative Tim
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
@@ -131,18 +131,18 @@
                     <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
 
                     </a>
-            </div>
-            <div class="row">
-                <div class="col-8 mx-auto text-center mt-1">
-                    <p class="mb-0 text-secondary">
-                        Copyright ©
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script> Soft by Creative Tim.
-                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-8 mx-auto text-center mt-1">
+                        <p class="mb-0 text-secondary">
+                            Copyright ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> Soft by Creative Tim.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
     </footer>
     <!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
     <!--   Core JS Files   -->
@@ -208,7 +208,7 @@
 
         let jFPostCreateUser = ({ inFetchData }) => {
             let jVarLocalErrorAlertDiv = document.getElementById("ErrorAlertDiv");
-          console.log[inFetchData]
+            console.log[inFetchData]
             switch (typeof inFetchData) {
                 case "string":
                     jVarLocalErrorAlertDiv.classList.remove("alert-danger");
@@ -226,7 +226,8 @@
 
                             jVarLocalErrorAlertDiv.style.display = "";
                         } else {
-                            window.location = "sign-in.html";
+                            //  window.location = "sign-in.html";
+                            window.location = "/JSONApi/Html/UserData/FromFolders.html";
                         };
                     } else {
                         jVarLocalErrorAlertDiv.innerHTML = jVarLocalErrorAlertDiv.innerHTML = inFetchData.KReason;
