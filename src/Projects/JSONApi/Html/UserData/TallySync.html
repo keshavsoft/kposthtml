@@ -305,7 +305,10 @@
     </nav>
     <div class="container">
         <div id="KCont1" class="m-3">
-            <button type="button" class="btn btn-primary" onclick="jFTallySyncNow()">Sync Now</button>
+            <button type="button" class="btn btn-primary" onclick="jFGiveDesktopClients()">Show Online Firms</button>
+            <br>
+            <button type="button" class="btn btn-primary" id="SyncButtonid" onclick="jFTallySyncNow()">Firm
+                Name</button>
         </div>
     </div>
 
@@ -338,6 +341,25 @@
         let jVarGlobalWs = new WebSocket(`ws://${window.location.host}/`);
 
         function showMessage(message) {
+            try {
+                let jVarLocalJsonData = JSON.parse(message);
+                console.log("jVarLocalJsonData : ", jVarLocalJsonData);
+                if ("FirmName" in jVarLocalJsonData) {
+                    let jVarLocalSyncButtonid = document.getElementById("SyncButtonid");
+                    jVarLocalSyncButtonid.innerHTML = jVarLocalJsonData.FirmName;
+                };
+
+                switch (message) {
+                    case value:
+
+                        break;
+
+                    default:
+                        break;
+                };
+            } catch (error) {
+                console.log("error : ", error);
+            };
             console.log("msg : ", message);
         };
 
@@ -358,10 +380,20 @@
     </script>
 
     <script>
+        jFCheckWebSocket();
+
         let jFTallySyncNow = () => {
-            jFCheckWebSocket();
             jVarGlobalWs.send("Send");
         };
+
+        let jFGiveDesktopClients = () => {
+            jVarGlobalWs.send("GiveDesktopClients");
+        };
+
+        let jFTallySyncSend = () => {
+            jVarGlobalWs.send("Send");
+        };
+
     </script>
 </body>
 
