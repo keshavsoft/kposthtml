@@ -295,6 +295,246 @@
 
                 </script>
 
+                <script>
+                    let jVarCommonSubRoute = "API";
+            
+                    let jFShowInsertButtons = () => {
+                        let jVarLocalHtmlInsertButtons = document.getElementsByClassName("InsertClass");
+            
+                        for (i = 0; i < jVarLocalHtmlInsertButtons.length; ++i) {
+                            if (jVarLocalHtmlInsertButtons[i].style.display === "none") {
+                                jVarLocalHtmlInsertButtons[i].style.display = "";
+                            } else {
+                                jVarLocalHtmlInsertButtons[i].style.display = "none";
+                            };
+                        };
+                    };
+            
+                    class CommonFuncsForFolders {
+                        static CreateFolders = () => {
+                            let jVarLocalRoute = window.location.pathname.split("/")[1];
+                            let jVarLocalSubRoute = jVarCommonSubRoute;
+                            //let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Folders/Show/ForAdmin`;
+                            //let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/Utility/Json/Folder/AsTree/ForSubTableColumns`;
+                            let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/Utility/Json/Folder/ForSubTableColumns/Visibility/WithDataAttributeAndDisplayName`;
+            
+                            fetch(jVarLocalFetchUrl)
+                                .then(response => {
+                                    return response.json();
+                                    //return this.Login.StatusCodeFuncs.Code403({ inResponse: response });
+                                })
+                                .then(dataFromApi => {
+                                    if (dataFromApi !== null) {
+                                        this.ApplyClasses({ indataFromApi: dataFromApi });
+                                        console.log("dataFromApi : ", dataFromApi);
+                                        //let jVarLocalFileNameChanged = this.ChangeFileName({ indataFromApi: dataFromApi });
+                                        let jVarLocalRawTemplate = document.getElementById("HbsTemplateForFolders").innerHTML;
+                                        document.getElementById("KCont1").innerHTML = Handlebars.compile(jVarLocalRawTemplate)(dataFromApi);
+                                    };
+                                });
+                        }
+            
+                        static ApplyClasses = ({ indataFromApi }) => {
+                            if (indataFromApi.length > 0) {
+                                indataFromApi[0].TabPageClass = " show active";
+                                indataFromApi[0].MenuClass = " active";
+                            };
+                        }
+            
+                        static ChangeFileName = ({ indataFromApi }) => {
+                            let jVarLocalReturnData;
+            
+                            jVarLocalReturnData = indataFromApi.map(elementLoopFolder => {
+                                if ("Files" in elementLoopFolder) {
+                                    elementLoopFolder.Files.map(elementLoopFile => {
+                                        if ("FileName" in elementLoopFile && ("FileNameWithOutExtension" in elementLoopFile) === false) {
+                                            elementLoopFile.FileNameWithOutExtension = elementLoopFile.FileName.split(".")[0];
+                                        };
+            
+                                        return elementLoopFile;
+                                    });
+                                };
+            
+                                return elementLoopFolder;
+                            });
+            
+            
+            
+                            return jVarLocalReturnData;
+                        }
+                    };
+            
+                    let serializeObject = (inHtmlTr) => {
+                        console.log("inHtmlTr : ", inHtmlTr);
+                        // Create a new FormData object
+                        const formData = inHtmlTr.querySelectorAll("[name]");
+                        console.log("formData : ", formData);
+                        // Create an object to hold the name/value pairs
+                        const pairs = {};
+            
+                        for (let i = 0; i < formData.length; i++) {
+                            pairs[formData[i].name] = formData[i].value;
+                        }
+            
+                        // Return the object
+                        return pairs;
+                    };
+            
+                    let jFTableSearch = (inEvent) => {
+                        let jVarLocalCurrentTarget = inEvent.currentTarget;
+                        let jVarLocalClosestCard = jVarLocalCurrentTarget.closest(".card");
+                        let jVarLocalTableBodyId = jVarLocalClosestCard.querySelector(".card-body table tbody");
+            
+                        var filter, table, tr, td, i;
+                        filter = jVarLocalCurrentTarget.value;
+            
+                        for (var i = 0, row; row = jVarLocalTableBodyId.rows[i]; i++) {
+                            jVarLocalTableBodyId.rows[i].classList.add("d-none");
+            
+                            for (var j = 0, col; col = row.cells[j]; j++) {
+                                if (col.innerHTML.includes(filter)) {
+            
+                                    jVarLocalTableBodyId.rows[i].classList.remove("d-none");
+            
+                                    break;
+                                };
+                            }
+                        }
+                    };
+            
+                    let jFShowColumnsIntable = ({ inFolderName, inFileName, inItemName, inScreenName, inToShowHtmlControlId, inRowIndex }) => {
+                        let jVarLocalTableBody = document.getElementById(inToShowHtmlControlId).querySelector("tbody");
+                        let jVarLocalFetchUrl = `/JSONProject/AdminApi/Columns/ForDataList/ForDefaultValue/${inFolderName}/${inFileName}/${inItemName}/${inScreenName}`;
+                        let jVarLocalConfigObject = {
+                            FolderName: inFolderName,
+                            FileName: inFileName,
+                            ItemName: inItemName,
+                            ScreenName: inScreenName
+                        };
+                        let jVarLocalDataWithRowClass;
+            
+                        fetch(jVarLocalFetchUrl).then(response => response.json())
+                            .then(dataFromApi => {
+                                if (inRowIndex >= 0 && inRowIndex < dataFromApi.length - 1) {
+                                    dataFromApi[inRowIndex].RowClass = "table-success";
+                                };
+            
+                                let jVarLocalRawTemplate = document.getElementById("HbsTemplateForTable").innerHTML;
+            
+                                jVarLocalTableBody.innerHTML = Handlebars.compile(jVarLocalRawTemplate)({ KData: dataFromApi, ConfigObject: jVarLocalConfigObject })
+                            });
+                    };
+            
+                    let jFUpdateData = (inEvent, inRowIndex) => {
+                        let jVarLocalCurrentTarget = inEvent.currentTarget;
+                        let jVarLocalHtmlTr = jVarLocalCurrentTarget.closest("tr");
+            
+                        let jVarLocalConfigObject = {
+                            KTF: true,
+                            FolderName: jVarLocalCurrentTarget.dataset.foldername,
+                            FileName: jVarLocalCurrentTarget.dataset.filenamewithoutextension,
+                            ItemName: jVarLocalCurrentTarget.dataset.itemname,
+                            ScreenName: jVarLocalCurrentTarget.dataset.screenname,
+                            ColumnName: jVarLocalCurrentTarget.dataset.columnmame,
+                            SubTableColumnName: jVarLocalCurrentTarget.dataset.subtablecolumnname,
+                        };
+                        console.log("jVarLocalConfigObject : ", jVarLocalConfigObject);
+                        //let jVarLocalEndPoint = "{{inItemName.{{inScreenName.TableColumns[DataAttribute:inColumnName";
+                        let jVarLocalEndPoint = "{{inItemName.{{inScreenName.SubTableColumns.{{inColumnName.TableColumns[DataAttribute:inSubTableColumnName";
+            
+                        let jVarLocalFetchBodydata = jVarGlobalClientObject.AdminApi.Config.CommonFuncs.PreparePostData.ForUpdateTakeInput({ inJVarHtmlControl: jVarLocalHtmlTr });
+                        let jVarLocalFetchUrl = jVarGlobalClientObject.AdminApi.Config.TableColumns.Update.CommonFuncs.PrepareUrl.ForUpdate({ inUrlObject: jVarLocalConfigObject });;
+            
+                        // fetch(`${jVarLocalFetchUrl}&inKQueryObject=${jVarLocalEndPoint}`, {
+                        //     method: "post",
+                        //     headers: {
+                        //         'Accept': 'application/json',
+                        //         'Content-Type': 'application/json'
+                        //     },
+                        //     body: JSON.stringify(jVarLocalFetchBodydata)
+                        // }).then(response => response.text()).then(dataFromApi => {
+                        //     let jVarLocalData = JSON.parse(dataFromApi);
+                        //     console.log("jVarLocalData : ", jVarLocalData);
+                        //     if (jVarLocalData.KTF) {
+                        //         //    window.location = "";
+                        //         jFShowColumnsIntable({
+                        //             inFolderName: jVarLocalConfigObject.FolderName,
+                        //             inFileName: jVarLocalConfigObject.FileName,
+                        //             inItemName: jVarLocalConfigObject.ItemName,
+                        //             inScreenName: jVarLocalConfigObject.ScreenName,
+                        //             inToShowHtmlControlId: `${jVarLocalConfigObject.FolderName}-${jVarLocalCurrentTarget.dataset.filenamewithoutextension}-${jVarLocalConfigObject.ItemName}-${jVarLocalConfigObject.ScreenName}`,
+                        //             inRowIndex
+                        //         });
+            
+                        //     };
+                        // });
+            
+                    };
+            
+                    let jFShowColumnTable = (inFolderName, inFileName, inItemName, inScreenName, inToShowHtmlControlId) => {
+                        let jVarLocalToShowHtmlControlId = document.getElementById(inToShowHtmlControlId);
+            
+                        if (jVarLocalToShowHtmlControlId.classList.contains("show") === false) {
+                            jVarLocalToShowHtmlControlId.classList.add("show");
+                        }
+            
+                        jFShowColumnsIntable({
+                            inFolderName, inFileName,
+                            inItemName,
+                            inScreenName,
+                            inToShowHtmlControlId
+                        });
+                    };
+            
+                    let jFToggleColumnTable = (inToShowHtmlControlId) => {
+                        jFShowColumnsIntable({
+                            inFolderName, inFileName,
+                            inItemName,
+                            inScreenName,
+                            inToShowHtmlControlId
+                        });
+                    };
+            
+                    let jFInsertNewTableColumnUsingSwal = (inEvent, inFolderName, inFileName, inItemName, inScreenName, inColumnName) => {
+            
+                        let jVarLocalCurrentTarget = inEvent.currentTarget;
+                        let jVarLocalClosestTr = jVarLocalCurrentTarget.closest("tr");
+            
+                        let jVarLocalSubTableColumnName = jVarLocalClosestTr.querySelector("[name=ColumnName]");
+            
+                        let jVarLocalFolderName = inFolderName;
+                        let jVarLocalFileName = inFileName;
+                        let jVarLocalItemName = inItemName;
+                        let jVarLocalScreenName = inScreenName;
+                        let jVarLocalColumnName = inColumnName;
+                        let LocalToName = jVarLocalSubTableColumnName.value;
+            
+                        let jVarLocalRoute = window.location.pathname.split("/")[1]
+                        let jVarLocalAdminSubRoute = jVarGlobalClientObject.Config.RouteStart.AdminSubRoute;
+            
+                        fetch(`/${jVarLocalRoute}/${jVarLocalAdminSubRoute}/Utility/Json/Data/Config/SubTable/Columns/Insert?inFolderName=${jVarLocalFolderName}&inJsonFileName=${jVarLocalFileName}&inItemName=${jVarLocalItemName}&inScreenName=${jVarLocalScreenName}&inColumnName=${jVarLocalColumnName}&inSubTableColumnName=${LocalToName}`)
+                            .then(response => {
+                                if (!response.ok) { throw new Error(response.statusText) };
+            
+                                return response.json();
+                            }).then((FetchData) => {
+                                if (FetchData.KTF) {
+                                    window.location = "";
+                                }
+                            }).catch(error => { });
+                    };
+            
+            
+                    // jVarGlobalClientObject.Login.ClientSideCookieFuncs.CheckToken();
+            
+                    let jVarHtmlLoginModalId = document.getElementById("LoginModalId");
+                    jVarHtmlLoginModalId.addEventListener('shown.bs.modal', function (event) {
+                        let jVarLocalSubmitButton = event.currentTarget.querySelector(".modal-body input[type='submit']");
+                        jVarLocalSubmitButton.focus();
+                    });
+            
+                    CommonFuncsForFolders.CreateFolders();
+                </script>
 
 
     <SCript>
