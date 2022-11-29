@@ -208,62 +208,22 @@
         <label>Report Name :</label>
 
         <div class="input-group mt-2 d-print-none mb-3">
-            <input type="text" class="form-control ReportSelectedClass" list="ReportsList" placeholder="Select Folder"
-                autofocus="">
+            <input id="ReportSelectedId" type="text" class="form-control ReportSelectedClass" list="ReportsList" placeholder="Select Folder" autofocus="">
 
-            <button class="btn btn-outline-secondary" type="button" onclick="jFShowReportDataFromInput(event)"
-                id="button-addon2">Go</button>
+            <button class="btn btn-outline-secondary" type="button" onclick="jFPullHtml()" id="button-addon2">Go</button>
         </div>
 
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
-                    type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Show Data</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
-                    type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Filters</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
-                    type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Filtered
-                    Data</button>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
-                tabindex="0">
+        <div id="KContForFilterId" class="m-3">
 
-                <div class="TabPaneKCont1 mt-2">
-
-                </div>
-            </div>
-            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Column Name</th>
-                            <th scope="col">Search Value</th>
-                            <th scope="col">Filter</th>
-                        </tr>
-                    </thead>
-                    <tbody id="FilterTableBody">
-                    </tbody>
-                </table>
-            </div>
-            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-                <div id="FilteredTableId">
-
-                </div>
-            </div>
-            <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab"
-                tabindex="0">...</div>
         </div>
-    </div>
+    
+        <button type="button" class="btn btn-success" onclick="jFShowReportDataFromInput(event)" >Generate</button>
 
-    <div id="KCont1" class="m-3">
+        <div id="KCont1" class="m-3">
 
+        </div>
+    
+    
     </div>
 
 
