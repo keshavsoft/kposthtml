@@ -75,21 +75,21 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">
+              <a class="nav-link" href="../Customers/Show.html">
                 <span data-feather="users"></span>
                 Customers
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../Setup/Show.html">
+              <a class="nav-link active" href="Show.html">
                 <span data-feather="bar-chart-2"></span>
                 Setup Customers
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="./ShowUsers.html">
                 <span data-feather="layers"></span>
-                Integrations
+                Show Users
               </a>
             </li>
           </ul>
@@ -130,11 +130,8 @@
       </nav>
 
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
         <div id="KCont1">
-
         </div>
-
       </main>
     </div>
   </div>
@@ -186,134 +183,96 @@
     });
   </script>
 
-  <script id="HbsTemplateForVerticalCreateNew" type="text/x-handlebars">
-  <!-- onsubmit="return jVarLocalApiFuncs.Save.Vertical(event)" -->
-
-  <form onsubmit="return jVarLocalApiFuncs.Save.Vertical(event)" class="needs-validation" id="kform1">
-    <div class="card">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-10">
-            <h4>Create New</h4>
-          </div>
-          <div class="col-2">
-            <div class="d-md-flex justify-content-md-end">
-              <a href="#" onclick="jFCreateNew()" class="btn btn-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-table"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
-                </svg>
-                Show All
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        {{#each this.[0]}}
-        <div class="row mb-3">
-          <label class="col-md-3 col-form-label">{{@key}}</label>
-          <div class="col-md-3">
-            <div class="form-group">
-              <input id={{@key}} name={{@key}} type="text" class="form-control" placeholder="Enter {{@key}}"
-                autocomplete="off" required>
-              <div class="invalid-feedback">
-                Should not be empty!
-              </div>
-            </div>
-          </div>
-        </div>
-        {{/each}}
-      </div>
-      <div class="card-footer">
-        <div class="row">
-          <div class="col-2">
-            <div class="d-md-flex justify-content-md-end">
-              <a href="#" onclick="jVarLocalApiFuncs.Save.Vertical()" class="btn btn-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-table"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
-                </svg>
-                Save
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-
-
-  </script>
-
   <script id="HbsTemplateForBody" type="text/x-handlebars">
     <div class="card">
       <div class="card-header">
-        <div class="row">
-          <div class="col-5">
-            <h4>Show all customers</h4>
+          <div class="row">
+              <div class="col-4">
+                  <h4>Show all customers</h4>
+              </div>
+              <div class="col-3">
+                  <input type="text" name="" id="" placeholder="Search" class="form-control"
+                      onkeyup="jFTableSearch(event)">
+              </div>
+              <div class="col-2">
+                  <div class="d-md-flex justify-content-md-end">
+                      <a href="./CreateNew.html" class="btn btn-primary">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                              class="bi bi-table" viewBox="0 0 16 16">
+                              <path
+                                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
+                          </svg>
+                          Create New
+                      </a>
+                  </div>
+              </div>
+              <div class="col-2">
+                  <div class="d-md-flex justify-content-md-end">
+                      <a href="./InsertNew.html" class="btn btn-primary">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                              class="bi bi-table" viewBox="0 0 16 16">
+                              <path
+                                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
+                          </svg>
+                          Insert New
+                      </a>
+                  </div>
+              </div>
           </div>
-          <div class="col-5">
-            <input type="text" name="" id="" placeholder="Search" class="form-control"
-            onkeyup="jFTableSearch(event)">
-          </div>
-          <div class="col-2">
-            <div class="d-md-flex justify-content-md-end">
-              <a href="#" onclick="jFCreateNew()" class="btn btn-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-table" viewBox="0 0 16 16">
-                  <path
-                    d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
-                </svg>
-                Create New
-              </a>
-            </div>
-
-          </div>
-
-
-        </div>
+  
       </div>
       <div class="card-body">
-    
-  <table class="table">
-    <thead>
-        <tr>
-            <th>#</th>
-            {{#each this.[0]}}
-            <th>{{@key}}</th>
-{{/each}}
-        </tr>
-    </thead>
-    <tbody id="KTableBodyId">
-        {{#each this}}
-        <tr>
-            <td class="text-center">
-                {{ForSNo @index}}
-            </td>
-            {{#each this}}
-            <td>{{@this}}</td>
-{{/each}}
-          <td class="text-right">
-            <button type="button" rel="tooltip" class="btn btn-outline-danger btn-sm "
-            data-original-title="" title="" data-bs-target="#DeleteModalId"
-            data-bs-kpk="{{pk}}"  data-bs-toggle="modal" >
-            <i class="bi bi-trash"> </i>Delete
-          </button>
-          </td>
-        </tr>
-        {{/each}}
-        
-    </tbody>
-</table>
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>DataKey</th>
+                      <th>UserName</th>
+                      <th>Password</th>
+                      <th>Setup</th>
+                  </tr>
+              </thead>
+              <tbody id="KTableBodyId">
+                  {{#each this}}
+                  <tr>
+                      <td class="text-center">
+                          {{ForSNo @index}}
+                      </td>
+                      <td>{{@key}}</td>
+                      <td>{{UserName}}</td>
+                      <td>{{PassWord}}</td>
+                      <td class="text-right">
+                          <button type="button" rel="tooltip" class="btn btn-outline-primary btn-sm "
+                              onclick="jFSetup({{@key}})">
+                              <i class="bi bi-trash"> </i>Setup
+                          </button>
+                      </td>
+                  </tr>
+                  {{/each}}
+              </tbody>
+          </table>
       </div>
-      
-    </div>
+  
+  </div>
 
-    
-          </script>
+  <div class="modal fade" id="SetupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Setup successfull.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </script>
 
   <script>
     let jVarGlobalPresentViewData;
@@ -322,11 +281,9 @@
       PullData: {
         getUserAsync: async () => {
           let jVarLocalUrl = "/JSONUser/Users/Api/ShowData";
-          
           let response = await fetch(jVarLocalUrl);
           let data = await response.json();
-          
-          return await data;
+          return data;
         }
       },
       ShowData: async () => {
@@ -335,35 +292,6 @@
           jVarGlobalPresentViewData = data;
           document.getElementById("KCont1").innerHTML = Handlebars.compile(jVarLocalRawTemplate)(jVarGlobalPresentViewData);
         });
-      },
-      Save: {
-        Vertical: async () => {
-          var form = document.getElementById("kform1");
-          let jVarLocalFetchPostData = serializeObject(form);
-          //var form = document.querySelector('form');
-          var formData = new FormData(form);
-          let jVarLocalSettings = {
-            method: "post",
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(jVarLocalFetchPostData)
-          };
-
-          let jVarLocalUrl = "/JSONUser/Users/Api/Save";
-          let response = await fetch(jVarLocalUrl, jVarLocalSettings);
-          let data = await response.json();
-          console.log("data : ", data);
-
-          if (data.KTF) {
-            jVarLocalApiFuncs.ShowData();
-          } else {
-
-          };
-          return data;
-
-        }
       }
     };
 
@@ -389,37 +317,20 @@
       }
     };
 
-
-    let getUserAsync = async () => {
-      let jVarLocalUrl = "/JSONUser/Users/Api/ShowData";
+    let jFSetup = async (inDataPk) => {
+      let jVarLocalUrl = `/JSONUser/Users/Api/Setup/FoldersOnly/${inDataPk}`;
       let response = await fetch(jVarLocalUrl);
       let data = await response.json();
-      return data;
-    };
 
-    let jFCreateNew = () => {
-      let jVarLocalRawTemplate = document.getElementById("HbsTemplateForVerticalCreateNew").innerHTML;
-      document.getElementById("KCont1").innerHTML = Handlebars.compile(jVarLocalRawTemplate)(jVarGlobalPresentViewData);
+      if (data.KTF) {
+        var myModal = new bootstrap.Modal(document.getElementById('SetupModal'), {
+          keyboard: false
+        });
+        myModal.show();
+      };
     };
 
     feather.replace({ 'aria-hidden': 'true' })
-
-    let serializeObject = (form) => {
-      // Create a new FormData object
-      const formData = new FormData(form);
-
-      // Create an object to hold the name/value pairs
-      const pairs = {};
-
-      // Add each name/value pair to the object
-      for (const [name, value] of formData) {
-        pairs[name] = value;
-      }
-
-      // Return the object
-      console.log("pairs : ", pairs);
-      return pairs;
-    };
 
     class jPrepareClass {
       constructor({ inProjectName }) {
@@ -626,7 +537,7 @@
         CheckUserNamePassword: async ({ inUserName, inPassword }) => {
           //let jVarLocalUserCheckRoute = this.Config.RouteStart.UserCheckRoute;
           //let jVarLocalFetchUrl = `http://localhost:5000/JSONUser/Admin/Api/Check/LoginCheck/${inUserName}/${inPassword}`;
-          //          let jVarLocalFetchUrl = `/JSONUser/Admin/Api/Check/LoginCheck/${inUserName}/${inPassword}`;
+          //      let jVarLocalFetchUrl = `/JSONUser/Admin/Api/Check/LoginCheck/${inUserName}/${inPassword}`;
           let jVarLocalFetchUrl = "/JSONUser/Admin/Api/InAdminDataJson/Check/LoginCheck";
 
           let response = await fetch(jVarLocalFetchUrl, {
