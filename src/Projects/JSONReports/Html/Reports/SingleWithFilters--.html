@@ -205,40 +205,28 @@
     <div class="container">
 
         <datalist id="ReportsList"> </datalist>
-
         <label>Report Name :</label>
 
         <div class="input-group mt-2 d-print-none mb-3">
-            <input type="text" class="form-control ReportSelectedClass" list="ReportsList" placeholder="Select Folder"
-                autofocus="">
+            <input type="text" class="form-control ReportSelectedClass" list="ReportsList" placeholder="Select Folder" autofocus="">
 
-            <button class="btn btn-outline-secondary" type="button" onclick="jFShowReportDataFromInput(event)"
-                id="button-addon2">Go</button>
+            <button class="btn btn-outline-secondary" type="button" onclick="jFShowReportDataFromInput(event)" id="button-addon2">Go</button>
         </div>
 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
-                    type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Show Data</button>
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Show Data</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
-                    type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Filters</button>
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Filters</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#Conditions-tab-pane"
-                    type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Conditions</button>
+              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Filtered Data</button>
             </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
-                    type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Filtered
-                    Data</button>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
-                tabindex="0">
-
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                
                 <div class="TabPaneKCont1 mt-2">
 
                 </div>
@@ -246,85 +234,24 @@
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Column Name</th>
-                            <th scope="col">Search Value</th>
-                            <th scope="col">Filter</th>
-                        </tr>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Column Name</th>
+                        <th scope="col">Search Value</th>
+                        <th scope="col">Filter</th>
+                      </tr>
                     </thead>
                     <tbody id="FilterTableBody">
                     </tbody>
-                </table>
-            </div>
-            <div class="tab-pane fade" id="Conditions-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
-                tabindex="0">
-                <label>Columns :</label>
-
-                <div class="input-group mt-2 d-print-none mb-3">
-                    <datalist id="ColumnsList"> </datalist>
-
-                    <input type="text" id="ColumnSelectedId" class="form-control" list="ColumnsList"
-                        placeholder="Select Folder">
-
-                    <button class="btn btn-outline-secondary" type="button" onclick="jFShowReportDataFromInput(event)"
-                        id="button-addon2">Go</button>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <div class="mb-3">
-                            <label for="" class="form-label">From Value</label>
-                            <input type="text" class="form-control" name="" id="FromValueId" aria-describedby="helpId"
-                                placeholder="">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="mb-3">
-                            <label for="" class="form-label">From Condition</label>
-                            <input type="text" class="form-control" id="FromConditionId" list="FromConditionList">
-
-                            <datalist id="FromConditionList">
-                                <option value=">=">
-                                <option value='<='>
-
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col">
-                        <div class="mb-3">
-                            <label for="" class="form-label">To Value</label>
-                            <input type="text" class="form-control" name="" id="ToValueId" aria-describedby="helpId"
-                                placeholder="">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="mb-3">
-                            <label for="" class="form-label">To Condition</label>
-                            <input type="text" class="form-control" id="ToConditionId" list="ToConditionList">
-
-                            <datalist id="ToConditionList">
-                                <option value=">=">
-                                <option value='<='>
-
-                        </div>
-                    </div>
-                </div>
-
-                <button type="button" id="ConditionsButtonId" onclick="jFConditionsShowData(event)"
-                    class="btn btn-primary">Filter Data</button>
+                  </table>
             </div>
             <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
                 <div id="FilteredTableId">
 
                 </div>
             </div>
-            <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab"
-                tabindex="0">...</div>
-        </div>
+            <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">...</div>
+          </div>
     </div>
 
     <div id="KCont1" class="m-3">
@@ -337,13 +264,15 @@
             <th scope="row">{{SNo}}</th>
             <td>{{Name}}</td>
             <td>
-                <input type="text" class="form-control SearchInput" aria-describedby="helpId" placeholder="">
+                <input type="text"
+                    class="form-control SearchInput" aria-describedby="helpId" placeholder="">
             </td>
             <td>
                 <button type="button" class="btn btn-primary" onclick="jFFilterData({inEvent:event})"
-                    data-dataattribute="{{DataAttribute}}" data-uuid="{{UUID}}">Filter Data</button>
+                data-dataattribute="{{DataAttribute}}" data-uuid="{{UUID}}"
+                >Filter Data</button>
             </td>
-        </tr>
+          </tr>
     </template>
 
 
@@ -427,7 +356,7 @@
     <!-- <script src="/JSONReports/Js/CommonClassOnly.js"></script>
     <script src="/ClassesStatic/BuildDynamic.js"></script> -->
 
-
+    
     <include src="./src/components/JScripts/HandleBars/HbsScript.html"></include>
 
     <include src="./src/components/Projects/JSONReports/AddJs.html"></include>
@@ -450,6 +379,13 @@
             }
         };
     </script>
+
+    <!-- <script src="/js/KeshavSoft/Login.js"></script> -->
+
+    <!-- <script src="/js/KeshavSoft/FetchFuncs/PreLoad.js"></script> -->
+
+    <!-- <script src="/js/KeshavSoft/FetchFuncs/MenuFuncs.js"></script> -->
+    <!-- <script src="/js/KeshavSoft/FetchFuncs/DataFuncs/TableFuncs.js"></script> -->
 
     <include src="./src/components/JScripts/KSJsFuncs/LoginClassOnly.html"></include>
 
@@ -666,6 +602,10 @@
             jVarLocalSubmitButton.focus();
         });
     </script>
+ 
+    <!-- <script src="/js/KeshavSoftCrudFuncs.js"></script> -->
+   
+    <!-- <script src="/js/WebSocket.js"></script> -->
 
     <script>
         let jVarGlobalProject = "JSONReports";
@@ -711,56 +651,61 @@
                 });
         };
 
-
-        let uuidv4 = () => {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-        };
+          
+let  uuidv4=() =>{
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+};
 
         let jFShowReportDataFromInput = (inEvent) => {
             let jVarLocalCurrentTarget = inEvent.currentTarget;
 
             let jVarClosestInputGroup = jVarLocalCurrentTarget.closest(".input-group");
+            // let jVarClosestCard = jVarLocalCurrentTarget.closest(".tab-pane");
+            // let jVarClosestContainer = jVarLocalCurrentTarget.closest(".container");
+            // let jVarClosestTabPane = jVarLocalCurrentTarget.closest(".tab-pane");;
             let jVarLocalHtmlCardBody = document.querySelector(".TabPaneKCont1");
 
-            let jVarLocalUUID = uuidv4();
+            let jVarLocalUUID=uuidv4();
 
             let jVarLocalRoute = jVarGlobalProject;
             let jVarLocalSubRoute = jVarGlobalSubRoute;
-
-            let jVarLocalReportSelected = jVarClosestInputGroup.querySelector(".ReportSelectedClass").value;
+            
+             let jVarLocalReportSelected = jVarClosestInputGroup.querySelector(".ReportSelectedClass").value;
             // let jVarCurrentTabButton = jVarClosestContainer.querySelector(`ul.nav-tabs button[data-bs-target='#${jVarClosestTabPane.id}']`);
             // jVarCurrentTabButton.innerText = jVarLocalReportSelected;
 
             let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Reports/PullData/WithOutFilters/AsTable/DataWithConfig/${jVarLocalReportSelected}`;
 
-            fetch(jVarLocalFetchUrl).then(response => {
-                if (response.status === 403) {
-                    let jVarLocalModalId = this.Config.Ht.HtmlIds.Modals.LoginModalId;
-                    let jVarLocalLoginFormPopUpId = document.getElementById(jVarLocalModalId);
+            fetch(jVarLocalFetchUrl)
+                .then(response => {
+                    if (response.status === 403) {
+                        let jVarLocalModalId = this.Config.Ht.HtmlIds.Modals.LoginModalId;
+                        let jVarLocalLoginFormPopUpId = document.getElementById(jVarLocalModalId);
 
-                    if (jVarLocalLoginFormPopUpId !== null) {
-                        var myModal = new bootstrap.Modal(jVarLocalLoginFormPopUpId, { keyboard: false, focus: true });
-                        myModal.show();
+                        if (jVarLocalLoginFormPopUpId !== null) {
+                            var myModal = new bootstrap.Modal(jVarLocalLoginFormPopUpId, { keyboard: false, focus: true });
+                            myModal.show();
+                        };
+                        return null;
                     };
-                    return null;
-                };
 
-                return response.json();
-            })
+                    return response.json();
+                })
                 .then(FetchData => {
                     if (FetchData !== null) {
                         if (FetchData.KTF) {
-                            let jVarLocalJsonToDom = [];
+                            let jVarLocalJsonToDom=[];
+                        
+                        jVarLocalJsonToDom.push({                            HTMLControlType: "Table",
+                            KData: FetchData.DataFromServer.KData
+                        }) ;
+                        
+                        let jVarLocalUUID= ForLocalStorageClass.jFInsertToLocalStorage({ inData : jVarLocalJsonToDom});
 
-                            jVarLocalJsonToDom.push({
-                                HTMLControlType: "Table",
-                                KData: FetchData.DataFromServer.KData
-                            });
-
-                            let jVarLocalUUID = ForLocalStorageClass.jFInsertToLocalStorage({ inData: jVarLocalJsonToDom });
+                   //     console.log("jVarLocalUUID : ",jVarLocalUUID);
 
                             jVarGlobalPresentViewData = KeshavSoftCrud.BuildFromArray(jVarLocalJsonToDom);
 
@@ -770,11 +715,8 @@
                             });
 
                             jVarGlobalKeshavSoftLocalFuncsObject.AppendToDOM.SetFocusFuncs.TableShow({ inHtmlParent: jVarLocalHtmlCardBody });
-                            jFShowFilterTable({ inUUID: jVarLocalUUID });
-                            jFShowColumnsInDropdown({ inUUID: jVarLocalUUID });
-                            //let jVarLocalCurrentTarget = event.currentTarget;
-                            let ConditionsButtonId = document.getElementById("ConditionsButtonId");
-                            ConditionsButtonId.dataset.uuid = jVarLocalUUID;
+                            jFShowFilterTable({inUUID:jVarLocalUUID});
+
                         };
                     };
                 });
@@ -785,64 +727,118 @@
         jFShowReportsAsMenu();
     </script>
 
-    <script>
-        class ForLocalStorageClass {
-            static jFDeleteuuidInLocalStorage = () => {
-                const re = /uuid-/g;
+<script>
+     class ForLocalStorageClass {
+        static jFDeleteuuidInLocalStorage = () => {
+            const re = /uuid-/g;
 
-                Object.keys(localStorage).forEach(function (key) {
-                    if (key.match(re)) {
-                        delete localStorage[key];
-                    }
-                });
-            };
-
-            static jFCreateuuid = () => {
-                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-                    return v.toString(16);
-                });
-            };
-
-            static jFInsertToLocalStorage = ({ inData }) => {
-                let jVarLocalUUID = `uuid-${this.jFCreateuuid()}`;
-
-                inData.forEach((element, LoopIndex) => {
-                    if ("KData" in element) {
-                        if ("TableInfo" in element.KData) {
-                            element.KData.TableInfo.DataAttributes.localstorageid = jVarLocalUUID;
-                            element.KData.TableInfo.DataAttributes.localstoragearrayindex = LoopIndex;
-                        };
-                    };
-                });
-
-                localStorage.setItem(jVarLocalUUID, JSON.stringify(inData));
-                return jVarLocalUUID;
-            };
+            Object.keys(localStorage).forEach(function (key) {
+                if (key.match(re)) {
+                    delete localStorage[key];
+                }
+            });
         };
-    </script>
+
+        static jFCreateuuid = () => {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        };
+
+        static jFInsertToLocalStorage = ({ inData }) => {
+            let jVarLocalUUID = `uuid-${this.jFCreateuuid()}`;
+
+            inData.forEach((element, LoopIndex) => {
+                if ("KData" in element) {
+                    if ("TableInfo" in element.KData) {
+                        element.KData.TableInfo.DataAttributes.localstorageid = jVarLocalUUID;
+                        element.KData.TableInfo.DataAttributes.localstoragearrayindex = LoopIndex;
+                    };
+                };
+            });
+
+            localStorage.setItem(jVarLocalUUID, JSON.stringify(inData));
+            return jVarLocalUUID;
+        };
+    };
+</script>
     <script>
 
-        let jFShowFilterTable1 = () => {
-            let jVarLocalTemplateNewTab = document.getElementById("FilterTableRow");
-            let jVarLocalFilterTableBody = document.getElementById("FilterTableBody");
+let jFShowFilterTable=({inUUID})=>{
+    let jVarLocalTemplateNewTab = document.getElementById("FilterTableRow");
+    let jVarLocalFilterTableBody=document.getElementById("FilterTableBody");
+let jVarLocalStorageData=localStorage.getItem(inUUID);
+let jVarLocalStorageDataAsJson=JSON.parse(jVarLocalStorageData);
+
+let jVarLocalTableColumns=jVarLocalStorageDataAsJson[0].KData.TableColumns;
+
+jVarLocalTableColumns.forEach((element, LoopIndex) => {
+    console.log("element : ",element);
+    let   jVarLocalHTMLContent = Handlebars.compile(jVarLocalTemplateNewTab.innerHTML)({Name:element.DisplayName,
+    SNo:LoopIndex+1,
+    DataAttribute:element.DataAttribute,
+    UUID:inUUID
+});
+       
+             //jVarLocalFilterTableBody.insertAdjacentElement("beforebegin",jVarLocalHTMLContent);
+             jVarLocalFilterTableBody.insertAdjacentHTML("beforeend",jVarLocalHTMLContent);
+});
+
+};
+
+let jFFilterData=({inEvent} )=>{
+    let jVarLocalcurrentTarget=inEvent.currentTarget;
+    let jVarClosestRow=jVarLocalcurrentTarget.closest("tr");
+let jVarToFilterInput=jVarClosestRow.querySelector(".SearchInput");
+let jVarLocalFilterValue=jVarToFilterInput.value;
+let jVarLocalFilterKey=jVarLocalcurrentTarget.dataset.dataattribute;
+let jVarLocalUUIDNeeded=jVarLocalcurrentTarget.dataset.uuid;
+    let jVarLocalStorageData=localStorage.getItem(jVarLocalUUIDNeeded);
+
+    let jVarLocalNewData = JSON.parse(jVarLocalStorageData);
+
+    let jVarlocalTableData=jVarLocalNewData[0].KData.TableData;
+    let jVarLocalFilteredTableId=document.getElementById("FilteredTableId");
+let jVarLocalFilterObject={};
+jVarLocalFilterObject[jVarLocalFilterKey]=jVarLocalFilterValue;
+
+
+console.log("start : ", jVarlocalTableData);
+
+//jVarLocalNewData[0].KData.TableData= _.filter(jVarlocalTableData,{ProductName:jVarLocalFilterValue});
+
+jVarLocalNewData[0].KData.TableData= _.filter(jVarlocalTableData,jVarLocalFilterObject);
+
+jVarGlobalPresentViewData = KeshavSoftCrud.BuildFromArray(jVarLocalNewData);
+
+jVarGlobalKeshavSoftLocalFuncsObject.AppendToDOM.RequiredHtml({
+    inData: jVarGlobalPresentViewData,
+    inHtmlParent: jVarLocalFilteredTableId
+});
+
+};
+
+let jFShowFilterTable1=()=>{
+    let jVarLocalTemplateNewTab = document.getElementById("FilterTableRow");
+    let jVarLocalFilterTableBody=document.getElementById("FilterTableBody");
 
             var jVarLocalTemplateNewTabClone = jVarLocalTemplateNewTab.cloneNode(true);
             var fragment = document.importNode(jVarLocalTemplateNewTabClone.content, true);
-            // jVarLocalFilterTableBody.appendChild(fragment);
+           // jVarLocalFilterTableBody.appendChild(fragment);
 
-            console.log("jVarLocalHTMLContent : ", jVarLocalTemplateNewTab.innerHTML);
+           console.log("jVarLocalHTMLContent : ",jVarLocalTemplateNewTab.innerHTML);
+         
+           let   jVarLocalHTMLContent = Handlebars.compile(jVarLocalTemplateNewTab.innerHTML)({});
+       
+           console.log("1111111 : ",jVarLocalHTMLContent);
+         
+         
+             //jVarLocalFilterTableBody.insertAdjacentElement("beforebegin",jVarLocalHTMLContent);
+             jVarLocalFilterTableBody.insertAdjacentHTML("beforeend",jVarLocalHTMLContent);
 
-            let jVarLocalHTMLContent = Handlebars.compile(jVarLocalTemplateNewTab.innerHTML)({});
 
-            console.log("1111111 : ", jVarLocalHTMLContent);
-
-
-            //jVarLocalFilterTableBody.insertAdjacentElement("beforebegin",jVarLocalHTMLContent);
-            jVarLocalFilterTableBody.insertAdjacentHTML("beforeend", jVarLocalHTMLContent);
-
-
-        };
+};
 
         let jFChangeHeaderActiveClass = () => {
             let jVarLocalPathArray = window.location.pathname.split("/");
@@ -875,14 +871,6 @@
         jFChangeHeaderActiveClass()
 
     </script>
-
-
-    <!-- <script src="./SingleWithFilters.js"></script> -->
-
-
-    <script src="../../Js/Reports/SingleWithFilters/SingleWithFilters.js"></script>
-
-
 </body>
 
 </html>
