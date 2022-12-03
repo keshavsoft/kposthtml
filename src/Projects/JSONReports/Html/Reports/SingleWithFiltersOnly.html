@@ -311,20 +311,22 @@
     </div>
 
 
+   
     <template id="FilterTableRow">
         <tr>
             <th scope="row">{{SNo}}</th>
             <td>{{Name}}</td>
             <td>
-                <input type="text" class="form-control SearchInput" aria-describedby="helpId" placeholder="">
+                <input type="text" class="form-control SearchInput" aria-describedby="helpId"
+                list="DataListForFilter-{{SNo}}">
+                <datalist id="DataListForFilter-{{SNo}}">
+                </datalist>
             </td>
             <td>
-                <button type="button" class="btn btn-primary" onclick="jFFilterData({inEvent:event})"
-                    data-dataattribute="{{DataAttribute}}" data-uuid="{{UUID}}">Filter Data</button>
+                <button type="button" class="btn btn-primary" onclick="jFFilterData({inEvent:event})" data-dataattribute="{{DataAttribute}}" data-uuid="{{UUID}}">Filter Data</button>
             </td>
         </tr>
     </template>
-
 
 
 
@@ -698,68 +700,7 @@
             });
         };
 
-        let jFShowReportDataFromInput = (inEvent) => {
-            let jVarLocalCurrentTarget = inEvent.currentTarget;
-
-            let jVarClosestInputGroup = jVarLocalCurrentTarget.closest(".input-group");
-            let jVarLocalHtmlCardBody = document.querySelector(".TabPaneKCont1");
-
-            let jVarLocalUUID = uuidv4();
-
-            let jVarLocalRoute = jVarGlobalProject;
-            let jVarLocalSubRoute = jVarGlobalSubRoute;
-
-            let jVarLocalReportSelected = jVarClosestInputGroup.querySelector(".ReportSelectedClass").value;
-            // let jVarCurrentTabButton = jVarClosestContainer.querySelector(`ul.nav-tabs button[data-bs-target='#${jVarClosestTabPane.id}']`);
-            // jVarCurrentTabButton.innerText = jVarLocalReportSelected;
-
-            let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Reports/PullData/WithOutFilters/AsTable/DataWithConfig/${jVarLocalReportSelected}`;
-
-            fetch(jVarLocalFetchUrl).then(response => {
-                if (response.status === 403) {
-                    let jVarLocalModalId = this.Config.Ht.HtmlIds.Modals.LoginModalId;
-                    let jVarLocalLoginFormPopUpId = document.getElementById(jVarLocalModalId);
-
-                    if (jVarLocalLoginFormPopUpId !== null) {
-                        var myModal = new bootstrap.Modal(jVarLocalLoginFormPopUpId, { keyboard: false, focus: true });
-                        myModal.show();
-                    };
-                    return null;
-                };
-
-                return response.json();
-            })
-                .then(FetchData => {
-                    if (FetchData !== null) {
-                        if (FetchData.KTF) {
-                            let jVarLocalJsonToDom = [];
-
-                            jVarLocalJsonToDom.push({
-                                HTMLControlType: "Table",
-                                KData: FetchData.DataFromServer.KData
-                            });
-
-                            let jVarLocalUUID = ForLocalStorageClass.jFInsertToLocalStorage({ inData: jVarLocalJsonToDom });
-
-                            jVarGlobalPresentViewData = KeshavSoftCrud.BuildFromArray(jVarLocalJsonToDom);
-
-                            jVarGlobalKeshavSoftLocalFuncsObject.AppendToDOM.RequiredHtml({
-                                inData: jVarGlobalPresentViewData,
-                                inHtmlParent: jVarLocalHtmlCardBody
-                            });
-
-                            jVarGlobalKeshavSoftLocalFuncsObject.AppendToDOM.SetFocusFuncs.TableShow({ inHtmlParent: jVarLocalHtmlCardBody });
-                            jFShowFilterTable({ inUUID: jVarLocalUUID });
-                            jFShowColumnsInDropdown({ inUUID: jVarLocalUUID });
-                            //let jVarLocalCurrentTarget = event.currentTarget;
-                            let ConditionsButtonId = document.getElementById("ConditionsButtonId");
-                            ConditionsButtonId.dataset.uuid = jVarLocalUUID;
-                        };
-                    };
-                });
-        };
-
-        KSCommonFuncs.SelectionMenu.FillNavMenuWithValues();
+        // KSCommonFuncs.SelectionMenu.FillNavMenuWithValues();
 
         jFShowReportsAsMenu();
     </script>
@@ -856,10 +797,9 @@
     </script>
 
 
-    <!-- <script src="./SingleWithFilters.js"></script> -->
+    <script src="../../Js/Reports/SingleWithFiltersOnly.js"></script>
 
 
-    <script src="../../Js/Reports/SingleWithFilters/SingleWithFilters.js"></script>
 
 
 </body>
