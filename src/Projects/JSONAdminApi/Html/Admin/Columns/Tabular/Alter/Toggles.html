@@ -93,9 +93,53 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 
 
-    <include src="./src/components/Templates/Admin/Columns/Tabular/HbsTemplates/ForScreensOnly.html"></include>
+    <!-- <include src="./src/components/Templates/Admin/Columns/Tabular/HbsTemplates/ForScreensOnly.html"></include> -->
 
 
+    <script id="HbsTemplateForScreensOnly" type="text/x-handlebars">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ScreenName</th>
+                    <th>ScreenNameForHtmlId</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this.Screens}}
+                <tr>
+                    <td class="text-center">
+                        {{ForSNo @index}}
+                    </td>
+                    <td>
+                        {{this.ScreenName}}
+                    </td>
+                    <td>
+                        {{this.ScreenNameForHtmlId}}
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{{../FolderName}}-{{../FileNameWithOutExtension}}-{{../ItemName}}-{{ScreenName}}"
+                        aria-expanded="false" aria-controls="{{../FolderName}}-{{../FileNameWithOutExtension}}-{{../ItemName}}-{{ScreenName}}">
+                        Toggle Columns
+                    </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan=5 >
+                        <div class="collapse {{CollapseClass}}" id="{{../FolderName}}-{{../FileNameWithOutExtension}}-{{../ItemName}}-{{ScreenName}}">
+                            {{> HbsTemplateForTableColumnsForTogglesOnly FolderName=../FolderName FileNameWithOutExtension=../FileNameWithOutExtension ItemName=../ItemName ScreenName=ScreenName}}
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+       
+        </table>
+      </script>
+
+
+      
     <!-- <script id="HbsTemplateForTableColumnsForAllInOneWithValuesOnly" type="text/x-handlebars">
 <div class="card text-dark bg-light">
 <div class="card-header">
@@ -330,7 +374,9 @@
     let jVarLocalHbsTemplateForScreensWithSubTableColumnsOnly = document.getElementById("HbsTemplateForScreensWithSubTableColumnsOnly");
     let jVarLocalHbsTemplateForColumnsForTogglesOnly = document.getElementById("HbsTemplateForColumnsForTogglesOnly");
     let jVarLocalHbsTemplateForTableColumnsForTogglesOnly = document.getElementById("HbsTemplateForTableColumnsForTogglesOnly");
-    jClassForHbs.FillPartialFromScriptInHtml({ inHtmlHbsScriptId: "HbsTemplateForTableColumnsForAllInOneWithValuesOnly" });
+    
+    // jClassForHbs.FillPartialFromScriptInHtml({ inHtmlHbsScriptId: "HbsTemplateForTableColumnsForAllInOneWithValuesOnly" });
+    
     let jVarLocalHbsTemplateForTable = document.getElementById("HbsTemplateForTable");
 
     Handlebars.registerHelper('ForSNo', function (item) {
@@ -391,180 +437,172 @@
     jFChangeHeaderActiveClass();
 </script>
 
-    <script>
-        let jVarCommonSubRoute = "API";
+<script>
+    let jVarCommonSubRoute = "API";
 
-        class CommonFuncsForFolders {
-            static FuncsForFetchUpdate = {
-                PrepareObjectFromRow: ({ inJVarLocalRowElements }) => {
-                    let jVarLocalFetchBodydata = {};
-                    inJVarLocalRowElements.forEach((LoopElement) => {
-                        if (LoopElement.hasAttribute("checked")) {
-                            jVarLocalFetchBodydata[LoopElement.name] = LoopElement.checked;
-                        } else {
-                            jVarLocalFetchBodydata[LoopElement.name] = LoopElement.value;
-                        };
-                    });
-                    return jVarLocalFetchBodydata;
-                }
-            }
-
-            static getUrlQueryParams = () => {
-                var queryParams = {}, param;
-                var params = window.location.search.substring(1).split("&");
-                console.log("params : ", params);
-                for (var i = 0; i < params.length; i++) {
-                    param = params[i].split('=');
-                    console.log("param : ", param);
-                    if (param.length === 2) {
-                        queryParams[param[0]] = param[1];
+    class CommonFuncsForFolders {
+        static FuncsForFetchUpdate = {
+            PrepareObjectFromRow: ({ inJVarLocalRowElements }) => {
+                let jVarLocalFetchBodydata = {};
+                inJVarLocalRowElements.forEach((LoopElement) => {
+                    if (LoopElement.hasAttribute("checked")) {
+                        jVarLocalFetchBodydata[LoopElement.name] = LoopElement.checked;
+                    } else {
+                        jVarLocalFetchBodydata[LoopElement.name] = LoopElement.value;
                     };
-                }
-                return queryParams;
+                });
+                return jVarLocalFetchBodydata;
             }
+        }
 
-            static CreateFolders = () => {
-                let jVarLocalRoute = window.location.pathname.split("/")[1];
-                var jVarLocalQueryParams = this.getUrlQueryParams();
-                let jVarLocalSubRoute = jVarCommonSubRoute;
-                //let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Folders/Show/ForAdmin`;
-                // let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/Utility/Json/Folder/ForTableColumns/AllInOneWithValues`;
-                let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/Utility/Json/Folder/ForTableColumns/FromKeys/Toggles`;
-
-
-                fetch(jVarLocalFetchUrl)
-                    .then(response => {
-                        return response.json();
-                        //return this.Login.StatusCodeFuncs.Code403({ inResponse: response });
-                    }).then(dataFromApi => {
-                        if (dataFromApi !== null) {
-                            if (Object.keys(jVarLocalQueryParams).length > 0) {
-                                this.ApplyClassesFromUrl({
-                                    indataFromApi: dataFromApi,
-                                    inQueryParamsAsObject: jVarLocalQueryParams
-                                });
-                            } else {
-                                this.ApplyClasses({ indataFromApi: dataFromApi });
-                            };
-                            try {
-
-                                //let jVarLocalFileNameChanged = this.ChangeFileName({ indataFromApi: dataFromApi });
-                                let jVarLocalRawTemplate = document.getElementById("HbsTemplateForFoldersOnly").innerHTML;
-                                console.log("jVarLocalRawTemplate : ", dataFromApi, jVarLocalRawTemplate);
-
-                                document.getElementById("KCont1").innerHTML = Handlebars.compile(jVarLocalRawTemplate)(dataFromApi);
-
-                            } catch (error) {
-                                console.log("error : ", error);
-                            };
-                        };
-                    });
-            }
-
-            static ApplyClasses1 = ({ indataFromApi }) => {
-                if (indataFromApi.length > 0) {
-                    indataFromApi[0].TabPageClass = " show active";
-                    indataFromApi[0].MenuClass = " active";
+        static getUrlQueryParams = () => {
+            var queryParams = {}, param;
+            var params = window.location.search.substring(1).split("&");
+            console.log("params : ", params);
+            for (var i = 0; i < params.length; i++) {
+                param = params[i].split('=');
+                console.log("param : ", param);
+                if (param.length === 2) {
+                    queryParams[param[0]] = param[1];
                 };
             }
-            static ApplyClasses = ({ indataFromApi }) => {
-                let jVarLocalFirstFolder;
-                let jVarLocalFirstFile;
-                let jVarLocalFirstItem;
-                let jVarLocalFirstScreen;
+            return queryParams;
+        }
 
-                if ("Folders" in indataFromApi) {
-                    if (Object.values(indataFromApi.Folders).length > 0) {
-                        jVarLocalFirstFolder = Object.values(indataFromApi.Folders)[0];
-                        jVarLocalFirstFolder.TabPageClass = " show active";
-                        jVarLocalFirstFolder.MenuClass = " active";
+        static CreateFolders = () => {
+            let jVarLocalRoute = window.location.pathname.split("/")[1];
+            var jVarLocalQueryParams = this.getUrlQueryParams();
+            let jVarLocalSubRoute = jVarCommonSubRoute;
+            //let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Folders/Show/ForAdmin`;
+            // let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/Utility/Json/Folder/ForTableColumns/AllInOneWithValues`;
+            let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/Utility/Json/Folder/ForTableColumns/FromKeys/Toggles`;
 
-                        if ("Files" in jVarLocalFirstFolder) {
-                            if (Object.values(jVarLocalFirstFolder.Files).length > 0) {
-                                jVarLocalFirstFile = Object.values(jVarLocalFirstFolder.Files)[0];
-                                jVarLocalFirstFile.TabPaneClass = " show active";
-                                jVarLocalFirstFile.ButtonClass = " active";
 
-                                if ("Items" in jVarLocalFirstFile) {
-                                    if (Object.values(jVarLocalFirstFile.Items).length > 0) {
-                                        jVarLocalFirstItem = Object.values(jVarLocalFirstFile.Items)[0];
-                                        jVarLocalFirstItem.ShowOnLoad = true;
+            fetch(jVarLocalFetchUrl)
+                .then(response => {
+                    return response.json();
+                    //return this.Login.StatusCodeFuncs.Code403({ inResponse: response });
+                }).then(dataFromApi => {
+                    console.log('aaaaaaaaaaaa : ',dataFromApi);
+                    if (dataFromApi !== null) {
+                        if (Object.keys(jVarLocalQueryParams).length > 0) {
+                            this.ApplyClassesFromUrl({
+                                indataFromApi: dataFromApi,
+                                inQueryParamsAsObject: jVarLocalQueryParams
+                            });
+                        } else {
+                            this.ApplyClasses({ indataFromApi: dataFromApi });
+                        };
 
-                                        if ("Screens" in jVarLocalFirstItem) {
-                                            if (Object.values(jVarLocalFirstItem.Screens).length > 0) {
-                                                jVarLocalFirstScreen = Object.values(jVarLocalFirstItem.Screens)[0];
-                                                jVarLocalFirstScreen.CollapseClass = " show";
-                                            };
+                        let jVarLocalRawTemplate = document.getElementById("HbsTemplateForFoldersOnly").innerHTML;
+                        document.getElementById("KCont1").innerHTML = Handlebars.compile(jVarLocalRawTemplate)(dataFromApi);
+                    };
+                });
+        }
+
+        static ApplyClasses1 = ({ indataFromApi }) => {
+            if (indataFromApi.length > 0) {
+                indataFromApi[0].TabPageClass = " show active";
+                indataFromApi[0].MenuClass = " active";
+            };
+        }
+        static ApplyClasses = ({ indataFromApi }) => {
+            let jVarLocalFirstFolder;
+            let jVarLocalFirstFile;
+            let jVarLocalFirstItem;
+            let jVarLocalFirstScreen;
+
+            if ("Folders" in indataFromApi) {
+                if (Object.values(indataFromApi.Folders).length > 0) {
+                    jVarLocalFirstFolder = Object.values(indataFromApi.Folders)[0];
+                    jVarLocalFirstFolder.TabPageClass = " show active";
+                    jVarLocalFirstFolder.MenuClass = " active";
+
+                    if ("Files" in jVarLocalFirstFolder) {
+                        if (Object.values(jVarLocalFirstFolder.Files).length > 0) {
+                            jVarLocalFirstFile = Object.values(jVarLocalFirstFolder.Files)[0];
+                            jVarLocalFirstFile.TabPaneClass = " show active";
+                            jVarLocalFirstFile.ButtonClass = " active";
+
+                            if ("Items" in jVarLocalFirstFile) {
+                                if (Object.values(jVarLocalFirstFile.Items).length > 0) {
+                                    jVarLocalFirstItem = Object.values(jVarLocalFirstFile.Items)[0];
+                                    jVarLocalFirstItem.ShowOnLoad = true;
+
+                                    if ("Screens" in jVarLocalFirstItem) {
+                                        if (Object.values(jVarLocalFirstItem.Screens).length > 0) {
+                                            jVarLocalFirstScreen = Object.values(jVarLocalFirstItem.Screens)[0];
+                                            jVarLocalFirstScreen.CollapseClass = " show";
                                         };
                                     };
                                 };
                             };
-
                         };
 
                     };
+
                 };
-            }
+            };
+        }
 
 
-            static ChangeFileName = ({ indataFromApi }) => {
-                let jVarLocalReturnData;
+        static ChangeFileName = ({ indataFromApi }) => {
+            let jVarLocalReturnData;
 
-                jVarLocalReturnData = indataFromApi.map(elementLoopFolder => {
-                    if ("Files" in elementLoopFolder) {
-                        elementLoopFolder.Files.map(elementLoopFile => {
-                            if ("FileName" in elementLoopFile && ("FileNameWithOutExtension" in elementLoopFile) === false) {
-                                elementLoopFile.FileNameWithOutExtension = elementLoopFile.FileName.split(".")[0];
-                            };
+            jVarLocalReturnData = indataFromApi.map(elementLoopFolder => {
+                if ("Files" in elementLoopFolder) {
+                    elementLoopFolder.Files.map(elementLoopFile => {
+                        if ("FileName" in elementLoopFile && ("FileNameWithOutExtension" in elementLoopFile) === false) {
+                            elementLoopFile.FileNameWithOutExtension = elementLoopFile.FileName.split(".")[0];
+                        };
 
-                            return elementLoopFile;
-                        });
-                    };
+                        return elementLoopFile;
+                    });
+                };
 
-                    return elementLoopFolder;
-                });
+                return elementLoopFolder;
+            });
 
 
 
-                return jVarLocalReturnData;
-            }
+            return jVarLocalReturnData;
+        }
 
-            static ApplyClassesFromUrl = ({ indataFromApi, inQueryParamsAsObject }) => {
-                let jVarLocalFolderName = inQueryParamsAsObject.inFolderName;
-                let jVarLocalFileName = inQueryParamsAsObject.inFileName;
-                let jVarLocalItemName = inQueryParamsAsObject.inItemName;
-                let jVarLocalScreenName = inQueryParamsAsObject.inScreenName;
-                let jVarLocalColumnName = inQueryParamsAsObject.inColumnName;
+        static ApplyClassesFromUrl = ({ indataFromApi, inQueryParamsAsObject }) => {
+            let jVarLocalFolderName = inQueryParamsAsObject.inFolderName;
+            let jVarLocalFileName = inQueryParamsAsObject.inFileName;
+            let jVarLocalItemName = inQueryParamsAsObject.inItemName;
+            let jVarLocalScreenName = inQueryParamsAsObject.inScreenName;
+            let jVarLocalColumnName = inQueryParamsAsObject.inColumnName;
 
-                let jVarLocalFirstFolder;
-                let jVarLocalFirstFile;
-                let jVarLocalFirstItem;
-                let jVarLocalFirstScreen;
+            let jVarLocalFirstFolder;
+            let jVarLocalFirstFile;
+            let jVarLocalFirstItem;
+            let jVarLocalFirstScreen;
 
-                if ("Folders" in indataFromApi) {
-                    if (jVarLocalFolderName in indataFromApi.Folders) {
-                        indataFromApi.Folders[jVarLocalFolderName].TabPageClass = " show active";
-                        indataFromApi.Folders[jVarLocalFolderName].MenuClass = " active";
+            if ("Folders" in indataFromApi) {
+                if (jVarLocalFolderName in indataFromApi.Folders) {
+                    indataFromApi.Folders[jVarLocalFolderName].TabPageClass = " show active";
+                    indataFromApi.Folders[jVarLocalFolderName].MenuClass = " active";
 
-                        if ("Files" in indataFromApi.Folders[jVarLocalFolderName]) {
-                            if (jVarLocalFileName in indataFromApi.Folders[jVarLocalFolderName].Files) {
-                                indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].TabPaneClass = " show active";
-                                indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].ButtonClass = " active";
+                    if ("Files" in indataFromApi.Folders[jVarLocalFolderName]) {
+                        if (jVarLocalFileName in indataFromApi.Folders[jVarLocalFolderName].Files) {
+                            indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].TabPaneClass = " show active";
+                            indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].ButtonClass = " active";
 
-                                if ("Items" in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName]) {
-                                    if (jVarLocalItemName in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items) {
-                                        indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].ShowOnLoad = true;
+                            if ("Items" in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName]) {
+                                if (jVarLocalItemName in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items) {
+                                    indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].ShowOnLoad = true;
 
-                                        if ("Screens" in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName]) {
-                                            if (jVarLocalScreenName in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens) {
-                                                indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].CollapseClass = " show";
+                                    if ("Screens" in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName]) {
+                                        if (jVarLocalScreenName in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens) {
+                                            indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].CollapseClass = " show";
 
-                                                if ("TableColumnsObject" in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName]) {
-                                                    if (jVarLocalColumnName in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].TableColumnsObject) {
-                                                        indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].TableColumnsObject[jVarLocalColumnName].RowClass = "table-success";
+                                            if ("TableColumnsObject" in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName]) {
+                                                if (jVarLocalColumnName in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].TableColumnsObject) {
+                                                    indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].TableColumnsObject[jVarLocalColumnName].RowClass = "table-success";
 
-                                                        //                                                        console.log("--------- : ", jVarLocalColumnName, indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].TableColumnsObject[jVarLocalColumnName]);
-                                                    };
+                                                    //                                                        console.log("--------- : ", jVarLocalColumnName, indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].TableColumnsObject[jVarLocalColumnName]);
                                                 };
                                             };
                                         };
@@ -572,200 +610,241 @@
                                 };
                             };
                         };
-
                     };
+
+                };
+            };
+        }
+
+    };
+
+    let serializeObject = (inHtmlTr) => {
+        console.log("inHtmlTr : ", inHtmlTr);
+        // Create a new FormData object
+        const formData = inHtmlTr.querySelectorAll("[name]");
+        console.log("formData : ", formData);
+        // Create an object to hold the name/value pairs
+        const pairs = {};
+
+        for (let i = 0; i < formData.length; i++) {
+            pairs[formData[i].name] = formData[i].value;
+        }
+
+        // Return the object
+        return pairs;
+    };
+
+    let jFTableSearch = (inEvent) => {
+        let jVarLocalCurrentTarget = inEvent.currentTarget;
+        let jVarLocalClosestCard = jVarLocalCurrentTarget.closest(".card");
+        let jVarLocalTableBodyId = jVarLocalClosestCard.querySelector(".card-body table tbody");
+
+        var filter, table, tr, td, i;
+        filter = jVarLocalCurrentTarget.value;
+
+        for (var i = 0, row; row = jVarLocalTableBodyId.rows[i]; i++) {
+            jVarLocalTableBodyId.rows[i].classList.add("d-none");
+
+            for (var j = 0, col; col = row.cells[j]; j++) {
+                if (col.innerHTML.includes(filter)) {
+
+                    jVarLocalTableBodyId.rows[i].classList.remove("d-none");
+
+                    break;
                 };
             }
+        }
+    };
 
+    let jFShowColumnsIntable = ({ inFolderName, inFileName, inItemName, inScreenName, inToShowHtmlControlId, inRowIndex }) => {
+        let jVarLocalTableBody = document.getElementById(inToShowHtmlControlId).querySelector("tbody");
+        let jVarLocalFetchUrl = `/JSONProject/AdminApi/Columns/ForDataList/ForDefaultValue/${inFolderName}/${inFileName}/${inItemName}/${inScreenName}`;
+        let jVarLocalConfigObject = {
+            FolderName: inFolderName,
+            FileName: inFileName,
+            ItemName: inItemName,
+            ScreenName: inScreenName
         };
+        let jVarLocalDataWithRowClass;
 
-        let serializeObject = (inHtmlTr) => {
-            console.log("inHtmlTr : ", inHtmlTr);
-            // Create a new FormData object
-            const formData = inHtmlTr.querySelectorAll("[name]");
-            console.log("formData : ", formData);
-            // Create an object to hold the name/value pairs
-            const pairs = {};
+        fetch(jVarLocalFetchUrl).then(response => response.json())
+            .then(dataFromApi => {
+                if (inRowIndex >= 0 && inRowIndex < dataFromApi.length - 1) {
+                    dataFromApi[inRowIndex].RowClass = "table-success";
+                };
 
-            for (let i = 0; i < formData.length; i++) {
-                pairs[formData[i].name] = formData[i].value;
-            }
+                let jVarLocalRawTemplate = document.getElementById("HbsTemplateForTable").innerHTML;
 
-            // Return the object
-            return pairs;
-        };
+                jVarLocalTableBody.innerHTML = Handlebars.compile(jVarLocalRawTemplate)({ KData: dataFromApi, ConfigObject: jVarLocalConfigObject })
+            });
+    };
 
-        let jFTableSearch = (inEvent) => {
-            let jVarLocalCurrentTarget = inEvent.currentTarget;
-            let jVarLocalClosestCard = jVarLocalCurrentTarget.closest(".card");
-            let jVarLocalTableBodyId = jVarLocalClosestCard.querySelector(".card-body table tbody");
+    let jFUpdateData = (inEvent, inFolderName, inFileName, inItemName, inScreenName, inColumnName) => {
+        let jVarLocalCurrentTarget = inEvent.currentTarget;
+        let jVarLocalHtmlTr = jVarLocalCurrentTarget.closest("tr");
+        let jVarLocalRowElements = jVarLocalHtmlTr.querySelectorAll("input");
+        let jVarLocalFetchBodydata = CommonFuncsForFolders.FuncsForFetchUpdate.PrepareObjectFromRow({ inJVarLocalRowElements: jVarLocalRowElements });
 
-            var filter, table, tr, td, i;
-            filter = jVarLocalCurrentTarget.value;
+        let jVarLocalRoute = window.location.pathname.split("/")[1];
 
-            for (var i = 0, row; row = jVarLocalTableBodyId.rows[i]; i++) {
-                jVarLocalTableBodyId.rows[i].classList.add("d-none");
+        let jVarLocalFolderName = inFolderName;
+        let jVarLocalFileNameWithExtension = `${inFileName}.json`;
+        let jVarLocalItemName = inItemName;
+        let jVarLocalScreenName = inScreenName;
+        let jVarLocalColumnName = inColumnName;
 
-                for (var j = 0, col; col = row.cells[j]; j++) {
-                    if (col.innerHTML.includes(filter)) {
 
-                        jVarLocalTableBodyId.rows[i].classList.remove("d-none");
+        let jVarLocalEndPoint = "{{inItemName.{{inScreenName.TableColumns[DataAttribute:inColumnName";
 
-                        break;
-                    };
-                }
-            }
-        };
+        //let jVarLocalFetchUrlWithOutinKQueryObject = `/${jVarLocalRoute}/AdminApi/Config/TableColumns/Update?inFolderName=${inFolderName}&inJsonFileName=${jVarLocalFileNameWithExtension}&inItemName=${inItemName}&inScreenName=${inScreenName}&inColumnName=${jVarLocalColumnName}`;
 
-        let jFShowColumnsIntable = ({ inFolderName, inFileName, inItemName, inScreenName, inToShowHtmlControlId, inRowIndex }) => {
-            let jVarLocalTableBody = document.getElementById(inToShowHtmlControlId).querySelector("tbody");
-            let jVarLocalFetchUrl = `/JSONProject/AdminApi/Columns/ForDataList/ForDefaultValue/${inFolderName}/${inFileName}/${inItemName}/${inScreenName}`;
-            let jVarLocalConfigObject = {
-                FolderName: inFolderName,
-                FileName: inFileName,
-                ItemName: inItemName,
-                ScreenName: inScreenName
+        let jVarLocalFetchUrlWithOutinKQueryObject = `/${jVarLocalRoute}/AdminApi/Config/TableColumns/UpdateKeys/Toggles?inFolderName=${inFolderName}&inJsonFileName=${jVarLocalFileNameWithExtension}&inItemName=${inItemName}&inScreenName=${inScreenName}&inColumnName=${jVarLocalColumnName}`;
+
+        let jVarLocalFetchUrl = `${jVarLocalFetchUrlWithOutinKQueryObject}&inKQueryObject=${jVarLocalEndPoint}`
+
+        fetch(jVarLocalFetchUrl, {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jVarLocalFetchBodydata)
+        }).then(response => response.text()).then(dataFromApi => {
+            let jVarLocalData = JSON.parse(dataFromApi);
+
+            if (jVarLocalData.KTF) {
+                window.location += `?inFolderName=${jVarLocalFolderName}&inFileName=${inFileName}&inItemName=${jVarLocalItemName}&inScreenName=${jVarLocalScreenName}&inColumnName=${jVarLocalColumnName}`;
             };
-            let jVarLocalDataWithRowClass;
+        });
+    };
 
-            fetch(jVarLocalFetchUrl).then(response => response.json())
-                .then(dataFromApi => {
-                    if (inRowIndex >= 0 && inRowIndex < dataFromApi.length - 1) {
-                        dataFromApi[inRowIndex].RowClass = "table-success";
-                    };
+    
+    let jFUpdateData1 = (inEvent, inFolderName, inFileName, inItemName, inScreenName, inColumnName) => {
+        let jVarLocalCurrentTarget = inEvent.currentTarget;
+        let jVarLocalHtmlTr = jVarLocalCurrentTarget.closest("tr");
+        let jVarLocalRowElements = jVarLocalHtmlTr.querySelectorAll("input");
+        //let jVarLocalFetchBodydata = {};
+        let jVarLocalFetchBodydata = CommonFuncsForFolders.FuncsForFetchUpdate.PrepareObjectFromRow({ inJVarLocalRowElements: jVarLocalRowElements });
 
-                    let jVarLocalRawTemplate = document.getElementById("HbsTemplateForTable").innerHTML;
+        // jVarLocalRowElements.forEach((LoopElement) => {
+        //     jVarLocalFetchBodydata[LoopElement.name] = LoopElement.checked;
+        // });
 
-                    jVarLocalTableBody.innerHTML = Handlebars.compile(jVarLocalRawTemplate)({ KData: dataFromApi, ConfigObject: jVarLocalConfigObject })
+        let jVarLocalRoute = window.location.pathname.split("/")[1];
+
+        let jVarLocalFolderName = inFolderName;
+        let jVarLocalFileNameWithExtension = `${inFileName}.json`;
+        let jVarLocalItemName = inItemName;
+        let jVarLocalScreenName = inScreenName;
+        let jVarLocalColumnName = inColumnName;
+
+
+        let jVarLocalEndPoint = "{{inItemName.{{inScreenName.TableColumns[DataAttribute:inColumnName";
+
+        let jVarLocalFetchUrlWithOutinKQueryObject = `/${jVarLocalRoute}/AdminApi/Config/TableColumns/Update?inFolderName=${inFolderName}&inJsonFileName=${jVarLocalFileNameWithExtension}&inItemName=${inItemName}&inScreenName=${inScreenName}&inColumnName=${jVarLocalColumnName}`;
+        let jVarLocalFetchUrl = `${jVarLocalFetchUrlWithOutinKQueryObject}&inKQueryObject=${jVarLocalEndPoint}`
+
+        fetch(jVarLocalFetchUrl, {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jVarLocalFetchBodydata)
+        }).then(response => response.text()).then(dataFromApi => {
+            let jVarLocalData = JSON.parse(dataFromApi);
+
+            if (jVarLocalData.KTF) {
+                window.location = `?inFolderName=${jVarLocalFolderName}&inFileName=${inFileName}&inItemName=${jVarLocalItemName}&inScreenName=${jVarLocalScreenName}&inColumnName=${jVarLocalColumnName}`;
+            };
+        });
+    };
+
+
+    let jFUpdateData_Keshav_14mar2022 = (inEvent, inRowIndex) => {
+        console.log("inRowIndex : ", inRowIndex);
+        let jVarLocalCurrentTarget = inEvent.currentTarget;
+        let jVarLocalHtmlTr = jVarLocalCurrentTarget.closest("tr");
+
+        let jVarLocalConfigObject = {
+            KTF: true,
+            FolderName: jVarLocalCurrentTarget.dataset.foldername,
+            FileName: jVarLocalCurrentTarget.dataset.filenamewithoutextension,
+            ItemName: jVarLocalCurrentTarget.dataset.itemname,
+            ScreenName: jVarLocalCurrentTarget.dataset.screenname,
+            ColumnName: jVarLocalCurrentTarget.dataset.columnname
+        };
+
+        let jVarLocalEndPoint = "{{inItemName.{{inScreenName.TableColumns[DataAttribute:inColumnName";
+
+        // let jVarLocalUrlObject = jVarGlobalClientObject.AdminApi.Config.TableColumns.Update.CommonFuncs.CheckBeforeFetch();
+        console.log("jVarLocalUrlObject : ", jVarLocalConfigObject);
+        let jVarLocalFetchBodydata = jVarGlobalClientObject.AdminApi.Config.CommonFuncs.PreparePostData.ForUpdateTakeInput({ inJVarHtmlControl: jVarLocalHtmlTr });
+        console.log("jVarLocalFetchBodydata : ", jVarLocalFetchBodydata);
+        //  jVarLocalUrlObject.ColumnName = jVarLocalFetchBodydata.DataAttribute;
+
+        let jVarLocalFetchUrl = jVarGlobalClientObject.AdminApi.Config.TableColumns.Update.CommonFuncs.PrepareUrl.ForUpdate({ inUrlObject: jVarLocalConfigObject });;
+        console.log("jVarLocalFetchUrl : ", jVarLocalFetchUrl);
+        fetch(`${jVarLocalFetchUrl}&inKQueryObject=${jVarLocalEndPoint}`, {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jVarLocalFetchBodydata)
+        }).then(response => response.text()).then(dataFromApi => {
+            let jVarLocalData = JSON.parse(dataFromApi);
+            console.log("jVarLocalData : ", jVarLocalData);
+            if (jVarLocalData.KTF) {
+                //    window.location = "";
+                jFShowColumnsIntable({
+                    inFolderName: jVarLocalConfigObject.FolderName,
+                    inFileName: jVarLocalConfigObject.FileName,
+                    inItemName: jVarLocalConfigObject.ItemName,
+                    inScreenName: jVarLocalConfigObject.ScreenName,
+                    inToShowHtmlControlId: `${jVarLocalConfigObject.FolderName}-${jVarLocalCurrentTarget.dataset.filenamewithoutextension}-${jVarLocalConfigObject.ItemName}-${jVarLocalConfigObject.ScreenName}`,
+                    inRowIndex
                 });
-        };
 
-        let jFUpdateData = (inEvent, inFolderName, inFileName, inItemName, inScreenName, inColumnName) => {
-            let jVarLocalCurrentTarget = inEvent.currentTarget;
-            let jVarLocalHtmlTr = jVarLocalCurrentTarget.closest("tr");
-            let jVarLocalRowElements = jVarLocalHtmlTr.querySelectorAll("input");
-            //let jVarLocalFetchBodydata = {};
-            let jVarLocalFetchBodydata = CommonFuncsForFolders.FuncsForFetchUpdate.PrepareObjectFromRow({ inJVarLocalRowElements: jVarLocalRowElements });
-
-            // jVarLocalRowElements.forEach((LoopElement) => {
-            //     jVarLocalFetchBodydata[LoopElement.name] = LoopElement.checked;
-            // });
-
-            let jVarLocalRoute = window.location.pathname.split("/")[1];
-
-            let jVarLocalFolderName = inFolderName;
-            let jVarLocalFileNameWithExtension = `${inFileName}.json`;
-            let jVarLocalItemName = inItemName;
-            let jVarLocalScreenName = inScreenName;
-            let jVarLocalColumnName = inColumnName;
-
-
-            let jVarLocalEndPoint = "{{inItemName.{{inScreenName.TableColumns[DataAttribute:inColumnName";
-
-            let jVarLocalFetchUrlWithOutinKQueryObject = `/${jVarLocalRoute}/AdminApi/Config/TableColumns/Update?inFolderName=${inFolderName}&inJsonFileName=${jVarLocalFileNameWithExtension}&inItemName=${inItemName}&inScreenName=${inScreenName}&inColumnName=${jVarLocalColumnName}`;
-            let jVarLocalFetchUrl = `${jVarLocalFetchUrlWithOutinKQueryObject}&inKQueryObject=${jVarLocalEndPoint}`
-
-            fetch(jVarLocalFetchUrl, {
-                method: "post",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jVarLocalFetchBodydata)
-            }).then(response => response.text()).then(dataFromApi => {
-                let jVarLocalData = JSON.parse(dataFromApi);
-
-                if (jVarLocalData.KTF) {
-                    window.location = `?inFolderName=${jVarLocalFolderName}&inFileName=${inFileName}&inItemName=${jVarLocalItemName}&inScreenName=${jVarLocalScreenName}&inColumnName=${jVarLocalColumnName}`;
-                };
-            });
-        };
-
-
-        let jFUpdateData_Keshav_14mar2022 = (inEvent, inRowIndex) => {
-            console.log("inRowIndex : ", inRowIndex);
-            let jVarLocalCurrentTarget = inEvent.currentTarget;
-            let jVarLocalHtmlTr = jVarLocalCurrentTarget.closest("tr");
-
-            let jVarLocalConfigObject = {
-                KTF: true,
-                FolderName: jVarLocalCurrentTarget.dataset.foldername,
-                FileName: jVarLocalCurrentTarget.dataset.filenamewithoutextension,
-                ItemName: jVarLocalCurrentTarget.dataset.itemname,
-                ScreenName: jVarLocalCurrentTarget.dataset.screenname,
-                ColumnName: jVarLocalCurrentTarget.dataset.columnname
             };
-
-            let jVarLocalEndPoint = "{{inItemName.{{inScreenName.TableColumns[DataAttribute:inColumnName";
-
-            // let jVarLocalUrlObject = jVarGlobalClientObject.AdminApi.Config.TableColumns.Update.CommonFuncs.CheckBeforeFetch();
-            console.log("jVarLocalUrlObject : ", jVarLocalConfigObject);
-            let jVarLocalFetchBodydata = jVarGlobalClientObject.AdminApi.Config.CommonFuncs.PreparePostData.ForUpdateTakeInput({ inJVarHtmlControl: jVarLocalHtmlTr });
-            console.log("jVarLocalFetchBodydata : ", jVarLocalFetchBodydata);
-            //  jVarLocalUrlObject.ColumnName = jVarLocalFetchBodydata.DataAttribute;
-
-            let jVarLocalFetchUrl = jVarGlobalClientObject.AdminApi.Config.TableColumns.Update.CommonFuncs.PrepareUrl.ForUpdate({ inUrlObject: jVarLocalConfigObject });;
-            console.log("jVarLocalFetchUrl : ", jVarLocalFetchUrl);
-            fetch(`${jVarLocalFetchUrl}&inKQueryObject=${jVarLocalEndPoint}`, {
-                method: "post",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jVarLocalFetchBodydata)
-            }).then(response => response.text()).then(dataFromApi => {
-                let jVarLocalData = JSON.parse(dataFromApi);
-                console.log("jVarLocalData : ", jVarLocalData);
-                if (jVarLocalData.KTF) {
-                    //    window.location = "";
-                    jFShowColumnsIntable({
-                        inFolderName: jVarLocalConfigObject.FolderName,
-                        inFileName: jVarLocalConfigObject.FileName,
-                        inItemName: jVarLocalConfigObject.ItemName,
-                        inScreenName: jVarLocalConfigObject.ScreenName,
-                        inToShowHtmlControlId: `${jVarLocalConfigObject.FolderName}-${jVarLocalCurrentTarget.dataset.filenamewithoutextension}-${jVarLocalConfigObject.ItemName}-${jVarLocalConfigObject.ScreenName}`,
-                        inRowIndex
-                    });
-
-                };
-            });
-
-        };
-
-        let jFShowColumnTable = (inFolderName, inFileName, inItemName, inScreenName, inToShowHtmlControlId) => {
-            let jVarLocalToShowHtmlControlId = document.getElementById(inToShowHtmlControlId);
-
-            if (jVarLocalToShowHtmlControlId.classList.contains("show") === false) {
-                jVarLocalToShowHtmlControlId.classList.add("show");
-            }
-
-            jFShowColumnsIntable({
-                inFolderName, inFileName,
-                inItemName,
-                inScreenName,
-                inToShowHtmlControlId
-            });
-        };
-
-        let jFToggleColumnTable = (inToShowHtmlControlId) => {
-            jFShowColumnsIntable({
-                inFolderName, inFileName,
-                inItemName,
-                inScreenName,
-                inToShowHtmlControlId
-            });
-        };
-
-        jVarGlobalClientObject.Login.ClientSideCookieFuncs.CheckToken();
-
-        let jVarHtmlLoginModalId = document.getElementById("LoginModalId");
-        jVarHtmlLoginModalId.addEventListener('shown.bs.modal', function (event) {
-            let jVarLocalSubmitButton = event.currentTarget.querySelector(".modal-body input[type='submit']");
-            jVarLocalSubmitButton.focus();
         });
 
-        CommonFuncsForFolders.CreateFolders();
-    </script>
+    };
+
+    let jFShowColumnTable = (inFolderName, inFileName, inItemName, inScreenName, inToShowHtmlControlId) => {
+        let jVarLocalToShowHtmlControlId = document.getElementById(inToShowHtmlControlId);
+
+        if (jVarLocalToShowHtmlControlId.classList.contains("show") === false) {
+            jVarLocalToShowHtmlControlId.classList.add("show");
+        }
+
+        jFShowColumnsIntable({
+            inFolderName, inFileName,
+            inItemName,
+            inScreenName,
+            inToShowHtmlControlId
+        });
+    };
+
+    let jFToggleColumnTable = (inToShowHtmlControlId) => {
+        jFShowColumnsIntable({
+            inFolderName, inFileName,
+            inItemName,
+            inScreenName,
+            inToShowHtmlControlId
+        });
+    };
+
+    jVarGlobalClientObject.Login.ClientSideCookieFuncs.CheckToken();
+
+    let jVarHtmlLoginModalId = document.getElementById("LoginModalId");
+    jVarHtmlLoginModalId.addEventListener('shown.bs.modal', function (event) {
+        let jVarLocalSubmitButton = event.currentTarget.querySelector(".modal-body input[type='submit']");
+        jVarLocalSubmitButton.focus();
+    });
+
+    CommonFuncsForFolders.CreateFolders();
+</script>
 
 </body>
 
