@@ -4,8 +4,9 @@ to club html files for serving in public of kapi project
 
 steps to be followed :
 
-1.  node start
-2.  copy the needed projects from public folder.
+1.  npm i
+2.  node start
+3.  copy the needed projects from public folder.
 
 for Tally :
 
