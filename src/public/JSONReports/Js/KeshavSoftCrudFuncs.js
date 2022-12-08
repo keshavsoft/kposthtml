@@ -297,7 +297,44 @@ let HandleBarsHelpers = () => {
         return _.sum(LocalReturnValue);
     });
 
+    
     Handlebars.registerHelper('TableColumnBalance', (inColumnIndex, inDataArray, inColumnsArray) => {
+        let LocalTotalsValue;
+        let LocalTotalObject = {};
+        let LocalReturnValue;
+        let LocalClientEval;
+        let LocalLoopBalanceValue;
+
+        _.forEach(inColumnsArray, (LoopItem, LoopColumnIndex) => {
+            LocalTotalsValue = _.map(inDataArray, (LoopItem) => {
+                let LocalShowTotalData = LoopItem.DisplayText[LoopColumnIndex].CellValue;
+
+                if (LocalShowTotalData != undefined) {
+                    return parseFloat(LocalShowTotalData.toString().split(",").join(""));
+                };
+            });
+
+            LocalTotalObject[LoopItem.DataAttribute] = _.sum(LocalTotalsValue);
+        });
+
+        LocalReturnValue = _.map(inColumnsArray, (LoopItemColumn) => {
+            LocalClientEval = LoopItemColumn.Footer.Show.Balance.Columns;
+
+            LocalLoopBalanceValue = KeshavSoftCrud.ForEval.FromObject({ injVarClientEval: LocalClientEval, inDataAsObject: LocalTotalObject });
+            return LocalLoopBalanceValue;
+        });
+        
+        if (LocalReturnValue[inColumnIndex] > 0) {
+            return LocalReturnValue[inColumnIndex];
+        } else {
+            return "";
+        };
+
+        //return LocalReturnValue[inColumnIndex];
+    });
+
+
+    Handlebars.registerHelper('TableColumnBalance_Keshav_8Dec2002', (inColumnIndex, inDataArray, inColumnsArray) => {
         let LocalTotalsValue;
         let LocalTotalObject = {};
         let LocalReturnValue;
