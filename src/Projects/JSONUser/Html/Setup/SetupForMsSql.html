@@ -186,7 +186,7 @@
 
     <script>
         let jFSetupForMsSql = async (inDataPk) => {
-            let jVarLocalUrl = `/JSONUser/Users/Api/Setup/${inDataPk}`;
+            let jVarLocalUrl = `/JSONUser/Users/Api/Setup/ForSql/FoldersOnly/${inDataPk}`;
             let response = await fetch(jVarLocalUrl);
             let data = await response.json();
 
