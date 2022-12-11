@@ -285,6 +285,44 @@ let HandleBarsHelpers = () => {
         }
     });
 
+
+    Handlebars.registerHelper('TableFooterShowTotal', function (inarray, inColumnIndex) {
+        if (inarray[inColumnIndex] !== undefined) {
+            let arr = inarray[inColumnIndex]
+            if (arr !== undefined) {
+                if (arr.DisplayType.IsIndianFormat) {
+                    return "isindia"
+                } else {
+                    if (arr.DisplayType.Is3Decimals) {
+                        return "Is3Decimals"
+                    } else {
+return "default"
+                    }
+                };
+                // return arr.DisplayType.IsIndianFormat;
+
+                // return arr.DisplayType.Is3Decimals;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    });
+
+    Handlebars.registerHelper('Is3Decimals', function (inarray, inColumnIndex) {
+        if (inarray[inColumnIndex] !== undefined) {
+            let arr = inarray[inColumnIndex]
+            if (arr !== undefined) {
+                return arr.DisplayType.Is3Decimals;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    });
+
     Handlebars.registerHelper('TableColumnTotal', (inColumnIndex, inDataArray) => {
         LocalReturnValue = _.map(inDataArray, (LoopItem) => {
             let LocalShowTotalData = LoopItem.DisplayText[inColumnIndex].CellValue;
@@ -297,7 +335,7 @@ let HandleBarsHelpers = () => {
         return _.sum(LocalReturnValue);
     });
 
-    
+
     Handlebars.registerHelper('TableColumnBalance', (inColumnIndex, inDataArray, inColumnsArray) => {
         let LocalTotalsValue;
         let LocalTotalObject = {};
@@ -323,7 +361,7 @@ let HandleBarsHelpers = () => {
             LocalLoopBalanceValue = KeshavSoftCrud.ForEval.FromObject({ injVarClientEval: LocalClientEval, inDataAsObject: LocalTotalObject });
             return LocalLoopBalanceValue;
         });
-        
+
         if (LocalReturnValue[inColumnIndex] > 0) {
             return LocalReturnValue[inColumnIndex];
         } else {
@@ -1085,7 +1123,8 @@ let jVarGlobalTableObjects = {
         },
         DisplayType: {
             IsIndianFormat: false,
-            IsInput: false
+            IsInput: false,
+            Is3Decimals: false
         },
         KDataset: {
             HTMLControlType: "",
