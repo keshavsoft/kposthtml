@@ -8,16 +8,20 @@ jFShowFoldersInMenu({
 });
 
 let jVarLocalFromReturnFolderAndFileNameAndItemName = ReturnFolderAndFileNameAndItemName();
+
 if ("FolderName" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
     if ("FileName" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
         if ("ItemName" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
-            ScreensFetchAsPost({
-                inProjectName: jVarGlobalProject,
-                inSubRoute: jVarGlobalSubRoute,
-                inFolderName: jVarLocalFromReturnFolderAndFileNameAndItemName.FolderName,
-                inFileNameWithExtension: jVarLocalFromReturnFolderAndFileNameAndItemName.FileName,
-                inItemName: jVarLocalFromReturnFolderAndFileNameAndItemName.ItemName
-            });
+            if ("RowCount" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
+                ScreensFetchAsPost({
+                    inProjectName: jVarGlobalProject,
+                    inSubRoute: jVarGlobalSubRoute,
+                    inFolderName: jVarLocalFromReturnFolderAndFileNameAndItemName.FolderName,
+                    inFileNameWithExtension: jVarLocalFromReturnFolderAndFileNameAndItemName.FileName,
+                    inItemName: jVarLocalFromReturnFolderAndFileNameAndItemName.ItemName,
+                    inRowCount: jVarLocalFromReturnFolderAndFileNameAndItemName.RowCount
+                });
+            };
         };
     };
 };

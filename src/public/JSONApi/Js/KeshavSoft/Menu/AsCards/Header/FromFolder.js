@@ -1,5 +1,3 @@
-import { FetchAsPost } from "../MenuAsCards/ForFiles.js";
-
 let jFPrepareMenuItem = ({ inFileName, inMenuClass, inIconClass }) => {
     let jVarLocalFileName = inFileName;
     let jVarLocalMenuClass = inMenuClass;

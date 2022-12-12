@@ -17,7 +17,5 @@ if ("FolderName" in jVarLocalFromReturnFolderAndFileName) {
             inFolderName: jVarLocalFromReturnFolderAndFileName.FolderName,
             inFileNameWithExtension: jVarLocalFromReturnFolderAndFileName.FileName
         })
-        //  FetchFiles({ inFolderName: jVarLocalFromReturnFolderName.FolderName });
     };
-    //  FetchFiles({ inFolderName: jVarLocalFromReturnFolderName.FolderName });
 };
