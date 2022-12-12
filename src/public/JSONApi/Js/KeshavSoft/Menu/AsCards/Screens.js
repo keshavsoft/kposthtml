@@ -9,10 +9,30 @@ jFShowFoldersInMenu({
 
 let jVarLocalFromReturnFolderAndFileNameAndItemName = ReturnFolderAndFileNameAndItemName();
 
+let jFShowFolderInBreadcrumb = ({ inFolderName, inFileNameWithExtension, inItemName }) => {
+    let jVarLocalBreadcrumbFolderNameId = document.getElementById("BreadcrumbFolderNameId");
+    jVarLocalBreadcrumbFolderNameId.href = `Files.html?FolderName=${inFolderName}`;
+    jVarLocalBreadcrumbFolderNameId.innerHTML = inFolderName;
+
+    let jVarLocalBreadcrumbFileNameId = document.getElementById("BreadcrumbFileNameId");
+    jVarLocalBreadcrumbFileNameId.href = `Items.html?FolderName=${inFolderName}&FileName=${inFileNameWithExtension}`;
+    jVarLocalBreadcrumbFileNameId.innerHTML = inFileNameWithExtension;
+
+    let jVarLocalBreadcrumbItemNameId = document.getElementById("BreadcrumbItemNameId");
+    jVarLocalBreadcrumbItemNameId.innerHTML = inItemName;
+
+};
+
 if ("FolderName" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
     if ("FileName" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
         if ("ItemName" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
             if ("RowCount" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
+                jFShowFolderInBreadcrumb({
+                    inFolderName: jVarLocalFromReturnFolderAndFileNameAndItemName.FolderName,
+                    inFileNameWithExtension: jVarLocalFromReturnFolderAndFileNameAndItemName.FileName,
+                    inItemName: jVarLocalFromReturnFolderAndFileNameAndItemName.ItemName
+                });
+
                 ScreensFetchAsPost({
                     inProjectName: jVarGlobalProject,
                     inSubRoute: jVarGlobalSubRoute,

@@ -9,7 +9,15 @@ jFShowFoldersInMenu({
 
 let jVarLocalFromReturnFolderName = ReturnFolderName();
 
+let jFShowFolderInBreadcrumb = ({ inFolderName }) => {
+    let jVarLocalBreadcrumbFolderNameId = document.getElementById("BreadcrumbFolderNameId");
+    //jVarLocalBreadcrumbFolderNameId.href = `?FolderName=${inFolderName}`;
+    jVarLocalBreadcrumbFolderNameId.innerHTML = inFolderName;
+};
+
 if ("FolderName" in jVarLocalFromReturnFolderName) {
+    jFShowFolderInBreadcrumb({ inFolderName: jVarLocalFromReturnFolderName.FolderName });
+
     FetchFiles({
         inProjectName: jVarGlobalProject,
         inSubRoute: jVarGlobalSubRoute,
