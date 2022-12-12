@@ -388,23 +388,26 @@
         </li>
     </template>
 
-    <template id="TemplateForFiles">
+    <template id="TemplateForScreens">
         <div class="col-4">
-            <div class="card mb-3">
+            <div class="card">
                 <div class="card-header">
                     <div class="card-body">
-                        <h5 class="card-title">{{FileName}}</h5>
-                        <a href="Items.html?FolderName={{FolderName}}&FileName={{FileName}}"
-                            keshavsoftfilename="{{FileName}}" class="btn btn-primary keshavsoftfilesclick">Items -
-                            {{ItemCount}}</a>
+                        <h5 class="card-title">{{inFileNameWithExtension}}</h5>
+                        <h6 class="card-title">{{inItemName}}</h6>
+                        <h7 class="card-title">{{inScreenName}}</h7>
+                        <p>Rows : <span class="RowCountClass">{{inRowCount}}</span> </p>
+                        <a href="Screens.html?FolderName={{inFolderName}}&FileName={{inFileNameWithExtension}}&ItemName={{inItemName}}"
+                            keshavsoftItemName="{{ItemName}}" class="btn btn-primary keshavsoftItemclick">Screens :
+                            <span class="ScreenCountClass">{{ScreenCount}}</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </template>
 
-    <script src="/JSONApi/Js/KeshavSoft/Menu/AsCards/Files.js" type="module"></script>
-
+    <script src="/JSONApi/Js/KeshavSoft/Menu/AsCards/Screens.js" type="module"></script>
 </body>
 
 </html>
