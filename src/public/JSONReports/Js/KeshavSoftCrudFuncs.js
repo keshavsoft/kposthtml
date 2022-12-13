@@ -285,29 +285,51 @@ let HandleBarsHelpers = () => {
         }
     });
 
+    Handlebars.registerHelper('TableFooterShowTotal', function (inColumnData, inColumnIndex, inTableColumns, inTableData) {
+        if (inColumnData.ShowTotal) {
+            let LocalFromTableColumnTotal = jVarGlobalUtilClass.TableColumnTotal(inColumnIndex, inTableData);
 
-    Handlebars.registerHelper('TableFooterShowTotal', function (inarray, inColumnIndex) {
-        if (inarray[inColumnIndex] !== undefined) {
-            let arr = inarray[inColumnIndex]
-            if (arr !== undefined) {
-                if (arr.DisplayType.IsIndianFormat) {
-                    return "isindia"
+            if (LocalFromTableColumnTotal !== undefined) {
+                if (inColumnData.DisplayType.IsIndianFormat) {
+                    return jVarGlobalUtilClass.addThousand(parseFloat(LocalFromTableColumnTotal).toFixed(2), 2);
                 } else {
-                    if (arr.DisplayType.Is3Decimals) {
-                        return "Is3Decimals"
+                    if (inColumnData.DisplayType.Is3Decimals) {
+                        return jVarGlobalUtilClass.addThousand(parseFloat(LocalFromTableColumnTotal).toFixed(2), 3);
                     } else {
-return "default"
-                    }
+                        return LocalFromTableColumnTotal;
+                    };
                 };
-                // return arr.DisplayType.IsIndianFormat;
+            };
 
-                // return arr.DisplayType.Is3Decimals;
-            } else {
-                return false;
-            }
         } else {
-            return false;
+            return "";
         }
+
+        // if (inarray[inColumnIndex] !== undefined) {
+        //     let arr = inarray[inColumnIndex]
+        //     if (arr !== undefined) {
+        //         let LocalFromTableColumnTotal = jVarGlobalUtilClass.TableColumnTotal(inColumnIndex, inarray);
+        //         console.log("arr.DisplayType : ", arr.DisplayType);
+        //         if (arr.DisplayType.IsIndianFormat) {
+        //             return LocalFromTableColumnTotal
+
+        //         } else {
+        //             if (arr.DisplayType.Is3Decimals) {
+        //                 return "Is3Decimals"
+        //             } else {
+        //                 return "default"
+        //             }
+        //         };
+        //         // return arr.DisplayType.IsIndianFormat;
+
+        //         // return arr.DisplayType.Is3Decimals;
+        //     } else {
+        //         return 0;
+        //     }
+        // } else {
+        //     return false;
+        // };
+
     });
 
     Handlebars.registerHelper('Is3Decimals', function (inarray, inColumnIndex) {
@@ -753,6 +775,18 @@ class jVarGlobalUtilClass {
         };
 
         return finalOutput;
+    };
+
+    static TableColumnTotal = (inColumnIndex, inDataArray) => {
+        LocalReturnValue = _.map(inDataArray, (LoopItem) => {
+            let LocalShowTotalData = LoopItem.DisplayText[inColumnIndex].CellValue;
+
+            if (LocalShowTotalData != undefined) {
+                return parseFloat(LocalShowTotalData.toString().split(",").join(""));
+            };
+        })
+
+        return _.sum(LocalReturnValue);
     };
 };
 
