@@ -82,7 +82,7 @@
                     }
                 },
                 Token: {
-                    KName: "KAToken"
+                    KName: "KUMAToken"
                 }
             };
 
@@ -265,7 +265,7 @@
                 //let jVarLocalUserCheckRoute = this.Config.RouteStart.UserCheckRoute;
                 //let jVarLocalFetchUrl = `http://localhost:5000/JSONUser/Admin/Api/Check/LoginCheck/${inUserName}/${inPassword}`;
                 //      let jVarLocalFetchUrl = `/JSONUser/Admin/Api/Check/LoginCheck/${inUserName}/${inPassword}`;
-                let jVarLocalFetchUrl = "/JSONUser/Admin/Api/InAdminDataJson/Check/LoginCheck";
+                let jVarLocalFetchUrl = "/JSONUser/Admin/Api/InAdminDataJson/Check/TokenToCookie";
 
                 let response = await fetch(jVarLocalFetchUrl, {
                     method: 'POST',
@@ -364,7 +364,11 @@
                 },
                 CheckToken: () => {
                     let jVarLocalCookieValue;
-                    jVarLocalCookieValue = this.Login.ClientSideCookieFuncs.getCookie("KAToken");
+                    //jVarLocalCookieValue = this.Login.ClientSideCookieFuncs.getCookie("KAToken");
+                    let jVarLocalTokenName = this.Config.Token.KName;
+
+                    jVarLocalCookieValue = this.Login.ClientSideCookieFuncs.getCookie(jVarLocalTokenName);
+
                     if (jVarLocalCookieValue === null) {
                         this.UI.ModalFuncs.Show();
                     } else {
@@ -373,7 +377,9 @@
                     };
                 },
                 DeleteCookie: () => {
-                    document.cookie = "KAToken=; expires=Thu, 01 Jan 1947 00:00:00 UTC; path=/;";
+                    let jVarLocalTokenName = this.Config.Token.KName;
+                    //document.cookie = "KAToken=; expires=Thu, 01 Jan 1947 00:00:00 UTC; path=/;";
+                    document.cookie = `${jVarLocalTokenName}=; expires=Thu, 01 Jan 1947 00:00:00 UTC; path=/;`;
                 }
             }
         };
