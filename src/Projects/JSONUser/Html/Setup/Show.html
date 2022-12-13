@@ -184,7 +184,7 @@
 
 	<include src="src/components/Projects/JSONUser/AddJs.html"></include>
 
-	<script>
+	<!-- <script>
 		let jFSetup = async (inDataPk) => {
 			let jVarLocalUrl = `/JSONUser/Users/Api/Setup/${inDataPk}`;
 			let response = await fetch(jVarLocalUrl);
@@ -199,9 +199,21 @@
 		};
 
 		let jVarGlobalClientObject = new jPrepareClass({});
+		let jVarLocalFromCheckToken = jVarGlobalClientObject.Login.ClientSideCookieFuncs.CheckToken();
+		console.log("jVarLocalFromCheckToken : ", jVarLocalFromCheckToken);
+	</script> -->
+	<script>
 
-		jVarGlobalClientObject.Login.ClientSideCookieFuncs.CheckToken();
+		let jVarGlobalClientObject = new jPrepareClass({});
+		let jVarLocalFromCheckToken = jVarGlobalClientObject.Login.ClientSideCookieFuncs.CheckToken();
+
+		if (jVarLocalFromCheckToken) {
+			jVarLocalApiFuncs.ShowData();
+		};
 	</script>
+
+	<script src="/JSONUser/Js/Setup/Show.js" type="module"></script>
+
 
 </body>
 
