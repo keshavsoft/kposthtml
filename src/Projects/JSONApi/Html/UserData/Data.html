@@ -362,6 +362,7 @@
         </div>
     </div>
 
+    <include src="./src/components/Projects/JSONApi/AddForPreload.html"></include>
     <include src="./src/components/Projects/JSONApi/AddForCrud.html"></include>
     <include src="./src/components/JScripts/KSJsFuncs/LoginClassOnly.html"></include>
 
@@ -402,6 +403,7 @@
 
     <script>
         let jVarGlobalKeshavSoftLocalFuncsObject = new KeshavSoftLocalFuncs({});
+        jVarGlobalApiFuncs.ApiFuncs.PreLoad.Masters.FillDataFromServer();
     </script>
 
 </body>

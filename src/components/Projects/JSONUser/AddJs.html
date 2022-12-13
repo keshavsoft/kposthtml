@@ -371,9 +371,11 @@
 
                     if (jVarLocalCookieValue === null) {
                         this.UI.ModalFuncs.Show();
+                        return false;
                     } else {
                         this.Login.ShowLoginDetailsOnDOM.InHeader();
-                        jVarLocalApiFuncs.ShowData();
+                        return true;
+                        // jVarLocalApiFuncs.ShowData();
                     };
                 },
                 DeleteCookie: () => {
