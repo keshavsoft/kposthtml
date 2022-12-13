@@ -1,5 +1,5 @@
 import { jFShowFoldersInMenu } from "./Header/FromFolder.js";
-import { ReturnFolderName } from "./ForFiles/urlSearchParams.js";
+import { ReturnFolderName as urlSearchParamsReturnFolderName  } from "./ForFiles/urlSearchParams.js";
 import { FetchFiles } from "./ForFiles/FetchFuncs.js";
 
 jFShowFoldersInMenu({
@@ -7,7 +7,7 @@ jFShowFoldersInMenu({
     inSubRoute: jVarGlobalSubRoute
 });
 
-let jVarLocalFromReturnFolderName = ReturnFolderName();
+let jVarLocalFromReturnFolderName = urlSearchParamsReturnFolderName();
 
 let jFShowFolderInBreadcrumb = ({ inFolderName }) => {
     let jVarLocalBreadcrumbFolderNameId = document.getElementById("BreadcrumbFolderNameId");

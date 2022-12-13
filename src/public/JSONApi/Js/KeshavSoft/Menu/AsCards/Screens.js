@@ -1,6 +1,6 @@
 import { jFShowFoldersInMenu } from "./Header/FromFolder.js";
 import { ReturnFolderAndFileNameAndItemName } from "./ForScreens/urlSearchParams.js";
-import { ScreensFetchAsPost } from "./ForScreens/FetchFuncs.js";
+import { StartFunc as BuildCardsFuncsStartFunc } from "./ForScreens/BuildCardsFuncs.js";
 
 jFShowFoldersInMenu({
     inProjectName: jVarGlobalProject,
@@ -23,25 +23,28 @@ let jFShowFolderInBreadcrumb = ({ inFolderName, inFileNameWithExtension, inItemN
 
 };
 
-if ("FolderName" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
-    if ("FileName" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
-        if ("ItemName" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
-            if ("RowCount" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
-                jFShowFolderInBreadcrumb({
-                    inFolderName: jVarLocalFromReturnFolderAndFileNameAndItemName.FolderName,
-                    inFileNameWithExtension: jVarLocalFromReturnFolderAndFileNameAndItemName.FileName,
-                    inItemName: jVarLocalFromReturnFolderAndFileNameAndItemName.ItemName
-                });
+BuildCardsFuncsStartFunc();
+// if ("FolderName" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
+//     if ("FileName" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
+//         if ("ItemName" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
+//             if ("RowCount" in jVarLocalFromReturnFolderAndFileNameAndItemName) {
+                
+//                 // jFShowFolderInBreadcrumb({
+//                 //     inFolderName: jVarLocalFromReturnFolderAndFileNameAndItemName.FolderName,
+//                 //     inFileNameWithExtension: jVarLocalFromReturnFolderAndFileNameAndItemName.FileName,
+//                 //     inItemName: jVarLocalFromReturnFolderAndFileNameAndItemName.ItemName
+//                 // });
 
-                ScreensFetchAsPost({
-                    inProjectName: jVarGlobalProject,
-                    inSubRoute: jVarGlobalSubRoute,
-                    inFolderName: jVarLocalFromReturnFolderAndFileNameAndItemName.FolderName,
-                    inFileNameWithExtension: jVarLocalFromReturnFolderAndFileNameAndItemName.FileName,
-                    inItemName: jVarLocalFromReturnFolderAndFileNameAndItemName.ItemName,
-                    inRowCount: jVarLocalFromReturnFolderAndFileNameAndItemName.RowCount
-                });
-            };
-        };
-    };
-};
+//                 // ScreensFetchAsPost({
+//                 //     inProjectName: jVarGlobalProject,
+//                 //     inSubRoute: jVarGlobalSubRoute,
+//                 //     inFolderName: jVarLocalFromReturnFolderAndFileNameAndItemName.FolderName,
+//                 //     inFileNameWithExtension: jVarLocalFromReturnFolderAndFileNameAndItemName.FileName,
+//                 //     inItemName: jVarLocalFromReturnFolderAndFileNameAndItemName.ItemName,
+//                 //     inRowCount: jVarLocalFromReturnFolderAndFileNameAndItemName.RowCount
+//                 // });
+
+//             };
+//         };
+//     };
+// };
