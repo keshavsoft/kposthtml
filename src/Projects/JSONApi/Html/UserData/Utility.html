@@ -7,19 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <title>TabularColumnsData</title>
     <!-- Custom styles for this template -->
-    <link href="/JSONUtility/css/headers.css" rel="stylesheet">
-    
+    <include src="./src/components/Templates/UserData/HeaderCss.html"></include>
 </head>
 
 <body class="mb-5">
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="bootstrap" viewBox="0 0 118 94">
             <title>Bootstrap</title>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z">
             </path>
         </symbol>
     </svg>
@@ -109,16 +110,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="LoginFormPopUpId22" class="" onsubmit="return false" novalidate="">
+                    <form id="LoginFormPopUpId22" class="" onsubmit="return false" novalidate>
                         <div class="mb-3 form-floating is-valid">
-                            <input type="text" class="form-control" id="KUserNameInput" required="">
+                            <input type="text" class="form-control" id="KUserNameInput" required>
                             <label for="KUserNameInput">User Name</label>
                             <div class="invalid-feedback">
                                 User Name cannot be empty.
                             </div>
                         </div>
                         <div class="mb-3 form-floating">
-                            <input type="password" class="form-control" id="KPasswordInput" required="">
+                            <input type="password" class="form-control" id="KPasswordInput" required>
                             <label for="KPasswordInput">Password</label>
                             <div class="invalid-feedback">
                                 Password cannot be empty.
@@ -134,191 +135,16 @@
         </div>
     </div>
 
-    <footer class="footer mt-auto py-3 bg-light fixed-bottom">
-    <div class="container">
-        <div class="bg-light d-flex justify-content-between">
-            <div>KeshavSoft</div>
-
-            <div data-BaseString="Last refresh : " id="KLastRefreshDT">Last refresh : </div>
-        </div>
-    </div>
-</footer>
-    <script>
-    class GlobalClassForLogin {
-        constructor({ inProjectName }) {
-            this.Config = {
-                RouteStart: {
-                    Start: "JSONProject",
-                    SubRoute: "API",
-                    HtmlPath: "",
-                    UserCheckRoute: "JSONUser",
-                    AdminSubRoute: "AdminApi",
-                },
-                Modal: {
-                    Id: "LoginModalId"
-                },
-                Public: {
-                    ProjectName: ""
-                },
-                Customize: {
-                    ModalPopUp: {
-                        Show: true,
-                        Type: "SweetAlert"
-                    }
-                },
-                ClientSide: {
-                    UrlForIp_Old: "https://api.ipify.org/",
-                    UrlForIp: "http://httpbin.org/ip",
-                }
-            };
-
-            if (inProjectName === undefined) {
-                this.Config.Public.ProjectName = this.Config.RouteStart.Start
-            } else {
-                this.Config.RouteStart.Start = inProjectName;
-                this.Config.Public.ProjectName = inProjectName;
-            };
-        };
-
-        Login = {
-            LocalStorage: {
-                FirmDetails: ({ inUserName, inFirmDetails }) => {
-                    localStorage.setItem("kUserName", inUserName);
-                    localStorage.setItem("FirmDetails", JSON.stringify(inFirmDetails));
-                }
-            },
-            LoginCheck: async () => {
-                let jVarLocalObject = {};
-                let jVarReturnData;
-
-                jVarLocalObject.UserName = document.getElementById("KUserNameInput").value;
-                jVarLocalObject.Password = document.getElementById("KPasswordInput").value;
-
-                if (jVarLocalObject.UserName !== "" && jVarLocalObject.Password !== "") {
-                    jVarReturnData = await this.Login.CheckUserNamePassword({ inUserName: jVarLocalObject.UserName, inPassword: jVarLocalObject.Password });
-
-                    if (jVarReturnData.KTF) {
-                        //  jVarGlobalClientObject.DataApi.Folders.PullData();
-                    };
-                };
-            },
-            CheckUserNamePassword: async ({ inUserName, inPassword }) => {
-                let jVarLocalUserCheckRoute = this.Config.RouteStart.UserCheckRoute;
-                let jVarLocalFetchUrl = `/${jVarLocalUserCheckRoute}/Validate/Users/InUserDataJson/ForUserNameAndPassword/TokenToCookie`;
-
-                let response = await fetch(jVarLocalFetchUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ inUserName, inPassWord: inPassword })
-                });
-                let FetchDataJson = await response.json();
-
-                if (FetchDataJson !== null) {
-                    if (FetchDataJson.KTF) {
-                        var myModalEl = document.getElementById('LoginModalId');
-
-                        var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instance
-
-                        modal.hide();
-
-                        this.Login.LocalStorage.FirmDetails({ inUserName, inFirmDetails: FetchDataJson });
-                        this.Login.ClientSideCookieFuncs.CheckToken();
-                        return await FetchDataJson;
-                    } else {
-                        document.getElementById("KUserNameInput").classList.add("is-invalid");
-                    };
-                };
-            },
-            StatusCodeFuncs: {
-                Html: {
-                    Code404: ({ inResponse }) => {
-                        if (inResponse.status === 404) {
-                            jVarGlobalAdmin.HTMLPrepare.jFBS4Alerts.AppendtoKCont1.dangerClosable({ inJVarDataToDisplay: `Html File not Found ${inResponse.url}` });
-                            return null;
-
-                        };
-
-
-                        return inResponse.text();
-                    }
-                },
-                Code403: ({ inResponse }) => {
-                    if (inResponse.status === 403) {
-                        let jVarLocalLoginFormPopUpId = document.getElementById("LoginFormPopUpId");
-
-                        if (jVarLocalLoginFormPopUpId !== null) {
-                            var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), { keyboard: false, focus: true });
-                            myModal.show();
-                        };
-                        return null;
-                    };
-
-                    return inResponse.json();
-                }
-            },
-            ShowLoginDetailsOnDOM: {
-                InHeader: () => {
-                    let LocalUserName = localStorage.getItem("kUserName");
-                    let jVarLocalHeaderLoginButtonId = document.getElementById("HeaderLoginButtonId");
-
-                    if (jVarLocalHeaderLoginButtonId !== null) {
-                        jVarLocalHeaderLoginButtonId.classList.add("visually-hidden");
-                        document.getElementById("HeaderUserIdLi").classList.remove("visually-hidden");
-
-                        if (LocalUserName !== null) {
-                            document.getElementById("HeaderUserIdDropDown").innerHTML =
-                                document.getElementById("HeaderUserIdDropDown").innerHTML.replace("UserName", LocalUserName);
-
-                            document.getElementById('NavBarId').classList.remove("bg-danger");
-                            document.getElementById('NavBarId').classList.add("bg-dark");
-                        };
-                    };
-                }
-            },
-            ClientSideCookieFuncs: {
-                getCookie: (name) => {
-                    var nameEQ = name + "=";
-                    var ca = document.cookie.split(';');
-                    for (var i = 0; i < ca.length; i++) {
-                        var c = ca[i];
-                        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-                    }
-                    return null;
-                },
-                CheckToken: () => {
-                    let jVarLocalCookieValue = this.Login.ClientSideCookieFuncs.getCookie("KToken");
-                    if (jVarLocalCookieValue === null) {
-                        localStorage.removeItem("kUserName");
-                        localStorage.removeItem("FirmDetails");
-                        this.Login.ClientSideCookieFuncs.DeleteCookie();
-
-                        let jVarLocalId = this.Config.Modal.Id;
-                        var myModal = new bootstrap.Modal(document.getElementById(jVarLocalId), { keyboard: true, focus: true });
-
-                        myModal.show();
-                    } else {
-                        this.Login.ShowLoginDetailsOnDOM.InHeader();
-                    };
-                },
-                DeleteCookie: () => {
-                    document.cookie = "KToken=; expires=Thu, 01 Jan 1947 00:00:00 UTC; path=/;";
-                }
-            }
-        };
-    };
-
-    GlobalFuncsForLogin = new GlobalClassForLogin({});
-</script>
+    <include src="./src/components/Templates/Admin/Columns/Tabular/CreateNew/Footer.html"></include>
+    <include src="./src/components/JScripts/KSJsFuncs/Login.html"></include>
 
     <script src="/ClassesStatic/CommonClass.js"></script>
     <script src="/js/KeshavSoft/Login.js"></script>
     
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
