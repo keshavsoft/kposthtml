@@ -800,7 +800,7 @@
 
         let jFChangeNavAnchorClass = ({ inClassName }) => {
             let jVarLocalNavBarId = document.getElementById("NavBarId");
-            let jVarLocalAnchorNeeded = jVarLocalNavBarId.querySelector(`#${inClassName}`);
+            let jVarLocalAnchorNeeded = jVarLocalNavBarId.querySelector(`.${inClassName}AClass`);
 
             jVarLocalNavBarId.querySelectorAll("main a").forEach(el => {
                 if (el.classList.contains("text-info")) {

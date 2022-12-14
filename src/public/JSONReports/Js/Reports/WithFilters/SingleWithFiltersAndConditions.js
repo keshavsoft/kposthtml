@@ -123,7 +123,7 @@ let jFFillDataListForFilters = ({ inUUID }) => {
     jVarLocalTableColumns.forEach((element, LoopIndex) => {
         let LoopInsideDataListId = document.getElementById(`DataListForFilter-${LoopIndex + 1}`);
         let LoopInsideFilter = _.keys(_.groupBy(jVarLocalTableData, element.DataAttribute));
-        console.log("LoopInsideFilter : ", element.DataAttribute, LoopInsideFilter);
+        //console.log("LoopInsideFilter : ", element.DataAttribute, LoopInsideFilter);
         let str = '';
         //str += '<option value="' + element.DisplayName + '" />';
 
