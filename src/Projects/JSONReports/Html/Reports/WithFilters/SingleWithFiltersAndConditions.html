@@ -768,29 +768,8 @@
             };
         };
     </script>
+    <!-- 
     <script>
-
-        let jFShowFilterTable1 = () => {
-            let jVarLocalTemplateNewTab = document.getElementById("FilterTableRow");
-            let jVarLocalFilterTableBody = document.getElementById("FilterTableBody");
-
-            var jVarLocalTemplateNewTabClone = jVarLocalTemplateNewTab.cloneNode(true);
-            var fragment = document.importNode(jVarLocalTemplateNewTabClone.content, true);
-            // jVarLocalFilterTableBody.appendChild(fragment);
-
-            console.log("jVarLocalHTMLContent : ", jVarLocalTemplateNewTab.innerHTML);
-
-            let jVarLocalHTMLContent = Handlebars.compile(jVarLocalTemplateNewTab.innerHTML)({});
-
-            console.log("1111111 : ", jVarLocalHTMLContent);
-
-
-            //jVarLocalFilterTableBody.insertAdjacentElement("beforebegin",jVarLocalHTMLContent);
-            jVarLocalFilterTableBody.insertAdjacentHTML("beforeend", jVarLocalHTMLContent);
-
-
-        };
-
         let jFChangeHeaderActiveClass = () => {
             let jVarLocalPathArray = window.location.pathname.split("/");
             let jVarLocalHTMLName = jVarLocalPathArray[jVarLocalPathArray.length - 1];
@@ -819,9 +798,10 @@
                 jVarLocalAnchorNeeded.classList.add("text-info");
             };
         };
-        jFChangeHeaderActiveClass()
 
-    </script>
+        jFChangeHeaderActiveClass();
+    </script> -->
+
     <script>
         let jVarLocalFilerButton = document.getElementById("FiterDataId");
 
@@ -842,6 +822,10 @@
         });
     </script>
 
+
+    <!-- <script src="../../../Js/Reports/WithFilters/SingleWithFiltersAndConditions.js"></script> -->
+
+    <!-- <script src="/JSONReports/Js/HeaderElementColourChange.js" type="module"></script> -->
 
     <script src="../../../Js/Reports/WithFilters/SingleWithFiltersAndConditions.js"></script>
 
