@@ -172,7 +172,7 @@
 			<td>{{PassWord}}</td>
 			<td class="text-right">
 				<button type="button" rel="tooltip" class="btn btn-outline-primary btn-sm "
-					onclick="jFSetup({{@key}})">
+					onclick="jFSetupForMsSql({{@key}})">
 					<i class="bi bi-trash"> </i>Setup
 				</button>
 			</td>
@@ -184,6 +184,19 @@
 	<include src="src/components/Projects/JSONUser/AddJs.html"></include>
 
 	<script>
+		let jFSetupForMsSql = async (inDataPk) => {
+			let jVarLocalUrl = `/JSONUser/Users/Api/Setup/ForSql/FoldersOnly/${inDataPk}`;
+			let response = await fetch(jVarLocalUrl);
+			let data = await response.json();
+
+			if (data.KTF) {
+				var myModal = new bootstrap.Modal(document.getElementById('SetupModal'), {
+					keyboard: false
+				});
+				myModal.show();
+			};
+		};
+
 		let jVarGlobalClientObject = new jPrepareClass({});
 		let jVarLocalFromCheckToken = jVarGlobalClientObject.Login.ClientSideCookieFuncs.CheckToken();
 
