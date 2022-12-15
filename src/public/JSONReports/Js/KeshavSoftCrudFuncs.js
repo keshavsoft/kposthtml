@@ -286,6 +286,14 @@ let HandleBarsHelpers = () => {
     });
 
     Handlebars.registerHelper('TableFooterShowTotal', function (inColumnData, inColumnIndex, inTableColumns, inTableData) {
+        if (inColumnData === undefined) {
+            return "";
+        };
+        
+        if (("ShowTotal" in inColumnData) === false) {
+            return "";
+        };
+
         if (inColumnData.ShowTotal) {
             let LocalFromTableColumnTotal = jVarGlobalUtilClass.TableColumnTotal(inColumnIndex, inTableData);
 
