@@ -234,10 +234,13 @@
     
     </td>
     <td>
-    <button type="button" class="btn btn-outline-info UpdateButtonClass" data-foldername="{{@../../../../key}}"
-        onclick="jFUpdateData(event , '{{@../../../../key}}','{{@../../../key}}','{{@../../key}}','{{@../key}}','{{@key}}')">
+    <button type="button" class="btn btn-outline-info UpdateButtonClass" data-foldername="{{@../../../../key}}" data-filename="{{@../../../key}}" data-itemname="{{@../../key}}" data-screenname="{{@../key}}">
         Update
     </button>
+    <!-- <button type="button" class="btn btn-outline-info UpdateButtonClass"
+    onclick="jFUpdateData(event , '{{@../../../../key}}','{{@../../../key}}','{{@../../key}}','{{@../key}}','{{@key}}')">
+    Update
+</button> -->
     </td>
     </tr>
     
@@ -246,6 +249,8 @@
         </table>
     
         </script>
+
+
 
     <script id="HbsTemplateForTable" type="text/x-handlebars">
                         {{#each this.KData}}
@@ -689,6 +694,8 @@
 
         CommonFuncsForFolders.CreateFolders();
     </script>
+
+    <script src="../../../../../Js/Columns/Tabular/Alter/Toggles.js" type="module"></script>
 
 </body>
 
