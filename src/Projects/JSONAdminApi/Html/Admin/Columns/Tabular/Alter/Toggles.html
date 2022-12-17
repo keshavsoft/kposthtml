@@ -93,9 +93,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 
 
-    <!-- <include src="./src/components/Templates/Admin/Columns/Tabular/HbsTemplates/ForScreensOnly.html"></include> -->
-
-
     <script id="HbsTemplateForScreensOnly" type="text/x-handlebars">
         <table class="table">
             <thead>
@@ -138,65 +135,6 @@
         </table>
       </script>
 
-
-
-    <!-- <script id="HbsTemplateForTableColumnsForAllInOneWithValuesOnly" type="text/x-handlebars">
-<div class="card text-dark bg-light">
-<div class="card-header">
-    <div class="row">
-        <div class="col">
-            <h4>TableColumns Toggles in {{ScreenName}}</h4>
-        </div>
-
-        <div class="col">
-            <input type="text" class="form-control" name="" placeholder="Type to search..."
-                onkeyup="jFTableSearch(event)" autofocus>
-        </div>
-    </div>
-</div>
-<div class="card-body">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>DataAttribute</th>
-                <th>DisplayName</th>
-                <th>DefaultValue</th>
-<th>TextAlign</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each TableColumnsObject}}
-            <tr class="{{RowClass}}">
-                <td class="text-center">
-                    {{ForSNo @index}}
-                </td>
-                <td>
-                    {{DataAttribute}}
-                </td>
-                <td>
-                    {{DisplayName}}
-                </td>
-                <td>
-                    <input class="form-control" type="text" name="DefaultValue" value="{{DefaultValue}}" list="DefaultValueDataList">
-                </td>
-                <td>
-                    <input class="form-control" type="text" name="TextAlign" value="{{TextAlign}}" list="TextAlignDataList">
-                </td>
-
-                <td class="text-right">
-                    <button type="button" class="btn btn-outline-info"
-                    onclick="jFUpdateData(event,'{{@../../../../key}}','{{@../../../key}}','{{@../../key}}','{{@../key}}','{{@key}}')">
-                        Update
-                    </button>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-</div>
-</div>
-    </script> -->
 
     <script id="HbsTemplateForTableColumnsForTogglesOnly" type="text/x-handlebars">
         <table class="table">
@@ -296,7 +234,7 @@
     
     </td>
     <td>
-    <button type="button" class="btn btn-outline-info"
+    <button type="button" class="btn btn-outline-info UpdateButtonClass" data-foldername="{{@../../../../key}}"
         onclick="jFUpdateData(event , '{{@../../../../key}}','{{@../../../key}}','{{@../../key}}','{{@../key}}','{{@key}}')">
         Update
     </button>
