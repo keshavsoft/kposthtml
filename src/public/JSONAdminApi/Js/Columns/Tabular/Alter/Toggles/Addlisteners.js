@@ -37,7 +37,24 @@ let jFLocalClickFunc = (event) => {
         CreateNew: jVarLocalCreateNewValue,
         IsTextArea: jVarLocalIsTextAreaValue
     }
+
     console.log("postDataKey",postDataKey);
 
-};
+    let jFetchUrl = "/JSONAdminApi/AdminApi/Config/TableColumns/Toggles"
+
+    fetch(jFetchUrl, {
+        method: "PATCH",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postDataKey)
+    }).then(response => response.json()).then(dataFromApi=>{
+        let jVarLocalData = JSON.parse(dataFromApi);
+        console.log("jVarLocalData",jVarLocalData);
+
+    })
+}
+
+
 export { jFUpdateFunc };
