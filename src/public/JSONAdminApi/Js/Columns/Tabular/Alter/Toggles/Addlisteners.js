@@ -13,12 +13,14 @@ let jFLocalClickFunc = (event) => {
     let jVarLocalscreenname = jVarLocalCurrentTarget.dataset.screenname;
 
     let jVarLocalColsestTr = jVarLocalCurrentTarget.closest("tr");
+    let jVarLocalDataAttribute = jVarLocalColsestTr.querySelector('[name="DataAttribute"]');
     let jVarLocalDisplayName = jVarLocalColsestTr.querySelector('[name="DisplayName"]');
     let jVarLocalShowInTable = jVarLocalColsestTr.querySelector('[name="ShowInTable"]');
     let jVarLocalInsert = jVarLocalColsestTr.querySelector('[name="Insert"]');
     let jVarLocalCreateNew = jVarLocalColsestTr.querySelector('[name="CreateNew"]');
     let jVarLocalIsTextArea = jVarLocalColsestTr.querySelector('[name="IsTextArea"]');
 
+    let jVarLocalDataAttributeValue = jVarLocalDataAttribute.value;
     let jVarLocalDisplayNameValue = jVarLocalDisplayName.value;
     let jVarLocalShowInTableValue = jVarLocalShowInTable.checked
     let jVarLocalInsertValue = jVarLocalInsert.checked
@@ -26,11 +28,7 @@ let jFLocalClickFunc = (event) => {
     let jVarLocalIsTextAreaValue = jVarLocalIsTextArea.checked
 
 
-    let postDataKey = {
-        infolderName: jVarLocalFolderName,
-        inFileName: jVarLocalfilename,
-        inItemName: jVarLocalitemname,
-        inScreenName: jVarLocalscreenname,
+    let BodyAsJson = {
         DisplayName: jVarLocalDisplayNameValue,
         ShowTable: jVarLocalShowInTableValue,
         Insert: jVarLocalInsertValue,
@@ -38,9 +36,9 @@ let jFLocalClickFunc = (event) => {
         IsTextArea: jVarLocalIsTextAreaValue
     }
 
-    console.log("postDataKey", postDataKey);
+    // console.log("postDataKey", postDataKey);
 
-    let jFetchUrl = "/JSONAdminApi/AdminApi/Config/TableColumns/Toggles";
+    let jFetchUrl = "/JSONAdminApi/AdminApi/Config/TableColumns/Toggles"
 
     fetch(jFetchUrl, {
         method: "PATCH",
@@ -48,11 +46,20 @@ let jFLocalClickFunc = (event) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(postDataKey)
+        body: JSON.stringify({
+            folderName: jVarLocalFolderName, 
+            FileName: jVarLocalfilename, 
+            ItemName: jVarLocalitemname, 
+            ScreenName: jVarLocalscreenname,
+            DataAttribute:jVarLocalDataAttributeValue,
+            BodyAsJson
+        })
     }).then(response => response.json()).then(dataFromApi => {
         let jVarLocalData = JSON.parse(dataFromApi);
-        console.log("jVarLocalData", jVarLocalData);
-    });
-};
+        // console.log("jVarLocalData", jVarLocalData);
+
+    })
+}
+
 
 export { jFUpdateFunc };
