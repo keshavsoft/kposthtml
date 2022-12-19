@@ -15,28 +15,19 @@ let jFLocalClickFunc = async (event) => {
 
     let jVarLocalColsestTr = jVarLocalCurrentTarget.closest("tr");
     let jVarLocalDataAttribute = jVarLocalColsestTr.querySelector('[name="DataAttribute"]');
-    let jVarLocalDisplayName = jVarLocalColsestTr.querySelector('[name="DisplayName"]');
-    let jVarLocalShowInTable = jVarLocalColsestTr.querySelector('[name="ShowInTable"]');
-    let jVarLocalInsert = jVarLocalColsestTr.querySelector('[name="Insert"]');
-    let jVarLocalCreateNew = jVarLocalColsestTr.querySelector('[name="CreateNew"]');
-    let jVarLocalIsTextArea = jVarLocalColsestTr.querySelector('[name="IsTextArea"]');
+    let jVarLocalDefaultValue = jVarLocalColsestTr.querySelector('[name="DefaultValue"]');
+    let jVarLocalTextAlign = jVarLocalColsestTr.querySelector('[name="TextAlign"]');
 
     let jVarLocalDataAttributeValue = jVarLocalDataAttribute.value;
-    let jVarLocalDisplayNameValue = jVarLocalDisplayName.value;
-    let jVarLocalShowInTableValue = jVarLocalShowInTable.checked
-    let jVarLocalInsertValue = jVarLocalInsert.checked
-    let jVarLocalCreateNewValue = jVarLocalCreateNew.checked
-    let jVarLocalIsTextAreaValue = jVarLocalIsTextArea.checked
+    let jVarLocalDefaultValueValue = jVarLocalDefaultValue.value;
+    let jVarLocalTextAlignValue = jVarLocalTextAlign.value;
 
     let BodyAsJson = {
-        DisplayName: jVarLocalDisplayNameValue,
-        ShowTable: jVarLocalShowInTableValue,
-        Insert: jVarLocalInsertValue,
-        CreateNew: jVarLocalCreateNewValue,
-        IsTextArea: jVarLocalIsTextAreaValue
+        DefaultValue: jVarLocalDefaultValueValue,
+        TextAlign: jVarLocalTextAlignValue
     }
 
-    let jFetchUrl = "/JSONAdminApi/AdminApi/Config/TableColumns/Toggles";
+    let jFetchUrl = "/JSONAdminApi/AdminApi/Config/TableColumns/AllInOneWithValues";
 
     let response = await fetch(jFetchUrl, {
         method: "PATCH",
@@ -63,9 +54,14 @@ let jFLocalClickFunc = async (event) => {
             break;
         default:
         // code block
-    };
+    }
 
     console.log("response : ", response.status);
-};
+
+
+}
+
+
+
 
 export { jFUpdateFunc };
