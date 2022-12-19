@@ -130,10 +130,10 @@
                     {{ForSNo @index}}
                 </td>
                 <td>
-                    {{DataAttribute}}
+                    <input class="form-control" type="text" name="DataAttribute" value="{{DataAttribute}}" list="TextAlignDataList" disabled>
                 </td>
                 <td>
-                    {{DisplayName}}
+                    <input class="form-control" type="text" name="DisplayName" value="{{DisplayName}}" list="TextAlignDataList" disabled>
                 </td>
                 <td>
                     <input class="form-control" type="text" name="DefaultValue" value="{{DefaultValue}}" list="DefaultValueDataList">
@@ -143,8 +143,7 @@
                 </td>
 
                 <td class="text-right">
-                    <button type="button" class="btn btn-outline-info"
-                    onclick="jFUpdateData(event,'{{@../../../../key}}','{{@../../../key}}','{{@../../key}}','{{@../key}}','{{@key}}')">
+                    <button type="button" class="btn btn-outline-info UpdateButtonClass" data-foldername="{{@../../../../key}}" data-filename="{{@../../../key}}" data-itemname="{{@../../key}}" data-screenname="{{@../key}}">
                         Update
                     </button>
                 </td>
