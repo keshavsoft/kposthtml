@@ -10,3 +10,6 @@ let jFSetup = async (inDataPk) => {
         myModal.show();
     };
 };
+
+// let jVarLocalSaveButtonid = document.getElementById("SaveButtonid");
+// jVarLocalSaveButtonid.addEventListener("click", jFSetup);

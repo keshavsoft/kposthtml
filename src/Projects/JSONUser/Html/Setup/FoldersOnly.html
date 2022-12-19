@@ -181,19 +181,9 @@
 
 </script>
 
-	<include src="src/components/Projects/JSONUser/AddJs.html"></include>
+	<include src="src/components/Projects/JSONUser/AddJsForFoldersOnly.html"></include>
 
-	<script>
-		let jVarGlobalClientObject = new jPrepareClass({});
-		let jVarLocalFromCheckToken = jVarGlobalClientObject.Login.ClientSideCookieFuncs.CheckToken();
-
-		if (jVarLocalFromCheckToken) {
-			jVarLocalApiFuncs.ShowData();
-		};
-	</script>
-
-	<script src="/JSONUser/Js/Setup/Show.js" type="module"></script>
-
+	<script src="/JSONUser/Js/Setup/FoldersOnly.js" type="module"></script>
 </body>
 
 </html>
