@@ -1,5 +1,8 @@
 import { jFUpdateFunc } from "./AllInOneWithValues/Addlisteners.js";
+import { jFCreateFoldersToDom } from "./AllInOneWithValues/ShowOnDom.js";
 
-jFUpdateFunc()
+jFCreateFoldersToDom().then(FromjFCreateFoldersToDom => {
+    // console.log("FromjFCreateFoldersToDom : ", FromjFCreateFoldersToDom);
 
-export { }
+    jFUpdateFunc();
+});
