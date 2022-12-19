@@ -137,8 +137,8 @@
 			<td>{{UserName}}</td>
 			<td>{{PassWord}}</td>
 			<td class="text-right">
-				<button type="button" rel="tooltip" class="btn btn-outline-primary btn-sm "
-					onclick="jFSetup({{@key}})">
+				<button type="button" rel="tooltip" data-pk="{{@key}}"
+                 class="btn btn-outline-primary btn-sm SetupButtonClass">
 					<i class="bi bi-trash"> </i>Setup
 				</button>
 			</td>
@@ -147,6 +147,7 @@
 
 </script>
 
+	<!-- include AddJsForFoldersOnly -->
 	<include src="src/components/Projects/JSONUser/AddJsForFoldersOnly.html"></include>
 
 	<script src="/JSONUser/Js/Setup/FoldersOnly.js" type="module"></script>
