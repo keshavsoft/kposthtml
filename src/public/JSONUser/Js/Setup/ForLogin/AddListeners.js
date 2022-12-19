@@ -39,7 +39,7 @@ let jFCheckToken = ({ inTokenName = "KUMAToken" }) => {
     };
 };
 
-let jFLoginCheck = async () => {
+let jFLoginCheck = async ({ inTokenName }) => {
     let jVarLocalObject = {};
     let jVarReturnData;
 
@@ -47,16 +47,15 @@ let jFLoginCheck = async () => {
     jVarLocalObject.Password = document.getElementById("KPasswordInput").value;
 
     if (jVarLocalObject.UserName !== "" && jVarLocalObject.Password !== "") {
-        jVarReturnData = await jFCheckUserNamePassword({ inUserName: jVarLocalObject.UserName, inPassword: jVarLocalObject.Password });
-
-        if (jVarReturnData.KTF) {
-            await jFShowData();
-            //jVarLocalApiFuncs.ShowData();
-        };
+        jVarReturnData = await jFCheckUserNamePassword({
+            inUserName: jVarLocalObject.UserName,
+            inPassword: jVarLocalObject.Password,
+            inTokenName
+        });
     };
 };
 
-let jFCheckUserNamePassword = async ({ inUserName, inPassword }) => {
+let jFCheckUserNamePassword = async ({ inUserName, inPassword, inTokenName }) => {
     let jVarLocalFetchUrl = "/JSONUser/Admin/Api/InAdminDataJson/Check/TokenToCookie";
 
     let response = await fetch(jVarLocalFetchUrl, {
@@ -90,7 +89,7 @@ let jFCheckUserNamePassword = async ({ inUserName, inPassword }) => {
             modal.hide();
 
             jFFirmDetails({ inUserName, inFirmDetails: FetchDataJson });
-            jFCheckToken();
+            jFCheckToken({ inTokenName });
             return await FetchDataJson;
         } else {
             document.getElementById("KUserNameInput").classList.add("is-invalid")
@@ -103,7 +102,12 @@ let jFFirmDetails = ({ inUserName, inFirmDetails }) => {
     localStorage.setItem("FirmDetails", JSON.stringify(inFirmDetails));
 };
 
-let jVarModalLoginButtonId = document.getElementById("ModalLoginButtonId");
-jVarModalLoginButtonId.addEventListener("click", jFLoginCheck);
+let jFStartFunc = ({ inTokenName }) => {
+    let jVarModalLoginButtonId = document.getElementById("ModalLoginButtonId");
 
-export { jFCheckToken }
+    jVarModalLoginButtonId.addEventListener("click", () => {
+        jFLoginCheck({ inTokenName })
+    });
+};
+
+export { jFStartFunc, jFCheckToken }
