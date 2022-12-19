@@ -53,7 +53,6 @@ if (jFCheckToken({ inTokenName: TokenName })) {
     let jVarLocalSetupButtonClass = document.querySelectorAll(".SetupButtonClass");
 
     jVarLocalSetupButtonClass.forEach(box => {
-        console.log(" box : ", box);
         box.addEventListener('click', jFSetup);
     });
 } else {
