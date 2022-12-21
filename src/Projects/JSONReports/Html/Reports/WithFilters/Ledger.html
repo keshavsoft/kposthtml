@@ -203,6 +203,7 @@
 
 
 
+
     <div class="container">
 
         <datalist id="ReportsList"> </datalist>
@@ -210,11 +211,9 @@
             <label>Report Name :</label>
 
             <div class="input-group mt-2 mb-3">
-                <input type="text" class="form-control ReportSelectedClass" list="ReportsList"
-                    placeholder="Select Folder" autofocus="">
+                <input type="text" class="form-control ReportSelectedClass" list="ReportsList" placeholder="Select Folder" autofocus="">
 
-                <button class="btn btn-outline-secondary" type="button"
-                    onclick="jFPullFromServerInsertToLocalStorage(event)" id="button-addon2">Go</button>
+                <button class="btn btn-outline-secondary" id="ReportButtonId" type="button">Go</button>
             </div>
         </div>
 
@@ -247,24 +246,36 @@
 
 
 
+
     <template id="FilterTableRow">
         <tr>
             <th scope="row">{{SNo}}</th>
             <td>{{Name}}</td>
             <td>
-                <input type="text" class="form-control SearchInput" aria-describedby="helpId"
-                    list="DataListForFilter-{{SNo}}">
+                <input type="text" class="form-control SearchInput" aria-describedby="helpId" list="DataListForFilter-{{SNo}}">
                 <datalist id="DataListForFilter-{{SNo}}">
                 </datalist>
             </td>
             <td>
-                <button type="button" class="btn btn-primary" onclick="jFFilterData({inEvent:event})"
-                    data-dataattribute="{{DataAttribute}}" data-uuid="{{UUID}}">Filter Data</button>
+                <button type="button" class="btn btn-primary FilterButtonClass" data-dataattribute="{{DataAttribute}}" data-uuid="{{UUID}}">Filter Data</button>
             </td>
         </tr>
     </template>
 
-
+    <template id="FilterTableRow1">
+        <tr>
+            <th scope="row">{{SNo}}</th>
+            <td>{{Name}}</td>
+            <td>
+                <input type="text" class="form-control SearchInput" aria-describedby="helpId" list="DataListForFilter-{{SNo}}">
+                <datalist id="DataListForFilter-{{SNo}}">
+                </datalist>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="jFFilterData({inEvent:event})" data-dataattribute="{{DataAttribute}}" data-uuid="{{UUID}}">Filter Data</button>
+            </td>
+        </tr>
+    </template>
 
     <footer class="footer mt-auto py-2 bg-light fixed-bottom">
         <div class="container">
@@ -714,6 +725,9 @@
     <script src="../../../Js/Reports/WithFilters/Ledger.js"></script>
 
 
+
+
+    <script src="../../../Js/Reports/WithFilters/Ledger/AddListeners.js" type="module"></script>
 
 
 
