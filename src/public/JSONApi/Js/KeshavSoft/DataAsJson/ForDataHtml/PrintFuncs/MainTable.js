@@ -43,8 +43,9 @@ let jFPrintFromData = ({ inEvent, inProjectName }) => {
 
     fetch(jVarLocalFetchForHtmlFiles, jVarLocalFetchForHtmlFilesHeaders).then(p => p.json()).then(p => {
         let k1 = document.getElementById("KCont1");
-        k1.innerHTML = "";
-        console.log("ssssssss : ", Object.values(p.HtmlData[0])[0]);
+//        k1.innerHTML = "";
+
+        console.log("ssssssss : ", Object.values(p.HtmlData[0]));
         k1.innerHTML = Object.values(p.HtmlData[0])[0];
 
     });
