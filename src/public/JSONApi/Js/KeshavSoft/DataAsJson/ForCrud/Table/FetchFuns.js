@@ -1,8 +1,9 @@
-import { ReturnFolderAndFileNameAndItemName } from "./urlSearchParams.js";
+import { ReturnFolderAndFileNameAndItemName } from "../CommonFuncs/urlSearchParams.js";
+import { jFShowFolderInBreadcrumb } from "../CommonFuncs/BreadcrumbFuncs.js";
 
 let jVarLocalObjectFromUrlSearchParams = ReturnFolderAndFileNameAndItemName();
 
-let jFShowFolderInBreadcrumb = ({ inFolderName, inFileNameWithExtension, inItemName, inScreenName }) => {
+let jFShowFolderInBreadcrumb_Local = ({ inFolderName, inFileNameWithExtension, inItemName, inScreenName }) => {
     let jVarLocalBreadcrumbFolderNameId = document.getElementById("BreadcrumbFolderNameId");
     jVarLocalBreadcrumbFolderNameId.href = `../Menu/AsCards/Files.html?FolderName=${inFolderName}`;
     jVarLocalBreadcrumbFolderNameId.innerHTML = inFolderName;

@@ -1,5 +1,5 @@
 import { jFShowFoldersInMenu } from "../ForDataHtml/Header/FromFolder.js";
-import { StartFunc as ShowDataFuncsStartFunc } from "./CommonFuncs/ShowDataFuncs.js";
+import { StartFunc as ShowDataFuncsStartFunc } from "./Table/FetchFuns.js";
 import { jFAddtoPrintButtonInTable } from "./Table/AddListeners.js";
 
 jFShowFoldersInMenu({
