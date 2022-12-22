@@ -55,18 +55,16 @@ let jFTableShow = async ({ inProjectName, inSubRoute, inFolderName, inFileName, 
             inHtmlParent: jVarCardBody
         });
 
-        return await true;
-        // let jVarLocalPrintButtons = document.querySelectorAll(".Options.Print");
-        // //MainTable Body Row Options Print
-        // jVarLocalPrintButtons.forEach((spanElement) => {
-        //     spanElement.addEventListener("click", (event) => {
-        //         jFPrintFromData({
-        //             inEvent: event,
-        //             inProjectName: jVarLocalRoute
-        //         })
-        //     });
-        // });
-
+        let jVarLocalPrintButtons = document.querySelectorAll(".Options.Print");
+        //MainTable Body Row Options Print
+        jVarLocalPrintButtons.forEach((spanElement) => {
+            spanElement.addEventListener("click", (event) => {
+                jFPrintFromData({
+                    inEvent: event,
+                    inProjectName: jVarLocalRoute
+                })
+            });
+        });
     };
 };
 
@@ -139,7 +137,7 @@ let StartFunc = async ({ inProjectName, inSubRoute }) => {
                         inScreenName: jVarLocalObjectFromUrlSearchParams.ScreenName
                     });
 
-                    return await jFTableShow({
+                    await jFTableShow({
                         inProjectName, inSubRoute,
                         inFolderName: jVarLocalObjectFromUrlSearchParams.FolderName,
                         inFileName: jVarLocalObjectFromUrlSearchParams.FileName,

@@ -1,5 +1,4 @@
 import { ReturnFolderAndFileNameAndItemName } from "./urlSearchParams.js";
-import { jFPrintFromData } from "./PrintFuncs/MainTable.js";
 
 let jVarLocalObjectFromUrlSearchParams = ReturnFolderAndFileNameAndItemName();
 
