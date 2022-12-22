@@ -34,13 +34,15 @@
             </div>
         </div>
 
-        <datalist id="DefaultValueDataList">
-            <option value="Object"></option>
+        <datalist id="formcontrolDataList">
+            <option value="form-control"></option>
         </datalist>
 
-        <datalist id="TextAlignDataList">
-            <option value="Right"></option>
-            <option value="Left"></option>
+        <datalist id="ParentClassesDataList">
+            <option value="col-md-4"></option>
+            <option value="col-md-8"></option>
+            <option value="col-md-12"></option>
+
         </datalist>
     </main>
 
@@ -169,7 +171,7 @@
         <div class="row">
             <label class="col-md-5 col-form-label">Parent1Class</label>
             <div class="col-7">
-                <input class="form-control" type="text" name="Parent1Class" value="{{Parent1Class}}" >
+                <input class="form-control" type="text" name="Parent1Class" list="ParentClassesDataList" value="{{ParentClasses.Parent1Class}}" >
             </div>
         </div>
     
@@ -180,13 +182,13 @@
         <div class="col row">
             <label class="col-md-5 col-form-label">Parent2Class</label>
             <div class="col-7">
-                <input class="form-control" type="text" name="Parent2Class" value="{{Parent2Class}}" >
+                <input class="form-control" type="text" name="Parent2Class" list="ParentClassesDataList" value="{{ParentClasses.Parent2Class}}" >
             </div>
         </div>
         <div class="col row">
             <label class="col-md-5 col-form-label">Parent3Class</label>
             <div class="col-7">
-                <input class="form-control" type="text" name="Parent3Class" value="{{Parent3Class}}" >
+                <input class="form-control" type="text" name="Parent3Class" list="ParentClassesDataList" value="{{ParentClasses.Parent3Class}}" >
             </div>
         </div>
     </div>
@@ -195,7 +197,7 @@
         <div class="col row">
             <label class="col-md-8 col-form-label">InputClass</label>
             <div class="col-7">
-                <input class="form-control" type="text" name="InputClass" value="{{InputClass}}" >
+                <input class="form-control" type="text" name="InputClass" list="formcontrolDataList" value="{{ParentClasses.InputClass}}" >
             </div>
         </div>
     </div>
