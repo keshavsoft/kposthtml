@@ -36,7 +36,8 @@ let jFLocalClickFunc = async (event) => {
         IsTextArea: jVarLocalIsTextAreaValue
     }
 
-    let jFetchUrl = "/JSONAdminApi/AdminApi/Config/TableColumns/Toggles";
+    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/Toggles";
+
 
     let response = await fetch(jFetchUrl, {
         method: "PATCH",
@@ -63,7 +64,6 @@ let jFLocalClickFunc = async (event) => {
             jVarLocalNewLocation += `&inItemName=${jVarLocalitemname}`
             jVarLocalNewLocation += `&inScreenName=${jVarLocalscreenname}`
             jVarLocalNewLocation += `&inColumnName=${jVarLocalDataAttributeValue}`;
-            console.log("jVarLocalNewLocation : ", jVarLocalNewLocation);
             window.location = jVarLocalNewLocation;
 
             break;

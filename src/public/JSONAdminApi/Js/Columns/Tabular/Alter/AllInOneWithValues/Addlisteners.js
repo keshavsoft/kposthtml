@@ -17,6 +17,7 @@ let jFLocalClickFunc = async (event) => {
     let jVarLocalDataAttribute = jVarLocalColsestTr.querySelector('[name="DataAttribute"]');
     let jVarLocalDefaultValue = jVarLocalColsestTr.querySelector('[name="DefaultValue"]');
     let jVarLocalTextAlign = jVarLocalColsestTr.querySelector('[name="TextAlign"]');
+    
 
     let jVarLocalDataAttributeValue = jVarLocalDataAttribute.value;
     let jVarLocalDefaultValueValue = jVarLocalDefaultValue.value;
@@ -27,7 +28,8 @@ let jFLocalClickFunc = async (event) => {
         TextAlign: jVarLocalTextAlignValue
     }
 
-    let jFetchUrl = "/JSONAdminApi/AdminApi/Config/TableColumns/AllInOneWithValues";
+    // let jFetchUrl = "/JSONAdminApi/AdminApi/Config/TableColumns/AllInOneWithValues";
+    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/AllInOneWithValues";
 
     let response = await fetch(jFetchUrl, {
         method: "PATCH",
