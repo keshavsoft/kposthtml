@@ -30,7 +30,7 @@ let jFLocalClickFunc = async (event) => {
 
     let BodyAsJson = {
         DisplayName: jVarLocalDisplayNameValue,
-        ShowTable: jVarLocalShowInTableValue,
+        ShowInTable: jVarLocalShowInTableValue,
         Insert: jVarLocalInsertValue,
         CreateNew: jVarLocalCreateNewValue,
         IsTextArea: jVarLocalIsTextAreaValue
