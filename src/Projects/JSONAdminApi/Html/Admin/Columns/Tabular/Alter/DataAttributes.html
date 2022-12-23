@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <title>TabularColumnsData</title>
     <!-- Custom styles for this template -->
@@ -24,24 +25,9 @@
             </path>
         </symbol>
     </svg>
+
     <include src="./src/components/Templates/Admin/Columns/Tabular/Alter/Header.html"></include>
 
-
-    <main>
-        <div class="container">
-            <div id="KCont1">
-            </div>
-        </div>
-
-        <datalist id="DefaultValueDataList">
-            <option value="Object"></option>
-        </datalist>
-
-        <datalist id="TextAlignDataList">
-            <option value="Right"></option>
-            <option value="Left"></option>
-        </datalist>
-    </main>
 
     <include src="./src/components/Templates/Admin/Columns/Tabular/Alter/Footer.html"></include>
 
@@ -69,7 +55,8 @@
                                 Password cannot be empty.
                             </div>
                         </div>
-                        <input type="submit" class=" btn btn-primary" onclick="jVarGlobalClientObject.Login.LoginCheck()">
+                        <input type="submit" class=" btn btn-primary"
+                            onclick="jVarGlobalClientObject.Login.LoginCheck()">
                         <!-- <button type="button" class="btn btn-primary"
                         onclick="jVarGlobalAdmin.Login.LoginCheck()">Check</button>
                          -->
@@ -83,41 +70,116 @@
     <script src="/ClassesStatic/CommonClass.js"></script>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 
 
-    <include src="./src/components/Templates/Admin/Columns/Tabular/HbsTemplates/ForScreensOnly.html"></include>
+    <script id="HbsTemplateForScreensOnly" type="text/x-handlebars">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ScreenName</th>
+                    <th>ScreenNameForHtmlId</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this.Screens}}
+                <tr>
+                    <td class="text-center">
+                        {{ForSNo @index}}
+                    </td>
+                    <td>
+                        {{this.ScreenName}}
+                    </td>
+                    <td>
+                        {{this.ScreenNameForHtmlId}}
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{{../FolderName}}-{{../FileNameWithOutExtension}}-{{../ItemName}}-{{ScreenName}}"
+                        aria-expanded="false" aria-controls="{{../FolderName}}-{{../FileNameWithOutExtension}}-{{../ItemName}}-{{ScreenName}}">
+                        Toggle Columns
+                    </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan=5 >
+                        <div class="collapse {{CollapseClass}}" id="{{../FolderName}}-{{../FileNameWithOutExtension}}-{{../ItemName}}-{{ScreenName}}">
+                            {{> HbsTemplateForTableColumnsForTogglesOnly FolderName=../FolderName FileNameWithOutExtension=../FileNameWithOutExtension ItemName=../ItemName ScreenName=ScreenName}}
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+       
+        </table>
+      </script>
 
 
-    <script id="HbsTemplateForTableColumnsForAllInOneWithValuesOnly" type="text/x-handlebars">
-        <div class="card text-dark bg-light">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col">
-                        <h4>TableColumns Toggles in {{ScreenName}}</h4>
-                    </div>
-
-                    <div class="col">
-                        <input type="text" class="form-control" name="" placeholder="Type to search..." onkeyup="jFTableSearch(event)" autofocus>
-                    </div>
-                </div>
+   
+      <script id="HbsTemplateForTableColumnsForTogglesOnly" type="text/x-handlebars">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width="5%"></th>
+                    <th width="90%"></th>
+                    <th width="5%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each TableColumnsObject}}
+              
+    <tr class="{{RowClass}}">
+    <td class="text-center">
+    {{ForSNo @index}}
+    </td>
+    <td>
+    <div class="row mb-3">
+        <div class="col-12 col-xl-6">
+            <div class="row">
+                <label class="col-md-5 col-form-label">DataAttribute</label>
+            <div class="col-7">
+            <input class="form-control" type="text" name="DataAttribute" disabled value="{{DataAttribute}}">
+        </div>
+    
+    </div>
+    
+        </div>
+        <div class="col-12 col-xl-6">
+            
+        <div class="row">
+            <label class="col-md-5 col-form-label">DataAttribute</label>
+            <div class="col-7">
+                <input class="form-control" type="text" name="DataAttribute" value="{{DataAttribute}}" >
             </div>
-            <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>DataAttribute</th>
-                            <th>DisplayName</th>
-                            <th>DefaultValue</th>
-                            <th>TextAlign</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each TableColumnsObject}}
+        </div>
+    
+    </div>
+    </div>
+    
+    </td>
+    <td>
+    <button type="button" class="btn btn-outline-info UpdateButtonClass" data-foldername="{{@../../../../key}}" data-filename="{{@../../../key}}" data-itemname="{{@../../key}}" data-screenname="{{@../key}}">
+        Update
+    </button>
+    </td>
+    </tr>
+    
+                {{/each}}
+            </tbody>
+        </table>
+    
+        </script>
+
+
+
+    <script id="HbsTemplateForTable" type="text/x-handlebars">
+                        {{#each this.KData}}
                         <tr class="{{RowClass}}">
                             <td class="text-center">
                                 {{ForSNo @index}}
@@ -134,50 +196,21 @@
                             <td>
                                 <input class="form-control" type="text" name="TextAlign" value="{{TextAlign}}" list="TextAlignDataList">
                             </td>
-
+                            
                             <td class="text-right">
-                                <button type="button" class="btn btn-outline-info" onclick="jFUpdateData(event,'{{@../../../../key}}','{{@../../../key}}','{{@../../key}}','{{@../key}}','{{@key}}')">
-                        Update
-                    </button>
+                                <button type="button" class="btn btn-outline-info"
+                                data-foldername="{{../ConfigObject.FolderName}}" data-filenamewithoutextension="{{../ConfigObject.FileName}}"
+                        data-itemname="{{../ConfigObject.ItemName}}" data-screenname="{{../ConfigObject.ScreenName}}"    
+                        data-columnname="{{DataAttribute}}"    
+                                onclick="jFUpdateData(event,{{@index}})">
+                                    Update
+                                </button>
                             </td>
                         </tr>
                         {{/each}}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </script>
+                     
 
-    <script id="HbsTemplateForTable" type="text/x-handlebars">
-        {{#each this.KData}}
-        <tr class="{{RowClass}}">
-            <td class="text-center">
-                {{ForSNo @index}}
-            </td>
-            <td>
-                {{DataAttribute}}
-            </td>
-            <td>
-                {{DisplayName}}
-            </td>
-            <td>
-                <input class="form-control" type="text" name="DefaultValue" value="{{DefaultValue}}" list="DefaultValueDataList">
-            </td>
-            <td>
-                <input class="form-control" type="text" name="TextAlign" value="{{TextAlign}}" list="TextAlignDataList">
-            </td>
-
-            <td class="text-right">
-                <button type="button" class="btn btn-outline-info" data-foldername="{{../ConfigObject.FolderName}}" data-filenamewithoutextension="{{../ConfigObject.FileName}}" data-itemname="{{../ConfigObject.ItemName}}" data-screenname="{{../ConfigObject.ScreenName}}"
-                    data-columnname="{{DataAttribute}}" onclick="jFUpdateData(event,{{@index}})">
-                                    Update
-                                </button>
-            </td>
-        </tr>
-        {{/each}}
-
-
-    </script>
+                </script>
 
     <include src="./src/components/Templates/Admin/Columns/Tabular/HbsTemplates/ForFoldersOnly.html"></include>
 
@@ -190,9 +223,7 @@
     <script>
         //HbsTemplateForScreensWithSubTableColumnsOnly
         class jClassForHbs {
-            static FillPartialFromScriptInHtml = ({
-                inHtmlHbsScriptId
-            }) => {
+            static FillPartialFromScriptInHtml = ({ inHtmlHbsScriptId }) => {
                 let jVarLocalHbsTemplate = document.getElementById(inHtmlHbsScriptId);
 
                 if (jVarLocalHbsTemplate !== null) {
@@ -205,22 +236,18 @@
         let jVarLocalHbsTemplateForColumns = document.getElementById("HbsTemplateForColumns");
 
         let jVarLocalHbsTemplateForFiles = document.getElementById("HbsTemplateForFilesOnly");
-        jClassForHbs.FillPartialFromScriptInHtml({
-            inHtmlHbsScriptId: "HbsTemplateForScreensOnly"
-        });
-        jClassForHbs.FillPartialFromScriptInHtml({
-            inHtmlHbsScriptId: "HbsTemplateForItemsOnly"
-        });
+        jClassForHbs.FillPartialFromScriptInHtml({ inHtmlHbsScriptId: "HbsTemplateForScreensOnly" });
+        jClassForHbs.FillPartialFromScriptInHtml({ inHtmlHbsScriptId: "HbsTemplateForItemsOnly" });
 
         let jVarLocalHbsTemplateForScreensWithSubTableColumnsOnly = document.getElementById("HbsTemplateForScreensWithSubTableColumnsOnly");
         let jVarLocalHbsTemplateForColumnsForTogglesOnly = document.getElementById("HbsTemplateForColumnsForTogglesOnly");
         let jVarLocalHbsTemplateForTableColumnsForTogglesOnly = document.getElementById("HbsTemplateForTableColumnsForTogglesOnly");
-        jClassForHbs.FillPartialFromScriptInHtml({
-            inHtmlHbsScriptId: "HbsTemplateForTableColumnsForAllInOneWithValuesOnly"
-        });
+
+        // jClassForHbs.FillPartialFromScriptInHtml({ inHtmlHbsScriptId: "HbsTemplateForTableColumnsForAllInOneWithValuesOnly" });
+
         let jVarLocalHbsTemplateForTable = document.getElementById("HbsTemplateForTable");
 
-        Handlebars.registerHelper('ForSNo', function(item) {
+        Handlebars.registerHelper('ForSNo', function (item) {
             return item + 1;
         });
 
@@ -258,14 +285,10 @@
         let jFChangeHeaderActiveClass = () => {
             let jVarLocalPathArray = window.location.pathname.split("/");
             let jVarLocalHTMLName = jVarLocalPathArray[jVarLocalPathArray.length - 1];
-            jFChangeNavAnchorClass({
-                inClassName: jVarLocalHTMLName.split(".")[0]
-            });
+            jFChangeNavAnchorClass({ inClassName: jVarLocalHTMLName.split(".")[0] });
         };
 
-        let jFChangeNavAnchorClass = ({
-            inClassName
-        }) => {
+        let jFChangeNavAnchorClass = ({ inClassName }) => {
             let jVarLocalNavBarId = document.getElementById("NavBarId");
             let jVarLocalAnchorNeeded = jVarLocalNavBarId.querySelector(`.${inClassName}AClass`);
 
@@ -282,14 +305,12 @@
         jFChangeHeaderActiveClass();
     </script>
 
-    <script>
+    <!-- <script>
         let jVarCommonSubRoute = "API";
 
         class CommonFuncsForFolders {
             static FuncsForFetchUpdate = {
-                PrepareObjectFromRow: ({
-                    inJVarLocalRowElements
-                }) => {
+                PrepareObjectFromRow: ({ inJVarLocalRowElements }) => {
                     let jVarLocalFetchBodydata = {};
                     inJVarLocalRowElements.forEach((LoopElement) => {
                         if (LoopElement.hasAttribute("checked")) {
@@ -303,13 +324,12 @@
             }
 
             static getUrlQueryParams = () => {
-                var queryParams = {},
-                    param;
+                var queryParams = {}, param;
                 var params = window.location.search.substring(1).split("&");
-                console.log("params : ", params);
+                // console.log("params : ", params);
                 for (var i = 0; i < params.length; i++) {
                     param = params[i].split('=');
-                    console.log("param : ", param);
+                    // console.log("param : ", param);
                     if (param.length === 2) {
                         queryParams[param[0]] = param[1];
                     };
@@ -322,13 +342,16 @@
                 var jVarLocalQueryParams = this.getUrlQueryParams();
                 let jVarLocalSubRoute = jVarCommonSubRoute;
                 //let jVarLocalFetchUrl = `/${jVarLocalRoute}/${jVarLocalSubRoute}/Folders/Show/ForAdmin`;
-                let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/Utility/Json/Folder/ForTableColumns/AllInOneWithValues`;
+                // let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/Utility/Json/Folder/ForTableColumns/AllInOneWithValues`;
+                let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/Utility/Json/Folder/ForTableColumns/FromKeys/Toggles`;
+
 
                 fetch(jVarLocalFetchUrl)
                     .then(response => {
                         return response.json();
                         //return this.Login.StatusCodeFuncs.Code403({ inResponse: response });
                     }).then(dataFromApi => {
+                        // console.log('aaaaaaaaaaaa : ', dataFromApi);
                         if (dataFromApi !== null) {
                             if (Object.keys(jVarLocalQueryParams).length > 0) {
                                 this.ApplyClassesFromUrl({
@@ -336,36 +359,22 @@
                                     inQueryParamsAsObject: jVarLocalQueryParams
                                 });
                             } else {
-                                this.ApplyClasses({
-                                    indataFromApi: dataFromApi
-                                });
+                                this.ApplyClasses({ indataFromApi: dataFromApi });
                             };
-                            try {
 
-                                //let jVarLocalFileNameChanged = this.ChangeFileName({ indataFromApi: dataFromApi });
-                                let jVarLocalRawTemplate = document.getElementById("HbsTemplateForFoldersOnly").innerHTML;
-                                console.log("jVarLocalRawTemplate : ", dataFromApi, jVarLocalRawTemplate);
-
-                                document.getElementById("KCont1").innerHTML = Handlebars.compile(jVarLocalRawTemplate)(dataFromApi);
-
-                            } catch (error) {
-                                console.log("error : ", error);
-                            };
+                            let jVarLocalRawTemplate = document.getElementById("HbsTemplateForFoldersOnly").innerHTML;
+                            document.getElementById("KCont1").innerHTML = Handlebars.compile(jVarLocalRawTemplate)(dataFromApi);
                         };
                     });
             }
 
-            static ApplyClasses1 = ({
-                indataFromApi
-            }) => {
+            static ApplyClasses1 = ({ indataFromApi }) => {
                 if (indataFromApi.length > 0) {
                     indataFromApi[0].TabPageClass = " show active";
                     indataFromApi[0].MenuClass = " active";
                 };
             }
-            static ApplyClasses = ({
-                indataFromApi
-            }) => {
+            static ApplyClasses = ({ indataFromApi }) => {
                 let jVarLocalFirstFolder;
                 let jVarLocalFirstFile;
                 let jVarLocalFirstItem;
@@ -405,9 +414,7 @@
             }
 
 
-            static ChangeFileName = ({
-                indataFromApi
-            }) => {
+            static ChangeFileName = ({ indataFromApi }) => {
                 let jVarLocalReturnData;
 
                 jVarLocalReturnData = indataFromApi.map(elementLoopFolder => {
@@ -429,10 +436,7 @@
                 return jVarLocalReturnData;
             }
 
-            static ApplyClassesFromUrl = ({
-                indataFromApi,
-                inQueryParamsAsObject
-            }) => {
+            static ApplyClassesFromUrl = ({ indataFromApi, inQueryParamsAsObject }) => {
                 let jVarLocalFolderName = inQueryParamsAsObject.inFolderName;
                 let jVarLocalFileName = inQueryParamsAsObject.inFileName;
                 let jVarLocalItemName = inQueryParamsAsObject.inItemName;
@@ -483,10 +487,10 @@
         };
 
         let serializeObject = (inHtmlTr) => {
-            console.log("inHtmlTr : ", inHtmlTr);
+            // console.log("inHtmlTr : ", inHtmlTr);
             // Create a new FormData object
             const formData = inHtmlTr.querySelectorAll("[name]");
-            console.log("formData : ", formData);
+            // console.log("formData : ", formData);
             // Create an object to hold the name/value pairs
             const pairs = {};
 
@@ -520,14 +524,7 @@
             }
         };
 
-        let jFShowColumnsIntable = ({
-            inFolderName,
-            inFileName,
-            inItemName,
-            inScreenName,
-            inToShowHtmlControlId,
-            inRowIndex
-        }) => {
+        let jFShowColumnsIntable = ({ inFolderName, inFileName, inItemName, inScreenName, inToShowHtmlControlId, inRowIndex }) => {
             let jVarLocalTableBody = document.getElementById(inToShowHtmlControlId).querySelector("tbody");
             let jVarLocalFetchUrl = `/JSONProject/AdminApi/Columns/ForDataList/ForDefaultValue/${inFolderName}/${inFileName}/${inItemName}/${inScreenName}`;
             let jVarLocalConfigObject = {
@@ -546,10 +543,7 @@
 
                     let jVarLocalRawTemplate = document.getElementById("HbsTemplateForTable").innerHTML;
 
-                    jVarLocalTableBody.innerHTML = Handlebars.compile(jVarLocalRawTemplate)({
-                        KData: dataFromApi,
-                        ConfigObject: jVarLocalConfigObject
-                    })
+                    jVarLocalTableBody.innerHTML = Handlebars.compile(jVarLocalRawTemplate)({ KData: dataFromApi, ConfigObject: jVarLocalConfigObject })
                 });
         };
 
@@ -557,14 +551,7 @@
             let jVarLocalCurrentTarget = inEvent.currentTarget;
             let jVarLocalHtmlTr = jVarLocalCurrentTarget.closest("tr");
             let jVarLocalRowElements = jVarLocalHtmlTr.querySelectorAll("input");
-            //let jVarLocalFetchBodydata = {};
-            let jVarLocalFetchBodydata = CommonFuncsForFolders.FuncsForFetchUpdate.PrepareObjectFromRow({
-                inJVarLocalRowElements: jVarLocalRowElements
-            });
-
-            // jVarLocalRowElements.forEach((LoopElement) => {
-            //     jVarLocalFetchBodydata[LoopElement.name] = LoopElement.checked;
-            // });
+            let jVarLocalFetchBodydata = CommonFuncsForFolders.FuncsForFetchUpdate.PrepareObjectFromRow({ inJVarLocalRowElements: jVarLocalRowElements });
 
             let jVarLocalRoute = window.location.pathname.split("/")[1];
 
@@ -577,11 +564,14 @@
 
             let jVarLocalEndPoint = "{{inItemName.{{inScreenName.TableColumns[DataAttribute:inColumnName";
 
-            let jVarLocalFetchUrlWithOutinKQueryObject = `/${jVarLocalRoute}/AdminApi/Config/TableColumns/Update?inFolderName=${inFolderName}&inJsonFileName=${jVarLocalFileNameWithExtension}&inItemName=${inItemName}&inScreenName=${inScreenName}&inColumnName=${jVarLocalColumnName}`;
+            //let jVarLocalFetchUrlWithOutinKQueryObject = `/${jVarLocalRoute}/AdminApi/Config/TableColumns/Update?inFolderName=${inFolderName}&inJsonFileName=${jVarLocalFileNameWithExtension}&inItemName=${inItemName}&inScreenName=${inScreenName}&inColumnName=${jVarLocalColumnName}`;
+
+            let jVarLocalFetchUrlWithOutinKQueryObject = `/${jVarLocalRoute}/AdminApi/Config/TableColumns/UpdateKeys/Toggles?inFolderName=${inFolderName}&inJsonFileName=${jVarLocalFileNameWithExtension}&inItemName=${inItemName}&inScreenName=${inScreenName}&inColumnName=${jVarLocalColumnName}`;
+
             let jVarLocalFetchUrl = `${jVarLocalFetchUrlWithOutinKQueryObject}&inKQueryObject=${jVarLocalEndPoint}`
 
             fetch(jVarLocalFetchUrl, {
-                method: "post",
+                method: "PATCH",
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -591,64 +581,9 @@
                 let jVarLocalData = JSON.parse(dataFromApi);
 
                 if (jVarLocalData.KTF) {
-                    window.location = `?inFolderName=${jVarLocalFolderName}&inFileName=${inFileName}&inItemName=${jVarLocalItemName}&inScreenName=${jVarLocalScreenName}&inColumnName=${jVarLocalColumnName}`;
+                    window.location += `?inFolderName=${jVarLocalFolderName}&inFileName=${inFileName}&inItemName=${jVarLocalItemName}&inScreenName=${jVarLocalScreenName}&inColumnName=${jVarLocalColumnName}`;
                 };
             });
-        };
-
-
-        let jFUpdateData_Keshav_14mar2022 = (inEvent, inRowIndex) => {
-            console.log("inRowIndex : ", inRowIndex);
-            let jVarLocalCurrentTarget = inEvent.currentTarget;
-            let jVarLocalHtmlTr = jVarLocalCurrentTarget.closest("tr");
-
-            let jVarLocalConfigObject = {
-                KTF: true,
-                FolderName: jVarLocalCurrentTarget.dataset.foldername,
-                FileName: jVarLocalCurrentTarget.dataset.filenamewithoutextension,
-                ItemName: jVarLocalCurrentTarget.dataset.itemname,
-                ScreenName: jVarLocalCurrentTarget.dataset.screenname,
-                ColumnName: jVarLocalCurrentTarget.dataset.columnname
-            };
-
-            let jVarLocalEndPoint = "{{inItemName.{{inScreenName.TableColumns[DataAttribute:inColumnName";
-
-            // let jVarLocalUrlObject = jVarGlobalClientObject.AdminApi.Config.TableColumns.Update.CommonFuncs.CheckBeforeFetch();
-            console.log("jVarLocalUrlObject : ", jVarLocalConfigObject);
-            let jVarLocalFetchBodydata = jVarGlobalClientObject.AdminApi.Config.CommonFuncs.PreparePostData.ForUpdateTakeInput({
-                inJVarHtmlControl: jVarLocalHtmlTr
-            });
-            console.log("jVarLocalFetchBodydata : ", jVarLocalFetchBodydata);
-            //  jVarLocalUrlObject.ColumnName = jVarLocalFetchBodydata.DataAttribute;
-
-            let jVarLocalFetchUrl = jVarGlobalClientObject.AdminApi.Config.TableColumns.Update.CommonFuncs.PrepareUrl.ForUpdate({
-                inUrlObject: jVarLocalConfigObject
-            });;
-            console.log("jVarLocalFetchUrl : ", jVarLocalFetchUrl);
-            fetch(`${jVarLocalFetchUrl}&inKQueryObject=${jVarLocalEndPoint}`, {
-                method: "post",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jVarLocalFetchBodydata)
-            }).then(response => response.text()).then(dataFromApi => {
-                let jVarLocalData = JSON.parse(dataFromApi);
-                console.log("jVarLocalData : ", jVarLocalData);
-                if (jVarLocalData.KTF) {
-                    //    window.location = "";
-                    jFShowColumnsIntable({
-                        inFolderName: jVarLocalConfigObject.FolderName,
-                        inFileName: jVarLocalConfigObject.FileName,
-                        inItemName: jVarLocalConfigObject.ItemName,
-                        inScreenName: jVarLocalConfigObject.ScreenName,
-                        inToShowHtmlControlId: `${jVarLocalConfigObject.FolderName}-${jVarLocalCurrentTarget.dataset.filenamewithoutextension}-${jVarLocalConfigObject.ItemName}-${jVarLocalConfigObject.ScreenName}`,
-                        inRowIndex
-                    });
-
-                };
-            });
-
         };
 
         let jFShowColumnTable = (inFolderName, inFileName, inItemName, inScreenName, inToShowHtmlControlId) => {
@@ -659,8 +594,7 @@
             }
 
             jFShowColumnsIntable({
-                inFolderName,
-                inFileName,
+                inFolderName, inFileName,
                 inItemName,
                 inScreenName,
                 inToShowHtmlControlId
@@ -669,8 +603,7 @@
 
         let jFToggleColumnTable = (inToShowHtmlControlId) => {
             jFShowColumnsIntable({
-                inFolderName,
-                inFileName,
+                inFolderName, inFileName,
                 inItemName,
                 inScreenName,
                 inToShowHtmlControlId
@@ -680,13 +613,15 @@
         jVarGlobalClientObject.Login.ClientSideCookieFuncs.CheckToken();
 
         let jVarHtmlLoginModalId = document.getElementById("LoginModalId");
-        jVarHtmlLoginModalId.addEventListener('shown.bs.modal', function(event) {
+        jVarHtmlLoginModalId.addEventListener('shown.bs.modal', function (event) {
             let jVarLocalSubmitButton = event.currentTarget.querySelector(".modal-body input[type='submit']");
             jVarLocalSubmitButton.focus();
         });
 
         CommonFuncsForFolders.CreateFolders();
-    </script>
+    </script> -->
+
+    <script src="../../../../../Js/Columns/Tabular/Alter/DataAttributes.js" type="module"></script>
 
 </body>
 
