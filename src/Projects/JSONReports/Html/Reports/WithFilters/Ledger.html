@@ -211,7 +211,8 @@
             <label>Report Name :</label>
 
             <div class="input-group mt-2 mb-3">
-                <input type="text" class="form-control ReportSelectedClass" list="ReportsList" placeholder="Select Folder" autofocus="">
+                <input type="text" class="form-control ReportSelectedClass" list="ReportsList"
+                    placeholder="Select Folder" autofocus="">
 
                 <button class="btn btn-outline-secondary" id="ReportButtonId" type="button">Go</button>
             </div>
@@ -230,16 +231,27 @@
             </tbody>
         </table>
 
-        <h3 class="text-center" id="ReportNameForPrint">Ledger</h3>
-        <h5 class="text-center" id="AccountNameForPrint">Account Name</h5>
-        <div id="FilteredTableId">
-
+        <h3 class="text-center" id="ReportFirmNameId">FirmName</h3>
+        <h3 class="text-center border-top" id="ReportNameForPrint">Ledger</h3>
+        <div class="row">
+            <div id="PeriodId" class="col-md-8">Period</div>
+            <div id="PANId" class="col-md-4">PAN</div>
+        </div>
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div id="AssYearId" class="col-md-4">Ass. Year</div>
+        </div>
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div id="FinYearId" class="col-md-4">Acc. Year</div>
         </div>
 
-
+        <h5 class="text-center" id="AccountNameForPrint">Account Name</h5>
+        <div id="FilteredTableId">
+        </div>
     </div>
 
-
+    
     <div id="KCont1" class="m-3">
 
     </div>
@@ -252,12 +264,14 @@
             <th scope="row">{{SNo}}</th>
             <td>{{Name}}</td>
             <td>
-                <input type="text" class="form-control SearchInput" aria-describedby="helpId" list="DataListForFilter-{{SNo}}">
+                <input type="text" class="form-control SearchInput" aria-describedby="helpId"
+                    list="DataListForFilter-{{SNo}}">
                 <datalist id="DataListForFilter-{{SNo}}">
                 </datalist>
             </td>
             <td>
-                <button type="button" class="btn btn-primary FilterButtonClass" data-dataattribute="{{DataAttribute}}" data-uuid="{{UUID}}">Filter Data</button>
+                <button type="button" class="btn btn-primary FilterButtonClass" data-dataattribute="{{DataAttribute}}"
+                    data-uuid="{{UUID}}">Filter Data</button>
             </td>
         </tr>
     </template>
@@ -267,12 +281,14 @@
             <th scope="row">{{SNo}}</th>
             <td>{{Name}}</td>
             <td>
-                <input type="text" class="form-control SearchInput" aria-describedby="helpId" list="DataListForFilter-{{SNo}}">
+                <input type="text" class="form-control SearchInput" aria-describedby="helpId"
+                    list="DataListForFilter-{{SNo}}">
                 <datalist id="DataListForFilter-{{SNo}}">
                 </datalist>
             </td>
             <td>
-                <button type="button" class="btn btn-primary" onclick="jFFilterData({inEvent:event})" data-dataattribute="{{DataAttribute}}" data-uuid="{{UUID}}">Filter Data</button>
+                <button type="button" class="btn btn-primary" onclick="jFFilterData({inEvent:event})"
+                    data-dataattribute="{{DataAttribute}}" data-uuid="{{UUID}}">Filter Data</button>
             </td>
         </tr>
     </template>

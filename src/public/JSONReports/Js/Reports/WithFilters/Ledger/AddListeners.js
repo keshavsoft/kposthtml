@@ -1,4 +1,5 @@
 import { FromLocalStorage } from "./ShowHeader.js";
+import { ReportDetails } from "./ShowOnDom.js";
 
 let jFStartFunc = () => {
     let jVarLocalReportButtonId = document.getElementById("ReportButtonId");
@@ -32,6 +33,8 @@ let jFLocalFilterData = (inEvent) => {
         inData: jVarGlobalPresentViewData,
         inHtmlParent: jVarLocalFilteredTableId
     });
+
+    ReportDetails({ inAccountName: jVarLocalFilterValue });
 };
 
 let jFLocalPullFromServerInsertToLocalStorage = (inEvent) => {
@@ -67,10 +70,8 @@ let jFLocalPullFromServerInsertToLocalStorage = (inEvent) => {
                 jFFillDataListForFilters({ inUUID: jVarLocalUUID });
 
                 let jVarLocalFilterButtonClass = document.querySelectorAll(".FilterButtonClass");
-                //console.log("jVarLocalFilterButtonClass : ", jVarLocalFilterButtonClass);
-                for (let i = 0; i < jVarLocalFilterButtonClass.length; i++) {
-                    console.log("jVarLocalFilterButtonClass : ", jVarLocalFilterButtonClass[i]);
 
+                for (let i = 0; i < jVarLocalFilterButtonClass.length; i++) {
                     jVarLocalFilterButtonClass[i].addEventListener("click", jFLocalFilterData);
                 };
             };
