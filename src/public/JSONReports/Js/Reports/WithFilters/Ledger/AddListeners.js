@@ -1,3 +1,5 @@
+import { FromLocalStorage } from "./ShowHeader.js";
+
 let jFStartFunc = () => {
     let jVarLocalReportButtonId = document.getElementById("ReportButtonId");
 
@@ -36,7 +38,8 @@ let jFLocalPullFromServerInsertToLocalStorage = (inEvent) => {
     let jVarLocalCurrentTarget = inEvent.currentTarget;
 
     let jVarClosestInputGroup = jVarLocalCurrentTarget.closest(".input-group");
-    let jVarLocalHtmlCardBody = document.querySelector(".TabPaneKCont1");
+
+    FromLocalStorage();
 
     let jVarLocalRoute = jVarGlobalProject;
     let jVarLocalSubRoute = jVarGlobalSubRoute;
