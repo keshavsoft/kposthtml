@@ -7,9 +7,6 @@ let jFStartFunc = () => {
 let jFLocalFilterData = (inEvent) => {
     let jVarLocalcurrentTarget = inEvent.currentTarget;
 
-    console.log("jFLocalFilterData : ", jFLocalFilterData);
-
-
     let jVarClosestRow = jVarLocalcurrentTarget.closest("tr");
     let jVarToFilterInput = jVarClosestRow.querySelector(".SearchInput");
     let jVarLocalFilterValue = jVarToFilterInput.value;
