@@ -15,14 +15,16 @@ let jFLocalClickFunc = async (event) => {
 
     let jVarLocalColsestTr = jVarLocalCurrentTarget.closest("tr");
     let jVarLocalDataAttribute = jVarLocalColsestTr.querySelector('[name="DataAttribute"]');
+    let jVarLocalDataAttribute1 = jVarLocalColsestTr.querySelector('[name="DataAttribute1"]');
+
 
     let jVarLocalDataAttributeValue = jVarLocalDataAttribute.value;
+    let jVarLocalDataAttributeValue1 = jVarLocalDataAttribute1.value;
 
     let BodyAsJson = {
-        DataAttribute: jVarLocalDataAttributeValue
+        DataAttribute1: jVarLocalDataAttributeValue1
     }
 
-    // let jFetchUrl = "/JSONAdminApi/AdminApi/Config/TableColumns/Toggles";
     let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/DataAttributes";
 
 
@@ -44,7 +46,6 @@ let jFLocalClickFunc = async (event) => {
 
     switch (response.status) {
         case 200:
-            //window.location = "";
             let jVarLocalNewLocation = "";
             jVarLocalNewLocation += `?inFolderName=${jVarLocalFolderName}`
             jVarLocalNewLocation += `&inFileName=${jVarLocalfilename}`
