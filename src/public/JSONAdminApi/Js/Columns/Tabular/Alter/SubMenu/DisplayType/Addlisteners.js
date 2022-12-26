@@ -15,25 +15,19 @@ let jFLocalClickFunc = async (event) => {
 
     let jVarLocalColsestTr = jVarLocalCurrentTarget.closest("tr");
     let jVarLocalDataAttribute = jVarLocalColsestTr.querySelector('[name="DataAttribute"]');
-    let jVarLocalParent1Class = jVarLocalColsestTr.querySelector('[name="Parent1Class"]');
-    let jVarLocalParent2Class = jVarLocalColsestTr.querySelector('[name="Parent2Class"]');
-    let jVarLocalParent3Class = jVarLocalColsestTr.querySelector('[name="Parent3Class"]');
-    let jVarLocalInputClass = jVarLocalColsestTr.querySelector('[name="InputClass"]');
+    let jVarLocalIsIndianFormat = jVarLocalColsestTr.querySelector('[name="IsIndianFormat"]');
+    let jVarLocalIsInput = jVarLocalColsestTr.querySelector('[name="IsInput"]');
 
     let jVarLocalDataAttributeValue = jVarLocalDataAttribute.value;
-    let jVarLocaljVarLocalParent1ClassValue = jVarLocalParent1Class.value;
-    let jVarLocaljVarLocalParent2ClassValue = jVarLocalParent2Class.value;
-    let jVarLocaljVarLocalParent3ClassValue = jVarLocalParent3Class.value;
-    let jVarLocaljVarLocalInputClassValue = jVarLocalInputClass.value;
+    let jVarLocaljVarLocalIsIndianFormatValue = jVarLocalIsIndianFormat.checked;
+    let jVarLocaljVarLocalIsInputValue = jVarLocalIsInput.checked;
 
     let BodyAsJson = {
-        Parent1Class: jVarLocaljVarLocalParent1ClassValue,
-        Parent2Class: jVarLocaljVarLocalParent2ClassValue,
-        Parent3Class: jVarLocaljVarLocalParent3ClassValue,
-        InputClass: jVarLocaljVarLocalInputClassValue
+        IsIndianFormat: jVarLocaljVarLocalIsIndianFormatValue,
+        IsInput: jVarLocaljVarLocalIsInputValue
     }
 
-    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/SubKeys/ParentClasses";
+    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/SubKeys/DisplayType";
 
     let response = await fetch(jFetchUrl, {
         method: "PATCH",
