@@ -1,14 +1,14 @@
-//import { jFStartFunc as TogglesjFStartFunc } from "./ApplyClasses.js";
+import { jFStartFunc as ColumnReOrderjFStartFunc } from "./ApplyClasses.js";
 
 let jFCreateFoldersToDom = async () => {
     let jVarLocalRoute = window.location.pathname.split("/")[1];
-    let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/Toggles`;
-
+    // let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/Toggles`;
+    let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableInfo/FromKeys/ColumnReOrder`;
     let jVarLocalFromFetch = await fetch(jVarLocalFetchUrl);
     let dataFromApi = await jVarLocalFromFetch.json();
 
     if (dataFromApi !== null) {
-  //      TogglesjFStartFunc({ inDataFromApi: dataFromApi });
+       ColumnReOrderjFStartFunc({ inDataFromApi: dataFromApi });
 
         let jVarLocalRawTemplate = document.getElementById("HbsTemplateForFoldersOnly").innerHTML;
         document.getElementById("KCont1").innerHTML = Handlebars.compile(jVarLocalRawTemplate)(dataFromApi);
