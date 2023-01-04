@@ -122,22 +122,18 @@
                         {{this.ScreenNameForHtmlId}}
                     </td>
                     <td>
-                        {{#if ColumnReOrder}}
-    <div class="form-check  form-switch">
-        <input class="form-check-input" type="checkbox" name="ColumnReOrder" checked>
-    </div>
-`                {{else}}
-<div class="form-check  form-switch">
-<input class="form-check-input" type="checkbox" name="ColumnReOrder">
-</div>
-    {{/if}}
+                        <div class="form-check  form-switch">
+                            {{#if ColumnReOrder}}
+                            <input class="form-check-input" type="checkbox" name="ColumnReOrder" checked>
+                            {{else}}
+                            <input class="form-check-input" type="checkbox" name="ColumnReOrder">
+                            {{/if}}
+                        </div>
                     </td>
                     <td>
-                        <button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" 
-                        aria-expanded="false"
-                        onclick="jFUpdateData(event,'{{@../../../key}}','{{@../../key}}','{{@../key}}','{{@key}}')" >
-                        Update
-                    </button>
+                        <button type="button" class="btn btn-outline-info UpdateButtonClass" data-foldername="{{@../../../key}}" data-filename="{{@../../key}}" data-itemname="{{@../key}}" data-screenname="{{ScreenName}}">
+                            Update
+                        </button>
                     </td>
                 </tr>
                 {{/each}}
