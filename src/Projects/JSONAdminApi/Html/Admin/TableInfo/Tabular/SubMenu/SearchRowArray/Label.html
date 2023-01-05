@@ -90,7 +90,53 @@
 
     <include src="./src/components/Templates/Admin/Columns/Tabular/HbsTemplates/ForItemsOnly.html"></include>
 
-      <script id="HbsTemplateForScreensOnly" type="text/x-handlebars">
+    
+    <script id="HbsTemplateForScreensOnly" type="text/x-handlebars">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ScreenName</th>
+                    <th>ScreenNameForHtmlId</th>
+                    <th>ColumnReOrder</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this.Screens}}
+                {{log "inside" this}}
+                <tr>
+                    <td class="text-center">
+                        {{ForSNo @index}}
+                    </td>
+                    <td>
+                        {{this.ScreenName}}
+                    </td>
+                    <td>
+                        {{this.ScreenNameForHtmlId}}
+                    </td>
+                    <td>
+                        <div class="form-check  form-switch">
+                            {{#if KTF}}
+                            <input class="form-check-input" type="checkbox" name="KTF" checked>
+                            {{else}}
+                            <input class="form-check-input" type="checkbox" name="KTF">
+                            {{/if}}
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-info UpdateButtonClass" data-foldername="{{@../../../key}}" data-filename="{{@../../key}}" data-itemname="{{@../key}}" data-screenname="{{ScreenName}}">
+                            Update
+                        </button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+       
+        </table>
+      </script>
+
+
+      <script id="HbsTemplateForScreensOnly11" type="text/x-handlebars">
         <table class="table">
             <thead>
                 <tr>
@@ -236,8 +282,10 @@
 
         jFChangeHeaderActiveClass();
     </script>
+<!-- 
+<script src="../../../../Js/TableInfo/Tabular/Toggles/Toggles.js" type="module"></script> -->
 
-<script src="../../../../Js/TableInfo/Tabular/Toggles/Toggles.js" type="module"></script>
+<script src="../../../../../../Js/TableInfo/Tabular/SubMenu/Label/Label.js" type="module"></script>
 
 </body>
 

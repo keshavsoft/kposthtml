@@ -15,21 +15,23 @@ let jFLocalClickFunc = async (event) => {
 
     let jVarLocalColsestTr = jVarLocalCurrentTarget.closest("tr");
     let jVarLocalKTF = jVarLocalColsestTr.querySelector('[name="KTF"]');
-    let jVarLocalDisplayText = jVarLocalColsestTr.querySelector('[name="DisplayText"]');
-    let jVarLocalColClass = jVarLocalColsestTr.querySelector('[name="ColClass"]');
+    // let jVarLocalDisplayText = jVarLocalColsestTr.querySelector('[name="DisplayText"]');
+    // let jVarLocalColClass = jVarLocalColsestTr.querySelector('[name="ColClass"]');
 
     let jVarLocalKTFValue = jVarLocalKTF.checked;
-    let jVarLocalDisplayTextValue = jVarLocalDisplayText.value;
-    let jVarLocalColClassValue = jVarLocalColClass.value;
+    // let jVarLocalDisplayTextValue = jVarLocalDisplayText.value;
+    // let jVarLocalColClassValue = jVarLocalColClass.value;
 
     let BodyAsJson = {
         KTF: jVarLocalKTFValue,
-        DisplayText: jVarLocalDisplayTextValue,
-        ColClass: jVarLocalColClassValue
+        // DisplayText: jVarLocalDisplayTextValue,
+        // ColClass: jVarLocalColClassValue
     }
 
-    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableInfo/SubMenu/Label";
+    //let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableInfo/SubMenu/SearchRowArray/Label`;
 
+    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableInfo/SubMenu/SearchRowArray/Label";
+    console.log("jFetchUrl-----------", jFetchUrl);
 
     let response = await fetch(jFetchUrl, {
         method: "PATCH",
