@@ -25,7 +25,7 @@
         </symbol>
     </svg>
 
-    <include src="./src/components/Templates/Admin/TableInfo/Tabular/SubMenu/SearchRowArray/header.html"></include>
+    <include src="./src/components/Templates/Admin/TableInfo/Tabular/SubMenu/FooterType/header.html"></include>
 
     <main>
         <div class="container">
@@ -35,7 +35,7 @@
         
     </main>
 
-    <include src="./src/components/Templates/Admin/TableInfo/Tabular/SubMenu/SearchRowArray/Footer.html"></include>
+    <include src="./src/components/Templates/Admin/TableInfo/Tabular/SubMenu/FooterType/Footer.html"></include>
 
     <!-- LOGIN  STARTED -->
     <div class="modal fade" id="LoginModalId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -118,20 +118,30 @@
                     </td>
                     <td>
                         <div class="form-check  form-switch">
-                            {{#if KTF}}
-                            <input class="form-check-input" type="checkbox" name="KTF" checked>
+                            {{#if ShowBalance}}
+                            <input class="form-check-input" type="checkbox" name="ShowBalance" checked>
                             {{else}}
-                            <input class="form-check-input" type="checkbox" name="KTF">
+                            <input class="form-check-input" type="checkbox" name="ShowBalance">
                             {{/if}}
                         </div>
                     </td>
                     <td>
-                        <input class="form-control" type="text" name="DisplayText" value="{{DisplayText}}" >
-
+                        <div class="form-check  form-switch">
+                            {{#if CreateNew}}
+                            <input class="form-check-input" type="checkbox" name="CreateNew" checked>
+                            {{else}}
+                            <input class="form-check-input" type="checkbox" name="CreateNew">
+                            {{/if}}
+                        </div>
                     </td>
                     <td>
-                        <input class="form-control" type="text" name="ColClass" value="{{ColClass}}" >
-
+                        <div class="form-check  form-switch">
+                            {{#if ShowTotals}}
+                            <input class="form-check-input" type="checkbox" name="ShowTotals" checked>
+                            {{else}}
+                            <input class="form-check-input" type="checkbox" name="ShowTotals">
+                            {{/if}}
+                        </div>
                     </td>
                     <td>
                         <button type="button" class="btn btn-outline-info UpdateButtonClass" data-foldername="{{@../../../key}}" data-filename="{{@../../key}}" data-itemname="{{@../key}}" data-screenname="{{ScreenName}}">
@@ -295,7 +305,7 @@
 <!-- 
 <script src="../../../../Js/TableInfo/Tabular/Toggles/Toggles.js" type="module"></script> -->
 
-<script src="../../../../../../Js/TableInfo/Tabular/SubMenu/SearchRowArray/Label/Label.js" type="module"></script>
+<script src="../../../../../../Js/TableInfo/Tabular/SubMenu/FooterType/FromKeys/FromKeys.js" type="module"></script>
 
 </body>
 
