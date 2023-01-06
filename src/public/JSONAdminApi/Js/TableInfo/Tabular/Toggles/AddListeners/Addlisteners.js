@@ -2,6 +2,7 @@ let jFUpdateFunc = () => {
     let jVarLocalUpdateClassName = document.getElementsByClassName("UpdateButtonClass");
 
     for (let i = 0; i < jVarLocalUpdateClassName.length; i++) {
+        console.log("ddddddddddd");
         jVarLocalUpdateClassName[i].addEventListener("click", jFLocalClickFunc)
     };
 };
@@ -14,29 +15,24 @@ let jFLocalClickFunc = async (event) => {
     let jVarLocalscreenname = jVarLocalCurrentTarget.dataset.screenname;
 
     let jVarLocalColsestTr = jVarLocalCurrentTarget.closest("tr");
-    let jVarLocalDataAttribute = jVarLocalColsestTr.querySelector('[name="DataAttribute"]');
-    let jVarLocalDisplayName = jVarLocalColsestTr.querySelector('[name="DisplayName"]');
-    let jVarLocalShowInTable = jVarLocalColsestTr.querySelector('[name="ShowInTable"]');
-    let jVarLocalInsert = jVarLocalColsestTr.querySelector('[name="Insert"]');
-    let jVarLocalCreateNew = jVarLocalColsestTr.querySelector('[name="CreateNew"]');
-    let jVarLocalIsTextArea = jVarLocalColsestTr.querySelector('[name="IsTextArea"]');
+    let jVarLocalColumnReOrder = jVarLocalColsestTr.querySelector('[name="ColumnReOrder"]');
+    let jVarLocalShowFooter = jVarLocalColsestTr.querySelector('[name="ShowFooter"]');
+    let jVarLocalDataAttributesFromTableInfo = jVarLocalColsestTr.querySelector('[name="DataAttributesFromTableInfo"]');
+    let jVarLocalDataAttributesFromTableDataRow = jVarLocalColsestTr.querySelector('[name="DataAttributesFromTableDataRow"]');
 
-    let jVarLocalDataAttributeValue = jVarLocalDataAttribute.value;
-    let jVarLocalDisplayNameValue = jVarLocalDisplayName.value;
-    let jVarLocalShowInTableValue = jVarLocalShowInTable.checked
-    let jVarLocalInsertValue = jVarLocalInsert.checked
-    let jVarLocalCreateNewValue = jVarLocalCreateNew.checked
-    let jVarLocalIsTextAreaValue = jVarLocalIsTextArea.checked
+    let jVarLocalColumnReOrderValue = jVarLocalColumnReOrder.checked
+    let jVarLocalShowFooterValue = jVarLocalShowFooter.checked
+    let jVarLocalDataAttributesFromTableInfoValue = jVarLocalDataAttributesFromTableInfo.checked
+    let jVarLocalDataAttributesFromTableDataRowValue = jVarLocalDataAttributesFromTableDataRow.checked
 
     let BodyAsJson = {
-        DisplayName: jVarLocalDisplayNameValue,
-        ShowInTable: jVarLocalShowInTableValue,
-        Insert: jVarLocalInsertValue,
-        CreateNew: jVarLocalCreateNewValue,
-        IsTextArea: jVarLocalIsTextAreaValue
+        ColumnReOrder: jVarLocalColumnReOrderValue,
+        ShowFooter: jVarLocalShowFooterValue,
+        DataAttributesFromTableInfo: jVarLocalDataAttributesFromTableInfoValue,
+        DataAttributesFromTableDataRow: jVarLocalDataAttributesFromTableDataRowValue
     }
 
-    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/Toggles";
+    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableInfo/Toggles";
 
 
     let response = await fetch(jFetchUrl, {
@@ -50,7 +46,6 @@ let jFLocalClickFunc = async (event) => {
             FileName: jVarLocalfilename,
             ItemName: jVarLocalitemname,
             ScreenName: jVarLocalscreenname,
-            DataAttribute: jVarLocalDataAttributeValue,
             BodyAsJson
         })
     });
@@ -62,8 +57,7 @@ let jFLocalClickFunc = async (event) => {
             jVarLocalNewLocation += `?inFolderName=${jVarLocalFolderName}`
             jVarLocalNewLocation += `&inFileName=${jVarLocalfilename}`
             jVarLocalNewLocation += `&inItemName=${jVarLocalitemname}`
-            jVarLocalNewLocation += `&inScreenName=${jVarLocalscreenname}`
-            jVarLocalNewLocation += `&inColumnName=${jVarLocalDataAttributeValue}`;
+            jVarLocalNewLocation += `&inScreenName=${jVarLocalscreenname}`;
             window.location = jVarLocalNewLocation;
 
             break;
