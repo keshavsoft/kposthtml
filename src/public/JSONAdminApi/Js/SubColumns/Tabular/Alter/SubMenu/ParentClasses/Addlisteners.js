@@ -33,7 +33,7 @@ let jFLocalClickFunc = async (event) => {
         InputClass: jVarLocaljVarLocalInputClassValue
     }
 
-    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/SubKeys/ParentClasses";
+    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/SubTableColumns/SubKeys/ParentClasses";
 
     let response = await fetch(jFetchUrl, {
         method: "PATCH",

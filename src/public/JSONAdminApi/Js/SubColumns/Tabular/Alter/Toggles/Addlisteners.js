@@ -36,7 +36,7 @@ let jFLocalClickFunc = async (event) => {
         IsTextArea: jVarLocalIsTextAreaValue
     }
 
-    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/Toggles";
+    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/SubTableColumns/Toggles";
 
 
     let response = await fetch(jFetchUrl, {
