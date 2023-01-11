@@ -36,7 +36,7 @@ let jFLocalClickFunc = async (event) => {
         ConsiderFirmPeriod:jVarLocalTransformValue
     }
 
-    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/SubKeys/ServerSide/DefaultValueCreate";
+    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/SubsTableColumns/SubKeys/ServerSide/DefaultValueCreate";
 
     let response = await fetch(jFetchUrl, {
         method: "PATCH",

@@ -2,10 +2,11 @@ import { jFStartFunc as TogglesjFStartFunc } from "./ApplyClasses.js";
 
 let jFCreateFoldersToDom = async () => {
     let jVarLocalRoute = window.location.pathname.split("/")[1];
-    let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/Toggles`;
+    let jVarLocalFetchUrl = `/${jVarLocalRoute}/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/SubTableColumns/Toggles`;
 
     let jVarLocalFromFetch = await fetch(jVarLocalFetchUrl);
     let dataFromApi = await jVarLocalFromFetch.json();
+    console.log("dataFromApi--",dataFromApi);
 
     if (dataFromApi !== null) {
         TogglesjFStartFunc({ inDataFromApi: dataFromApi });

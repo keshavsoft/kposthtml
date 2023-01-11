@@ -24,7 +24,7 @@ let jFLocalClickFunc = async (event) => {
         px: jVarLocalWidthsValue
     }
 
-    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/SubKeys/Widths";
+    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/SubTableColumns/SubKeys/Widths";
 
     let response = await fetch(jFetchUrl, {
         method: "PATCH",

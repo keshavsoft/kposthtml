@@ -30,7 +30,7 @@ let jFLocalClickFunc = async (event) => {
         Type:jVarLocalTypeValue
     }
 
-    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/SubKeys/KDatasetStuff";
+    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/SubTableColumns/SubKeys/KDatasetStuff";
 
     let response = await fetch(jFetchUrl, {
         method: "PATCH",
