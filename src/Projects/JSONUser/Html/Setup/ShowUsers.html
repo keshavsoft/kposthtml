@@ -37,17 +37,35 @@
 </head>
 
 <body>
-	<include src="src/components/Projects/JSONUser/header.html"></include>
+	<!-- <include src="src/components/Projects/JSONUser/header.html"></include>
+	 -->
+	<header id="NavBarId" class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+		<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+		<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+			data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+		<div class="navbar-nav">
+			<div class="nav-item text-nowrap">
+				<a id="HeaderLoginButtonId" class="nav-link px-3" href="#"
+					onclick="jVarGlobalClientObject.UI.ModalFuncs.Show()">Sign out</a>
+				<a id="HeaderUserIdDropDown" class="nav-link px-3 visually-hidden" href="#">UserName</a>
+			</div>
+		</div>
+	</header>
+
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
-    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
-    crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+		integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+		crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
 	<div class="container-fluid">
 		<div class="row">
@@ -160,18 +178,14 @@
 								Password cannot be empty.
 							</div>
 						</div>
-						<input type="submit" class=" btn btn-primary"
-							onclick="jVarGlobalClientObject.Login.LoginCheck()">
-						<!-- <button type="button" class="btn btn-primary"
-                    onclick="jVarGlobalAdmin.Login.LoginCheck()">Check</button>
-                     -->
+						<input id="LoginButtonOnModalId" type="submit" class=" btn btn-primary">
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	
+
 	<script id="HbsTemplateForBody" type="text/x-handlebars">
 		{{#each this}}
 		<tr class={{RowClass}}>
@@ -238,7 +252,9 @@
 		};
 	</script>
 
-<script src="../../Js/Setup/ShowUsers/ShowUsers.js" type="module"></script>
+	<script src="../../Js/AdminData/CheckToken.js" type="module"></script>
+
+	<script src="../../Js/Setup/ShowUsers/ShowUsers.js" type="module"></script>
 
 </body>
 
