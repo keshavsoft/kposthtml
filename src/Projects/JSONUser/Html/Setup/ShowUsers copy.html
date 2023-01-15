@@ -171,26 +171,7 @@
 		</div>
 	</div>
 
-	
 	<script id="HbsTemplateForBody" type="text/x-handlebars">
-		{{#each this}}
-		<tr class={{RowClass}}>
-			<td class="text-center">
-				{{ForSNo @index}}
-			</td>
-			<td>{{@key}}</td>
-			<td>{{UserName}}</td>
-			<td>{{PassWord}}</td>
-			{{#if ShowInsertNew}}
-			<td class="text-right">
-				<a class="btn btn-outline-primary btn-sm" href="InsertNew.html?UserPK={{@key}}">Insert UserName</a>
-			</td>
-			{{/if}}
-		</tr>
-		{{/each}}
-</script>
-
-	<script id="HbsTemplateForBody11" type="text/x-handlebars">
 		{{#each this}}
 		<tr>
 			<td class="text-center">
@@ -210,6 +191,7 @@
 
 </script>
 
+	<!-- <include src="src/components/Projects/JSONUser/AddJs.html"></include> -->
 	<script>
 		Handlebars.registerHelper('ForSNo', function (item) {
 			return item + 1;
