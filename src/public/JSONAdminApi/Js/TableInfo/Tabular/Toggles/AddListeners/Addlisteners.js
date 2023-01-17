@@ -2,7 +2,6 @@ let jFUpdateFunc = () => {
     let jVarLocalUpdateClassName = document.getElementsByClassName("UpdateButtonClass");
 
     for (let i = 0; i < jVarLocalUpdateClassName.length; i++) {
-        console.log("ddddddddddd");
         jVarLocalUpdateClassName[i].addEventListener("click", jFLocalClickFunc)
     };
 };
@@ -34,7 +33,6 @@ let jFLocalClickFunc = async (event) => {
 
     let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableInfo/Toggles";
 
-
     let response = await fetch(jFetchUrl, {
         method: "PATCH",
         headers: {
@@ -58,7 +56,7 @@ let jFLocalClickFunc = async (event) => {
             jVarLocalNewLocation += `&inFileName=${jVarLocalfilename}`
             jVarLocalNewLocation += `&inItemName=${jVarLocalitemname}`
             jVarLocalNewLocation += `&inScreenName=${jVarLocalscreenname}`;
-            window.location = jVarLocalNewLocation;
+          //  window.location = jVarLocalNewLocation;
 
             break;
 

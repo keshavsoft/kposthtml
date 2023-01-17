@@ -175,7 +175,7 @@
     
         </script>
 
-        <script id="HbsTemplateForScreensOnly" type="text/x-handlebars">
+        <script id="HbsTemplateForScreensOnly12" type="text/x-handlebars">
             <table class="table">
                 <thead>
                     <tr>
@@ -248,6 +248,81 @@
            
             </table>
           </script>
+
+          
+        <script id="HbsTemplateForScreensOnly" type="text/x-handlebars">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ScreenName</th>
+                        <th>ScreenNameForHtmlId</th>
+                        <th>ColumnReOrder</th>
+                        <th>ShowFooter</th>
+                        <th>CreateNew</th>
+                        <th>DataAttributesFromTableDataRow</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each this.Screens}}
+                    <tr>
+                        <td class="text-center">
+                            {{ForSNo @index}}
+                        </td>
+                        <td>
+                            {{this.ScreenName}}
+                        </td>
+                        <td>
+                            {{this.ScreenNameForHtmlId}}
+                        </td>
+                        <td>
+                            <div class="form-check  form-switch">
+                                {{#if ColumnReOrder}}
+                                <input class="form-check-input" type="checkbox" name="ColumnReOrder" checked>
+                                {{else}}
+                                <input class="form-check-input" type="checkbox" name="ColumnReOrder">
+                                {{/if}}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check  form-switch">
+                                {{#if TableInfoObject.ShowFooter}}
+                                <input class="form-check-input" type="checkbox" name="ShowFooter" checked>
+                                {{else}}
+                                <input class="form-check-input" type="checkbox" name="ShowFooter">
+                                {{/if}}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check  form-switch">
+                                {{#if DataAttributesFromTableInfo}}
+                                <input class="form-check-input" type="checkbox" name="DataAttributesFromTableInfo" checked>
+                                {{else}}
+                                <input class="form-check-input" type="checkbox" name="DataAttributesFromTableInfo">
+                                {{/if}}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check  form-switch">
+                                {{#if DataAttributesFromTableDataRow}}
+                                <input class="form-check-input" type="checkbox" name="DataAttributesFromTableDataRow" checked>
+                                {{else}}
+                                <input class="form-check-input" type="checkbox" name="DataAttributesFromTableDataRow">
+                                {{/if}}
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info UpdateButtonClass" data-foldername="{{@../../../key}}" data-filename="{{@../../key}}" data-itemname="{{@../key}}" data-screenname="{{ScreenName}}">
+                                Update
+                            </button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+           
+            </table>
+          </script>
+
 
     <script>
         //HbsTemplateForScreensWithSubTableColumnsOnly

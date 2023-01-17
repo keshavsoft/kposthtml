@@ -63,8 +63,6 @@ let jFLocalClickFunc = async (event) => {
         default:
         // code block
     };
-
-    console.log("response : ", response.status);
 };
 
 export { jFUpdateFunc };
