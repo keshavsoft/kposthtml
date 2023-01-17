@@ -36,12 +36,15 @@ let StartFunc = ({ inSubRoute, inUserKey, inFirmKey, inTokenName, inModalId }) =
         });
     };
 
-    let jVarLocalHeaderLoginAnchorId = document.getElementById("HeaderLoginAnchorId");
+    let jVarLocalHeaderLoginButtonId = document.getElementById("HeaderLoginButtonId");
 
-    if ((jVarLocalHeaderLoginAnchorId == null) === false) { //Executes if variable is null OR undefined
+    if ((jVarLocalHeaderLoginButtonId == null) === false) { //Executes if variable is null OR undefined
+        jVarLocalHeaderLoginButtonId.addEventListener("click", async () => {
+            let jVarLocalId = inModalId;
+            var myModal = new bootstrap.Modal(document.getElementById(jVarLocalId), { keyboard: true, focus: true });
 
-        //  jVarLocalHeaderLoginAnchorId.addEventListener("click", GlobalFuncsForLogin.Login.LogOut);
-
+            myModal.show();
+        });
     };
 };
 
@@ -85,21 +88,22 @@ let LocalButtonClickFunc = async ({ inSubRoute, inUserKey, inFirmKey, inTokenNam
     let LocalFromDomFunc = await CheckOnDomStartFunc({ inSubRoute, inUserKey, inFirmKey, inTokenName });
 
     if (LocalFromDomFunc.KTF) {
-        let LocalFromCheckTokenStartFunc = CheckTokenStartFunc({ inUserKey, inFirmKey, inTokenName });
+        LocalFirmDetails({ inUserKey });
+        CheckTokenStartFunc({ inUserKey, inFirmKey, inTokenName, inModalId });
 
-        if (LocalFromCheckTokenStartFunc) {
+        // if (LocalFromCheckTokenStartFunc) {
 
-            let LocalModalId = inModalId;
-            var myModalEl = document.getElementById(LocalModalId);
+        //     let LocalModalId = inModalId;
+        //     var myModalEl = document.getElementById(LocalModalId);
 
-            var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instance
+        //     var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instance
 
-            modal.hide();
+        //     modal.hide();
 
-            LocalFirmDetails({ inUserKey });
-            LocalShowInHeader({ inUserKey });
-            // this.Login.LocalStorage.FirmDetails({ inUserName, inFirmDetails: FetchDataJson });
-        };
+        //     LocalFirmDetails({ inUserKey });
+        //     LocalShowInHeader({ inUserKey });
+        //     // this.Login.LocalStorage.FirmDetails({ inUserName, inFirmDetails: FetchDataJson });
+        // };
     };
 };
 

@@ -18,6 +18,7 @@ let StartFunc = async () => {
     let LocalFromPullUserDetailsFunc = await PullUserDetailsFunc();
 
     let LocalCommonKeys = getCommon(Object.keys(LocalFromPullLoginDetailsFunc), Object.keys(LocalFromPullUserDetailsFunc));
+   // console.log("sssssss : ", LocalCommonKeys, LocalFromPullLoginDetailsFunc);
     let LocalNewObject = {};
     LocalCommonKeys.forEach(element => {
         LocalNewObject[element] = LocalFromPullLoginDetailsFunc[element];

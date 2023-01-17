@@ -6,7 +6,7 @@ let LocalButtonClickFunc = async (event) => {
     let jVarLocalDataset = jVarLocalCurrentTarget.dataset;
     let jVarLocalUserName = jVarLocalDataset.username;
     let jVarLocalPassword = jVarLocalDataset.password;
-
+    console.log("aaaaaaaaaaaa : ");
     let LocalFromFetch = await LocalCheckCredentials({
         inUserName: jVarLocalUserName,
         inPassWord: jVarLocalPassword
@@ -19,7 +19,7 @@ let LocalButtonClickFunc = async (event) => {
 };
 
 let LocalCheckCredentials = async ({ inUserName, inPassWord }) => {
-    let jVarLocalFetchUrl = "http://localhost:4120/JSONApi/Validate/Users/InUserDataJson/ForUserNameAndPassword/TokenToCookie";
+    let jVarLocalFetchUrl = "/JSONApi/Validate/Users/InUserDataJson/ForUserNameAndPassword/TokenToCookie";
 
     let response = await fetch(jVarLocalFetchUrl, {
         method: 'POST',
@@ -37,11 +37,11 @@ let LocalCheckCredentials = async ({ inUserName, inPassWord }) => {
 let StartFunc = ({ inSubRoute, inUserKey, inFirmKey, inTokenName, inModalId }) => {
     AdminDataStartFunc({ inSubRoute, inUserKey, inFirmKey, inTokenName, inModalId });
 
-    var userSelection = document.querySelectorAll('.LoginButtonClass');
-
-    for (let i = 0; i < userSelection.length; i++) {
-        userSelection[i].addEventListener("click", LocalButtonClickFunc);
-    }
+    // var userSelection = document.querySelectorAll('.LoginButtonClass');
+    // console.log("userSelection : ", userSelection);
+    // for (let i = 0; i < userSelection.length; i++) {
+    //     userSelection[i].addEventListener("click", LocalButtonClickFunc);
+    // }
 };
 
 export { StartFunc }
