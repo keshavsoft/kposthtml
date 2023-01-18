@@ -1,14 +1,14 @@
-let jFStartFunc = ({ inDataFromApi }) => {
+let StartFunc = ({ inDataFromApi }) => {
     let jVarLocalQueryParams = jFgetUrlQueryParams();
     let jVarLocaldataFromApi = inDataFromApi;
 
     if (Object.keys(jVarLocalQueryParams).length > 0) {
-        jFLocalApplyClassesFromUrl({
+        LocalForClassesFromUrl({
             indataFromApi: jVarLocaldataFromApi,
             inQueryParamsAsObject: jVarLocalQueryParams
         });
     } else {
-        jFLocalApplyClasses({ indataFromApi: jVarLocaldataFromApi });
+        LocalForApplyClasses({ indataFromApi: jVarLocaldataFromApi });
     };
 };
 
@@ -27,7 +27,7 @@ let jFgetUrlQueryParams = () => {
     return queryParams;
 };
 
-let jFLocalApplyClasses = ({ indataFromApi }) => {
+let LocalForApplyClasses = ({ indataFromApi }) => {
     let jVarLocalFirstFolder;
     let jVarLocalFirstFile;
     let jVarLocalFirstItem;
@@ -64,10 +64,9 @@ let jFLocalApplyClasses = ({ indataFromApi }) => {
 
         };
     };
-}
+};
 
-
-let jFLocalApplyClassesFromUrl = ({ indataFromApi, inQueryParamsAsObject }) => {
+let LocalForClassesFromUrl = ({ indataFromApi, inQueryParamsAsObject }) => {
     let jVarLocalFolderName = inQueryParamsAsObject.inFolderName;
     let jVarLocalFileName = inQueryParamsAsObject.inFileName;
     let jVarLocalItemName = inQueryParamsAsObject.inItemName;
@@ -110,5 +109,4 @@ let jFLocalApplyClassesFromUrl = ({ indataFromApi, inQueryParamsAsObject }) => {
     };
 };
 
-
-export { jFStartFunc }
+export { StartFunc }
