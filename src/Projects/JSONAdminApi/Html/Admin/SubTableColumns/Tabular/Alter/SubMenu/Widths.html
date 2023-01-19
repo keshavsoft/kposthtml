@@ -172,7 +172,7 @@
 
 
       
-    <script id="HbsTemplateForSubTableColumns" type="text/x-handlebars">
+      <script id="HbsTemplateForSubTableColumns" type="text/x-handlebars">
 
 
         <ul class="nav nav-tabs" role="tablist">
@@ -202,6 +202,7 @@
         </div>
         
         </script>
+
         
     <script id="HbsTemplateForTableColumnsForTogglesOnly" type="text/x-handlebars">
         <table class="table">
@@ -213,7 +214,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{#each SubTableColumnsObject}}
+                {{#each TableColumnsObject}}
               
     <tr class="{{RowClass}}">
     <td class="text-center">
@@ -256,7 +257,10 @@
         </div>  
     </td>
     <td>
-    <button type="button" class="btn btn-outline-info UpdateButtonClass" data-foldername="{{@../../../../key}}" data-filename="{{@../../../key}}" data-itemname="{{@../../key}}" data-screenname="{{@../key}}">
+    <button type="button" class="btn btn-outline-info UpdateButtonClass" data-foldername="{{@../../../../../key}}"
+     data-filename="{{@../../../../key}}" data-itemname="{{@../../../key}}"
+      data-screenname="{{@../../key}}" data-subtablecolumnkey={{@../key}}
+      data-tablecolumnkey={{@key}}>
         Update
     </button>
     </td>
