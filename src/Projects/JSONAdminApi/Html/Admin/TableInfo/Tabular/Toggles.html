@@ -181,11 +181,11 @@
                     <tr>
                         <th>#</th>
                         <th>ScreenName</th>
-                        <th>ScreenNameForHtmlId</th>
+                        <th>ScreenName ForHtmlId</th>
                         <th>ColumnReOrder</th>
                         <th>ShowFooter</th>
                         <th>CreateNew</th>
-                        <th>DataAttributesFromTableDataRow</th>
+                        <th>DataAttributes FromTableDataRow</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -203,7 +203,7 @@
                         </td>
                         <td>
                             <div class="form-check  form-switch">
-                                {{#if ColumnReOrder}}
+                                {{#if TableInfoObject.ColumnReOrder}}
                                 <input class="form-check-input" type="checkbox" name="ColumnReOrder" checked>
                                 {{else}}
                                 <input class="form-check-input" type="checkbox" name="ColumnReOrder">
@@ -212,7 +212,7 @@
                         </td>
                         <td>
                             <div class="form-check  form-switch">
-                                {{#if ShowFooter}}
+                                {{#if TableInfoObject.ShowFooter}}
                                 <input class="form-check-input" type="checkbox" name="ShowFooter" checked>
                                 {{else}}
                                 <input class="form-check-input" type="checkbox" name="ShowFooter">
@@ -221,7 +221,7 @@
                         </td>
                         <td>
                             <div class="form-check  form-switch">
-                                {{#if DataAttributesFromTableInfo}}
+                                {{#if TableInfoObject.DataAttributesFromTableInfo}}
                                 <input class="form-check-input" type="checkbox" name="DataAttributesFromTableInfo" checked>
                                 {{else}}
                                 <input class="form-check-input" type="checkbox" name="DataAttributesFromTableInfo">
@@ -230,7 +230,7 @@
                         </td>
                         <td>
                             <div class="form-check  form-switch">
-                                {{#if DataAttributesFromTableDataRow}}
+                                {{#if TableInfoObject.DataAttributesFromTableDataRow}}
                                 <input class="form-check-input" type="checkbox" name="DataAttributesFromTableDataRow" checked>
                                 {{else}}
                                 <input class="form-check-input" type="checkbox" name="DataAttributesFromTableDataRow">
@@ -256,11 +256,11 @@
                     <tr>
                         <th>#</th>
                         <th>ScreenName</th>
-                        <th>ScreenNameForHtmlId</th>
+                        <th>ScreenName ForHtmlId</th>
                         <th>ColumnReOrder</th>
                         <th>ShowFooter</th>
                         <th>CreateNew</th>
-                        <th>DataAttributesFromTableDataRow</th>
+                        <th>DataAttributes FromTableDataRow</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -277,7 +277,7 @@
                         </td>
                         <td>
                             <div class="form-check  form-switch">
-                                {{#if ColumnReOrder}}
+                                {{#if TableInfoObject.ColumnReOrder}}
                                 <input class="form-check-input" type="checkbox" name="ColumnReOrder" checked>
                                 {{else}}
                                 <input class="form-check-input" type="checkbox" name="ColumnReOrder">
@@ -295,7 +295,7 @@
                         </td>
                         <td>
                             <div class="form-check  form-switch">
-                                {{#if DataAttributesFromTableInfo}}
+                                {{#if TableInfoObject.DataAttributesFromTableInfo}}
                                 <input class="form-check-input" type="checkbox" name="DataAttributesFromTableInfo" checked>
                                 {{else}}
                                 <input class="form-check-input" type="checkbox" name="DataAttributesFromTableInfo">
@@ -304,7 +304,7 @@
                         </td>
                         <td>
                             <div class="form-check  form-switch">
-                                {{#if DataAttributesFromTableDataRow}}
+                                {{#if TableInfoObject.DataAttributesFromTableDataRow}}
                                 <input class="form-check-input" type="checkbox" name="DataAttributesFromTableDataRow" checked>
                                 {{else}}
                                 <input class="form-check-input" type="checkbox" name="DataAttributesFromTableDataRow">
