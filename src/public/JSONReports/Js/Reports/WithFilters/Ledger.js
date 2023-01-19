@@ -67,8 +67,7 @@ let jFFilterData = ({ inEvent }) => {
 };
 
 let jFFillDataListForFilters = ({ inUUID }) => {
-    let jVarLocalStorageData = localStorage.getItem(inUUID);
-    let jVarLocalStorageDataAsJson = JSON.parse(jVarLocalStorageData);
+    let jVarLocalStorageDataAsJson = jVarGlobalPresentViewData;
 
     let jVarLocalTableColumns = jVarLocalStorageDataAsJson[0].KData.TableColumns;
     let jVarLocalTableData = jVarLocalStorageDataAsJson[0].KData.TableData;
@@ -100,10 +99,10 @@ let jFShowFilterTable = ({ inUUID }) => {
     let jVarLocalTemplateNewTab = document.getElementById("FilterTableRow");
     let jVarLocalFilterTableBody = document.getElementById("FilterTableBody");
     let jVarLocalStorageData = localStorage.getItem(inUUID);
-    let jVarLocalStorageDataAsJson = JSON.parse(jVarLocalStorageData);
+    let jVarLocalStorageDataAsJson = jVarGlobalPresentViewData
 
     let jVarLocalTableColumns = jVarLocalStorageDataAsJson[0].KData.TableColumns;
-    
+
     jVarLocalTableColumns.forEach((element, LoopIndex) => {
         let jVarLocalHTMLContent = Handlebars.compile(jVarLocalTemplateNewTab.innerHTML)({
             Name: element.DisplayName,

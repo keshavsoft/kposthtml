@@ -209,9 +209,11 @@
         <label>Report Name :</label>
 
         <div class="input-group mt-2 d-print-none mb-3">
-            <input type="text" class="form-control ReportSelectedClass" list="ReportsList" placeholder="Select Folder" autofocus="">
+            <input type="text" class="form-control ReportSelectedClass" list="ReportsList" placeholder="Select Report Name"
+            autofocus="" >
 
-            <button class="btn btn-outline-secondary" type="button" onclick="jFPullFromServerInsertToLocalStorage(event)" id="button-addon2">Go</button>
+        <button class="btn btn-outline-secondary" type="button" id="ReportButtonId">Go</button>
+
         </div>
 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -317,7 +319,7 @@
 
 
    
-    <template id="FilterTableRow">
+    <template id="FilterTableRow_19Jan2022">
         <tr>
             <th scope="row">{{SNo}}</th>
             <td>{{Name}}</td>
@@ -332,6 +334,29 @@
             </td>
         </tr>
     </template>
+
+
+    <template id="FilterTableRow">
+        <tr>
+            <th scope="row">{{SNo}}</th>
+            <td>{{Name}}</td>
+            <td>
+                <input type="text" class="form-control SearchInput" aria-describedby="helpId"
+                    list="DataListForFilter-{{SNo}}" data-dataattribute="{{DataAttribute}}">
+                <datalist id="DataListForFilter-{{SNo}}">
+                </datalist>
+            </td>
+            <td>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Consider
+                    </label>
+                  </div>
+            </td>
+        </tr>
+    </template>
+
 
 
 
@@ -747,28 +772,6 @@
         };
     </script>
     <script>
-
-        let jFShowFilterTable1 = () => {
-            let jVarLocalTemplateNewTab = document.getElementById("FilterTableRow");
-            let jVarLocalFilterTableBody = document.getElementById("FilterTableBody");
-
-            var jVarLocalTemplateNewTabClone = jVarLocalTemplateNewTab.cloneNode(true);
-            var fragment = document.importNode(jVarLocalTemplateNewTabClone.content, true);
-            // jVarLocalFilterTableBody.appendChild(fragment);
-
-            console.log("jVarLocalHTMLContent : ", jVarLocalTemplateNewTab.innerHTML);
-
-            let jVarLocalHTMLContent = Handlebars.compile(jVarLocalTemplateNewTab.innerHTML)({});
-
-            console.log("1111111 : ", jVarLocalHTMLContent);
-
-
-            //jVarLocalFilterTableBody.insertAdjacentElement("beforebegin",jVarLocalHTMLContent);
-            jVarLocalFilterTableBody.insertAdjacentHTML("beforeend", jVarLocalHTMLContent);
-
-
-        };
-
         let jFChangeHeaderActiveClass = () => {
             let jVarLocalPathArray = window.location.pathname.split("/");
             let jVarLocalHTMLName = jVarLocalPathArray[jVarLocalPathArray.length - 1];
@@ -800,18 +803,21 @@
         jFChangeHeaderActiveClass()
 
     </script>
+<!--     
     <script>
         let jVarLocalFilerButton = document.getElementById("FiterDataId");
         jVarLocalFilerButton.addEventListener("click", (event) => {
             let jVarLocalCurrentTarget = event.currentTarget;
             console.log("sssssssssssssss",jVarLocalCurrentTarget);
         });
-    </script>
+    </script> -->
 
 
-    <script src="../../../Js/Reports/SingleWithFiltersOnly.js"></script>
+    <!-- <script src="../../../Js/Reports/SingleWithFiltersOnly.js"></script> -->
 
 
+
+    <script src="../../../Js/Reports/WithFilters/SingleWithFiltersOnly/SingleWithFiltersOnly.js" type="module"></script>
 
 
 </body>

@@ -47,7 +47,6 @@ let jFPullFromServerInsertToLocalStorage = (inEvent) => {
     let jVarLocalCurrentTarget = inEvent.currentTarget;
 
     let jVarClosestInputGroup = jVarLocalCurrentTarget.closest(".input-group");
-    let jVarLocalHtmlCardBody = document.querySelector(".TabPaneKCont1");
 
     let jVarLocalRoute = jVarGlobalProject;
     let jVarLocalSubRoute = jVarGlobalSubRoute;
@@ -68,13 +67,15 @@ let jFPullFromServerInsertToLocalStorage = (inEvent) => {
                     KData: FetchData.DataFromServer.KData
                 });
 
-                let jVarLocalUUID = ForLocalStorageClass.jFInsertToLocalStorage({ inData: jVarLocalJsonToDom });
-                let ConditionsButtonId = document.getElementById("ConditionsButtonId");
-                ConditionsButtonId.dataset.uuid = jVarLocalUUID;
+                jVarGlobalPresentViewData = jVarLocalJsonToDom;
 
-                jFShowFilterTable({ inUUID: jVarLocalUUID });
-                jFShowColumnsInDropdown({ inUUID: jVarLocalUUID });
-                jFFillDataListForFilters({ inUUID: jVarLocalUUID });
+                // let jVarLocalUUID = ForLocalStorageClass.jFInsertToLocalStorage({ inData: jVarLocalJsonToDom });
+                // let ConditionsButtonId = document.getElementById("ConditionsButtonId");
+                // ConditionsButtonId.dataset.uuid = jVarLocalUUID;
+
+                jFShowFilterTable();
+                jFShowColumnsInDropdown();
+                jFFillDataListForFilters();
             };
         };
     });
@@ -91,10 +92,8 @@ let jFFilterData = ({ inEvent }) => {
     let jVarToFilterInput = jVarClosestRow.querySelector(".SearchInput");
     let jVarLocalFilterValue = jVarToFilterInput.value;
     let jVarLocalFilterKey = jVarLocalcurrentTarget.dataset.dataattribute;
-    let jVarLocalUUIDNeeded = jVarLocalcurrentTarget.dataset.uuid;
-    let jVarLocalStorageData = localStorage.getItem(jVarLocalUUIDNeeded);
 
-    let jVarLocalNewData = JSON.parse(jVarLocalStorageData);
+    let jVarLocalNewData = jVarGlobalPresentViewData;
 
     let jVarlocalTableData = jVarLocalNewData[0].KData.TableData;
     let jVarLocalFilteredTableId = document.getElementById("FilteredTableId");
@@ -113,9 +112,11 @@ let jFFilterData = ({ inEvent }) => {
     });
 };
 
-let jFFillDataListForFilters = ({ inUUID }) => {
-    let jVarLocalStorageData = localStorage.getItem(inUUID);
-    let jVarLocalStorageDataAsJson = JSON.parse(jVarLocalStorageData);
+let jFFillDataListForFilters = () => {
+    //let jVarLocalStorageData = localStorage.getItem(inUUID);
+    //    let jVarLocalStorageDataAsJson = JSON.parse(jVarLocalStorageData);
+
+    let jVarLocalStorageDataAsJson = jVarGlobalPresentViewData;
 
     let jVarLocalTableColumns = jVarLocalStorageDataAsJson[0].KData.TableColumns;
     let jVarLocalTableData = jVarLocalStorageDataAsJson[0].KData.TableData;
@@ -123,31 +124,23 @@ let jFFillDataListForFilters = ({ inUUID }) => {
     jVarLocalTableColumns.forEach((element, LoopIndex) => {
         let LoopInsideDataListId = document.getElementById(`DataListForFilter-${LoopIndex + 1}`);
         let LoopInsideFilter = _.keys(_.groupBy(jVarLocalTableData, element.DataAttribute));
-        console.log("LoopInsideFilter : ", element.DataAttribute, LoopInsideFilter);
-        let str = '';
-        //str += '<option value="' + element.DisplayName + '" />';
 
-        let htmlstring = LoopInsideFilter.forEach((name) => {
+        let str = '';
+
+        LoopInsideFilter.forEach((name) => {
             str += '<option value="' + name + '" />';
         });
 
         LoopInsideDataListId.innerHTML = str;
     });
-
-    // let str = '';
-    // let htmlstring = dataFromApi.JsonData.forEach((name) => {
-    //     str += '<option value="' + name + '" />';
-    // });
-
-    // document.getElementById("ReportsList").innerHTML = str;
-
 };
 
-let jFShowFilterTable = ({ inUUID }) => {
+let jFShowFilterTable = () => {
     let jVarLocalTemplateNewTab = document.getElementById("FilterTableRow");
     let jVarLocalFilterTableBody = document.getElementById("FilterTableBody");
-    let jVarLocalStorageData = localStorage.getItem(inUUID);
-    let jVarLocalStorageDataAsJson = JSON.parse(jVarLocalStorageData);
+    //   let jVarLocalStorageData = localStorage.getItem(inUUID);
+    //let jVarLocalStorageDataAsJson = JSON.parse(jVarLocalStorageData);
+    let jVarLocalStorageDataAsJson = jVarGlobalPresentViewData;
 
     let jVarLocalTableColumns = jVarLocalStorageDataAsJson[0].KData.TableColumns;
 
@@ -155,8 +148,7 @@ let jFShowFilterTable = ({ inUUID }) => {
         let jVarLocalHTMLContent = Handlebars.compile(jVarLocalTemplateNewTab.innerHTML)({
             Name: element.DisplayName,
             SNo: LoopIndex + 1,
-            DataAttribute: element.DataAttribute,
-            UUID: inUUID
+            DataAttribute: element.DataAttribute
         });
 
         //jVarLocalFilterTableBody.insertAdjacentElement("beforebegin",jVarLocalHTMLContent);
@@ -164,9 +156,10 @@ let jFShowFilterTable = ({ inUUID }) => {
     });
 };
 
-let jFShowColumnsInDropdown = ({ inUUID }) => {
-    let jVarLocalStorageData = localStorage.getItem(inUUID);
-    let jVarLocalStorageDataAsJson = JSON.parse(jVarLocalStorageData);
+let jFShowColumnsInDropdown = () => {
+    //  let jVarLocalStorageData = localStorage.getItem(inUUID);
+    //let jVarLocalStorageDataAsJson = JSON.parse(jVarLocalStorageData);
+    let jVarLocalStorageDataAsJson = jVarGlobalPresentViewData;
 
     let jVarLocalTableColumns = jVarLocalStorageDataAsJson[0].KData.TableColumns;
 
@@ -180,10 +173,6 @@ let jFShowColumnsInDropdown = ({ inUUID }) => {
 };
 
 let jFConditionsShowData = (event) => {
-    let jVarLocalCurrentTarget = event.currentTarget;
-    let jVarLocalUUID = jVarLocalCurrentTarget.dataset.uuid;
-
-    //let jVarLocalHtmlCardBody = document.querySelector(".TabPaneKCont1");
     let jVarLocalFilteredTableId = document.getElementById("FilteredTableId");
 
     let jVarLocalColumnSelectedId = document.getElementById("ColumnSelectedId");
@@ -198,8 +187,7 @@ let jFConditionsShowData = (event) => {
     let jVarLocalToValue = jVarLocalToValueId.value;
     let jVarLocalToCondition = jVarLocalToConditionId.value;
 
-    let jVarLocalStorageData = localStorage.getItem(jVarLocalUUID);
-    let jVarLocalStorageDataAsJson = JSON.parse(jVarLocalStorageData);
+    let jVarLocalStorageDataAsJson = jVarGlobalPresentViewData;
 
     let jVarLocalTableData = jVarLocalStorageDataAsJson[0].KData.TableData;
 
@@ -209,11 +197,6 @@ let jFConditionsShowData = (event) => {
         });
     };
 
-    //jVarLocalStorageDataAsJson[0].KData.TableData = jVarLocalTableData.filter(l1 => { return l1.Date <= "2022-07-15" })
-    //    jVarLocalStorageDataAsJson[0].KData.TableData = jVarLocalTableData.filter(l1 => { return l1.Date >= jVarLocalFromValue });
-
-    //let jVarLocalFilteredData = jVarLocalTableData.filter(l1 => { return l1.Date <= "2022-07-15" })
-
     jVarGlobalPresentViewData = KeshavSoftCrud.BuildFromArray(jVarLocalStorageDataAsJson);
 
     jVarGlobalKeshavSoftLocalFuncsObject.AppendToDOM.RequiredHtml({
@@ -222,3 +205,9 @@ let jFConditionsShowData = (event) => {
     });
 
 };
+
+// let jVarLocalFilerButton = document.getElementById("FiterDataId");
+// jVarLocalFilerButton.addEventListener("click", (event) => {
+//     let jVarLocalCurrentTarget = event.currentTarget;
+//     console.log("sssssssssssssss",jVarLocalCurrentTarget);
+// });

@@ -16,7 +16,7 @@ let jFLocalFilterData = (inEvent) => {
     let jVarLocalFilterKey = jVarLocalcurrentTarget.dataset.dataattribute;
     let jVarLocalUUIDNeeded = jVarLocalcurrentTarget.dataset.uuid;
     let jVarLocalStorageData = localStorage.getItem(jVarLocalUUIDNeeded);
-    let jVarLocalNewData = JSON.parse(jVarLocalStorageData);
+    let jVarLocalNewData = jVarGlobalPresentViewData;
 
     let jVarlocalTableData = jVarLocalNewData[0].KData.TableData;
     let jVarLocalFilteredTableId = document.getElementById("FilteredTableId");
@@ -62,12 +62,13 @@ let jFLocalPullFromServerInsertToLocalStorage = (inEvent) => {
                     HTMLControlType: "ReportTableForPrint",
                     KData: FetchData.DataFromServer.KData
                 });
+                jVarGlobalPresentViewData = jVarLocalJsonToDom;
 
-                let jVarLocalUUID = ForLocalStorageClass.jFInsertToLocalStorage({ inData: jVarLocalJsonToDom });
+                //   let jVarLocalUUID = ForLocalStorageClass.jFInsertToLocalStorage({ inData: jVarLocalJsonToDom });
 
-                jFShowFilterTable({ inUUID: jVarLocalUUID });
+                jFShowFilterTable({ inUUID: "" });
                 //  jFShowColumnsInDropdown({ inUUID: jVarLocalUUID });
-                jFFillDataListForFilters({ inUUID: jVarLocalUUID });
+                jFFillDataListForFilters({ inUUID: "" });
 
                 let jVarLocalFilterButtonClass = document.querySelectorAll(".FilterButtonClass");
 
