@@ -27,51 +27,11 @@ let jFgetUrlQueryParams = () => {
     return queryParams;
 };
 
-let LocalForApplyClasses_19Jan2022 = ({ indataFromApi }) => {
-    let jVarLocalFirstFolder;
-    let jVarLocalFirstFile;
-    let jVarLocalFirstItem;
-    let jVarLocalFirstScreen;
-    console.log("aaaaaaaaaaaa : ", indataFromApi);
-    if ("Folders" in indataFromApi) {
-        if (Object.values(indataFromApi.Folders).length > 0) {
-            jVarLocalFirstFolder = Object.values(indataFromApi.Folders)[0];
-            jVarLocalFirstFolder.TabPageClass = " show active";
-            jVarLocalFirstFolder.MenuClass = " active";
-
-            if ("Files" in jVarLocalFirstFolder) {
-                if (Object.values(jVarLocalFirstFolder.Files).length > 0) {
-                    jVarLocalFirstFile = Object.values(jVarLocalFirstFolder.Files)[0];
-                    jVarLocalFirstFile.TabPaneClass = " show active";
-                    jVarLocalFirstFile.ButtonClass = " active";
-
-                    if ("Items" in jVarLocalFirstFile) {
-                        if (Object.values(jVarLocalFirstFile.Items).length > 0) {
-                            jVarLocalFirstItem = Object.values(jVarLocalFirstFile.Items)[0];
-                            jVarLocalFirstItem.ShowOnLoad = true;
-
-                            if ("Screens" in jVarLocalFirstItem) {
-                                if (Object.values(jVarLocalFirstItem.Screens).length > 0) {
-                                    jVarLocalFirstScreen = Object.values(jVarLocalFirstItem.Screens)[0];
-                                    jVarLocalFirstScreen.CollapseClass = " show";
-                                };
-                            };
-                        };
-                    };
-                };
-
-            };
-
-        };
-    };
-};
-
 let LocalForApplyClasses = ({ indataFromApi }) => {
     let jVarLocalFirstFolder;
     let jVarLocalFirstFile;
     let jVarLocalFirstItem;
     let jVarLocalFirstScreen;
-    let jVarLocalsubtablecolumnkey;
     console.log("aaaaaaaaaaaa : ", indataFromApi);
     if ("Folders" in indataFromApi) {
         if (Object.values(indataFromApi.Folders).length > 0) {
@@ -94,17 +54,8 @@ let LocalForApplyClasses = ({ indataFromApi }) => {
                                 if (Object.values(jVarLocalFirstItem.Screens).length > 0) {
                                     jVarLocalFirstScreen = Object.values(jVarLocalFirstItem.Screens)[0];
                                     jVarLocalFirstScreen.CollapseClass = " show";
-                                    // console.log("jjjjjjjj",jVarLocalFirstScreen);
-
-                                    if ("SubTableColumnsObject" in jVarLocalFirstScreen) {
-                                        if (Object.values(jVarLocalFirstScreen.SubTableColumnsObject).length > 0) {
-                                            jVarLocalsubtablecolumnkey = Object.values(jVarLocalFirstScreen.SubTableColumnsObject)[0];
-                                            jVarLocalsubtablecolumnkey.MenuClass = " active";
-                                        };
-                                    };
                                 };
                             };
-
                         };
                     };
                 };
@@ -121,9 +72,7 @@ let LocalForClassesFromUrl = ({ indataFromApi, inQueryParamsAsObject }) => {
     let jVarLocalItemName = inQueryParamsAsObject.inItemName;
     let jVarLocalScreenName = inQueryParamsAsObject.inScreenName;
     let jVarLocalColumnName = inQueryParamsAsObject.inColumnName;
-    let jVarLocalsubtablecolumnkey = inQueryParamsAsObject.subtablecolumnkey;
-    // let jVarLocalColumnName = inQueryParamsAsObject.inColumnName;
-    console.log("ssssssss : ", jVarLocalsubtablecolumnkey);
+
     if ("Folders" in indataFromApi) {
         if (jVarLocalFolderName in indataFromApi.Folders) {
             indataFromApi.Folders[jVarLocalFolderName].TabPageClass = " show active";
@@ -142,18 +91,11 @@ let LocalForClassesFromUrl = ({ indataFromApi, inQueryParamsAsObject }) => {
                                 if (jVarLocalScreenName in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens) {
                                     indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].CollapseClass = " show";
 
-                                    if ("SubTableColumnsObject" in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName]) {
+                                    if ("TableColumnsObject" in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName]) {
+                                        if (jVarLocalColumnName in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].TableColumnsObject) {
+                                            indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].TableColumnsObject[jVarLocalColumnName].RowClass = "table-success";
 
-                                        if (jVarLocalsubtablecolumnkey in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].SubTableColumnsObject) {
-
-                                            indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].SubTableColumnsObject[jVarLocalsubtablecolumnkey].TabPageClass = " show active";
-                                            indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].SubTableColumnsObject[jVarLocalsubtablecolumnkey].MenuClass = " active";
-
-                                            if ("TableColumnsObject" in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].SubTableColumnsObject[jVarLocalsubtablecolumnkey]) {
-                                                if (jVarLocalColumnName in indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].SubTableColumnsObject[jVarLocalsubtablecolumnkey].TableColumnsObject) {
-                                                    indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].SubTableColumnsObject[jVarLocalsubtablecolumnkey].TableColumnsObject[jVarLocalColumnName].RowClass = "table-success";
-                                                };
-                                            };
+                                            //                                                        console.log("--------- : ", jVarLocalColumnName, indataFromApi.Folders[jVarLocalFolderName].Files[jVarLocalFileName].Items[jVarLocalItemName].Screens[jVarLocalScreenName].TableColumnsObject[jVarLocalColumnName]);
                                         };
                                     };
                                 };
