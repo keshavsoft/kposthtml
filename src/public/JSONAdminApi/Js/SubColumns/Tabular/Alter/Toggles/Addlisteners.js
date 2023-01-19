@@ -12,9 +12,10 @@ let jFLocalClickFunc = async (event) => {
     let jVarLocalfilename = jVarLocalCurrentTarget.dataset.filename;
     let jVarLocalitemname = jVarLocalCurrentTarget.dataset.itemname;
     let jVarLocalscreenname = jVarLocalCurrentTarget.dataset.screenname;
+    let jVarLocalsubtablecolumnkey = jVarLocalCurrentTarget.dataset.subtablecolumnkey;
+    let jVarLocaltablecolumnkey = jVarLocalCurrentTarget.dataset.tablecolumnkey;
 
     let jVarLocalColsestTr = jVarLocalCurrentTarget.closest("tr");
-    let jVarLocalDataAttribute = jVarLocalColsestTr.querySelector('[name="DataAttribute"]');
     let jVarLocalDisplayName = jVarLocalColsestTr.querySelector('[name="DisplayName"]');
     let jVarLocalShowInTable = jVarLocalColsestTr.querySelector('[name="ShowInTable"]');
     let jVarLocalInsert = jVarLocalColsestTr.querySelector('[name="Insert"]');
@@ -50,7 +51,8 @@ let jFLocalClickFunc = async (event) => {
             FileName: jVarLocalfilename,
             ItemName: jVarLocalitemname,
             ScreenName: jVarLocalscreenname,
-            DataAttribute: jVarLocalDataAttributeValue,
+            subtablecolumnkey:jVarLocalsubtablecolumnkey,
+            DataAttribute: jVarLocaltablecolumnkey,
             BodyAsJson
         })
     });
