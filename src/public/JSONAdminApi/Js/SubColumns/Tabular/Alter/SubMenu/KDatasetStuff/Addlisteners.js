@@ -57,7 +57,7 @@ let jFLocalClickFunc = async (event) => {
             jVarLocalNewLocation += `&inItemName=${jVarLocalitemname}`
             jVarLocalNewLocation += `&inScreenName=${jVarLocalscreenname}`
             jVarLocalNewLocation += `&subtablecolumnkey=${jVarLocalsubtablecolumnkey}`;
-            jVarLocalNewLocation += `&inColumnName=${jVarLocalDataAttributeValue}`;
+            jVarLocalNewLocation += `&inColumnName=${jVarLocaltablecolumnkey}`;
             window.location = jVarLocalNewLocation;
 
             break;
