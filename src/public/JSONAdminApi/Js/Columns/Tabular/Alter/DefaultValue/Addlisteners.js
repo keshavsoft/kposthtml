@@ -29,8 +29,8 @@ let jFLocalClickFunc = async (event) => {
     }
 
     // let jFetchUrl = "/JSONAdminApi/AdminApi/Config/TableColumns/AllInOneWithValues";
-    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/AllInOneWithValues";
-
+    let jFetchUrl = "/JSONAdminApi/AdminApi/AsTree/Json/UserFolders/ScreensFromDisplayJson/TableColumns/DefaultValue";
+console.log("jFetchUrl",jFetchUrl);
     let response = await fetch(jFetchUrl, {
         method: "PATCH",
         headers: {
