@@ -26,7 +26,7 @@
         </symbol>
     </svg>
 
-    <include src="./src/components/Templates/Admin/Columns/Tabular/Alter/SubMenu/Header.html"></include>
+    <include src="./src/components/Templates/Admin/SubTableColumns/Tabular/Alter/SubMenu/Header.html"></include>
 
     <main>
         <div class="container">
@@ -36,7 +36,7 @@
 
     </main>
 
-    <include src="./src/components/Templates/Admin/Columns/Tabular/Alter/Footer.html"></include>
+    <include src="./src/components/Templates/Admin/SubTableColumns/Tabular/Alter/Footer.html"></include>
 
     <!-- LOGIN  STARTED -->
     <div class="modal fade" id="LoginModalId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -195,7 +195,6 @@
             {{#each SubTableColumnsObject}}
             <div class="tab-pane fade {{this.TabPageClass}}" id="{{@key}}-{{@../key}}-{{@../../key}}-{{@../../../key}}-{{@../../../../key}}" role="tabpanel"
                 aria-labelledby="{{this.FolderName}}-tab">
-                <h1>sssssssssssssssss</h1>
                 {{> HbsTemplateForTableColumnsForTogglesOnly}}
             </div>
             {{/each}}
