@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <title>TabularColumnsData</title>
+    <!-- Custom styles for this template -->
+    <include src="./src/components/Templates/Admin/Columns/HeaderCss.html"></include>
+
+</head>
+
+<body class="mb-5">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="bootstrap" viewBox="0 0 118 94">
+            <title>Bootstrap</title>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z">
+            </path>
+        </symbol>
+    </svg>
+
+    <include src="./src/components/Templates/Admin/SubTableInfo/Tabular/Header.html"></include>
+
+    <main>
+        <div class="container">
+            <div id="KCont1">
+            </div>
+        </div>
+        
+
+    </main>
+
+    <include src="./src/components/Templates/Admin/SubTableInfo/Tabular/Footer.html"></include>
+
+    <!-- LOGIN  STARTED -->
+    <div class="modal fade" id="LoginModalId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enter client user credentials</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="LoginFormPopUpId" class="" onsubmit="return false" novalidate>
+                        <div class="mb-3 form-floating is-valid">
+                            <input type="text" class="form-control" id="KUserNameInput" required>
+                            <label for="KUserNameInput">User Name</label>
+                            <div class="invalid-feedback">
+                                User Name cannot be empty.
+                            </div>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input type="password" class="form-control" id="KPasswordInput" required>
+                            <label for="KPasswordInput">Password</label>
+                            <div class="invalid-feedback">
+                                Password cannot be empty.
+                            </div>
+                        </div>
+                        <input type="submit" class=" btn btn-primary"
+                            onclick="jVarGlobalClientObject.Login.LoginCheck()">
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LOGIN FINISHED -->
+
+    <script src="/ClassesStatic/CommonClass.js"></script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+
+
+      <script id="HbsTemplateForScreensOnly" type="text/x-handlebars">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ScreenName</th>
+                    <th>ScreenNameForHtmlId</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this.Screens}}
+                <tr>
+                    <td class="text-center">
+                        {{ForSNo @index}}
+                    </td>
+                    <td>
+                        {{this.ScreenName}}
+                    </td>
+                    <td>
+                        {{this.ScreenNameForHtmlId}}
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{{../FolderName}}-{{../FileNameWithOutExtension}}-{{../ItemName}}-{{ScreenName}}"
+                        aria-expanded="false" aria-controls="{{../FolderName}}-{{../FileNameWithOutExtension}}-{{../ItemName}}-{{ScreenName}}">
+                        Toggle Columns
+                    </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan=5 >
+                        <div class="collapse {{CollapseClass}}" id="{{../FolderName}}-{{../FileNameWithOutExtension}}-{{../ItemName}}-{{ScreenName}}">
+                            {{> HbsTemplateForSubTableColumns}}
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+       
+        </table>
+      </script>
+
+
+      
+      <script id="HbsTemplateForSubTableColumns" type="text/x-handlebars">
+
+
+        <ul class="nav nav-tabs" role="tablist">
+            {{#each SubTableColumnsObject}}
+          
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {{this.MenuClass}}" id="{{this.FolderName}}-tab" data-bs-toggle="tab"
+                    data-bs-target="#{{@key}}-{{@../key}}-{{@../../key}}-{{@../../../key}}-{{@../../../../key}}" type="button" role="tab" aria-controls="{{this.FolderName}}"
+                    aria-selected="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z" />
+                    </svg>
+                    {{@key}}</button>
+            </li>
+            {{/each}}
+        </ul>
+        <div class="tab-content">
+            {{#each SubTableColumnsObject}}
+            <div class="tab-pane fade {{this.TabPageClass}}" id="{{@key}}-{{@../key}}-{{@../../key}}-{{@../../../key}}-{{@../../../../key}}" role="tabpanel"
+                aria-labelledby="{{this.FolderName}}-tab">
+                {{> HbsTemplateForTableColumnsForTogglesOnly}}
+            </div>
+            {{/each}}
+        </div>
+        
+        </script>
+
+        
+        <!-- <script id="HbsTemplateForTableColumnsForTogglesOnly" type="text/x-handlebars">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>S.no</th>
+                        <th>DataAttribute</th>
+                        <th>DisplayName</th>
+                        <th>DefaultValue</th>
+                        <th>TextAlign</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each TableColumnsObject}}
+                  
+        <tr class="{{RowClass}}">
+        <td class="text-center">
+        {{ForSNo @index}}
+        </td>
+        <td>
+            <input class="form-control" type="text" name="DataAttribute" disabled value="{{DataAttribute}}">
+    
+        </td>
+        <td>
+            <input class="form-control" type="text" name="DisplayName" list="ParentClassesDataList" disabled value="{{DisplayName}}" >
+    
+        </td>
+        <td>
+            <input class="form-control" type="text" name="DefaultValue" value="{{DefaultValue}}" list="DefaultValueDataList">
+        </td>
+        <td>
+            <input class="form-control" type="text" name="TextAlign" value="{{TextAlign}}" list="TextAlignDataList">
+        </td>
+        <td>
+        <button type="button" class="btn btn-outline-info UpdateButtonClass" data-foldername="{{@../../../../../key}}"
+         data-filename="{{@../../../../key}}" data-itemname="{{@../../../key}}"
+          data-screenname="{{@../../key}}" data-subtablecolumnkey={{@../key}}
+          data-tablecolumnkey={{@key}}>
+            Update
+        </button>
+        </td>
+        </tr>
+        
+                    {{/each}}
+                </tbody>
+            </table>
+        
+            </script> -->
+            <script id="HbsTemplateForTableColumnsForTogglesOnly1" type="text/x-handlebars">
+                <div class="card text-dark bg-light">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col">
+                                <h4>TableColumns Toggles in {{ScreenName}}</h4>
+                            </div>
+            
+                            <div class="col">
+                                <input type="text" class="form-control" name="" placeholder="Type to search..."
+                                    onkeyup="jFTableSearch(event)" autofocus>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {{#if TableInfoObject.Delete.Simple}}
+                        <div class="form-check  form-switch">
+                            <input class="form-check-input" type="checkbox" name="TableInfoObject.Delete.Simple" checked>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">TableInfoObject.Delete.Simple</label>
+                        </div>
+        `                {{else}}
+        <div class="form-check  form-switch">
+            <input class="form-check-input" type="checkbox" name="TableInfoObject.Delete.Simple">
+            <label class="form-check-label" for="flexSwitchCheckChecked">TableInfoObject.Delete.Simple</label>
+        </div>
+                        {{/if}}
+        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>DataAttribute</th>
+                                    <th>DisplayName</th>
+                                    <th>ShowInTable</th>
+            <th>Insert</th>
+            <th>CreateNew</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each TableColumnsObject}}
+                                <tr class="{{RowClass}}">
+                                    <td class="text-center">
+                                        {{ForSNo @index}}
+                                    </td>
+                                    <td>
+                                        <input class="form-control" name="DataAttribute" value="{{DataAttribute}}" >
+                                    </td>
+                                    <td>
+                                        <input class="form-control" name="DisplayName" value="{{DisplayName}}" >
+                                    </td>
+                                    <td>
+                                        <div class="form-check  form-switch">
+                                            {{#if ShowInTable}}
+                                            <input class="form-check-input" type="checkbox" name="ShowInTable" checked>
+                                            {{else}}
+                                            <input class="form-check-input" type="checkbox" name="ShowInTable">
+                                            {{/if}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check  form-switch">
+                                            {{#if Insert}}
+                                            <input class="form-check-input" type="checkbox" name="Insert" checked>
+                                            {{else}}
+                                            <input class="form-check-input" type="checkbox" name="Insert">
+                                            {{/if}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check  form-switch">
+                                            {{#if CreateNew}}
+                                            <input class="form-check-input" type="checkbox" name="CreateNew" checked>
+                                            {{else}}
+                                            <input class="form-check-input" type="checkbox" name="CreateNew">
+                                            {{/if}}
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="text-right">
+                                        <button type="button" class="btn btn-outline-info"
+                                        data-foldername="{{../ConfigObject.FolderName}}" data-filenamewithoutextension="{{../ConfigObject.FileName}}"
+                                data-itemname="{{../ConfigObject.ItemName}}" data-columnmame="{{@../key}}"    
+                                data-subtablecolumnname="{{DataAttribute}}"    
+                                        onclick="jFUpdateData(event,'{{@../../../../key}}','{{@../../../key}}','{{@../../key}}','{{@../key}}','{{@key}}')">
+                                            Update
+                                        </button>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                        </script>
+
+
+                        <script id="HbsTemplateForTableColumnsForTogglesOnly" type="text/x-handlebars">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ScreenName</th>
+                        <th>ScreenName ForHtmlId</th>
+                        <th>ColumnReOrder</th>
+                        <th>ShowFooter</th>
+                        <th>CreateNew</th>
+                        <th>DataAttributes FromTableDataRow</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each this.Screens}}
+                    <tr>
+                        <td class="text-center">
+                            {{ForSNo @index}}
+                        </td>
+                        <td>
+                            {{this.ScreenName}}
+                        </td>
+                        <td>
+                            {{this.ScreenNameForHtmlId}}
+                        </td>
+                        <td>
+                            <div class="form-check  form-switch">
+                                {{#if TableInfoObject.ColumnReOrder}}
+                                <input class="form-check-input" type="checkbox" name="ColumnReOrder" checked>
+                                {{else}}
+                                <input class="form-check-input" type="checkbox" name="ColumnReOrder">
+                                {{/if}}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check  form-switch">
+                                {{#if TableInfoObject.ShowFooter}}
+                                <input class="form-check-input" type="checkbox" name="ShowFooter" checked>
+                                {{else}}
+                                <input class="form-check-input" type="checkbox" name="ShowFooter">
+                                {{/if}}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check  form-switch">
+                                {{#if TableInfoObject.DataAttributesFromTableInfo}}
+                                <input class="form-check-input" type="checkbox" name="DataAttributesFromTableInfo" checked>
+                                {{else}}
+                                <input class="form-check-input" type="checkbox" name="DataAttributesFromTableInfo">
+                                {{/if}}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check  form-switch">
+                                {{#if TableInfoObject.DataAttributesFromTableDataRow}}
+                                <input class="form-check-input" type="checkbox" name="DataAttributesFromTableDataRow" checked>
+                                {{else}}
+                                <input class="form-check-input" type="checkbox" name="DataAttributesFromTableDataRow">
+                                {{/if}}
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info UpdateButtonClass" data-foldername="{{@../../../key}}" data-filename="{{@../../key}}" data-itemname="{{@../key}}" data-screenname="{{ScreenName}}">
+                                Update
+                            </button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+           
+            </table>
+          </script>
+
+
+
+    <script id="HbsTemplateForTable" type="text/x-handlebars">
+                        {{#each this.KData}}
+                        <tr class="{{RowClass}}">
+                            <td class="text-center">
+                                {{ForSNo @index}}
+                            </td>
+                            <td>
+                                {{DataAttribute}}
+                            </td>
+                            <td>
+                                {{DisplayName}}
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" name="DefaultValue" value="{{DefaultValue}}" list="DefaultValueDataList">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" name="TextAlign" value="{{TextAlign}}" list="TextAlignDataList">
+                            </td>
+                            
+                            <td class="text-right">
+                                <button type="button" class="btn btn-outline-info"
+                                data-foldername="{{../ConfigObject.FolderName}}" data-filenamewithoutextension="{{../ConfigObject.FileName}}"
+                        data-itemname="{{../ConfigObject.ItemName}}" data-screenname="{{../ConfigObject.ScreenName}}"    
+                        data-columnname="{{DataAttribute}}"    
+                                onclick="jFUpdateData(event,{{@index}})">
+                                    Update
+                                </button>
+                            </td>
+                        </tr>
+                        {{/each}}
+                     
+
+                </script>
+
+    <include src="./src/components/Templates/Admin/Columns/Tabular/HbsTemplates/ForFoldersOnly.html"></include>
+
+
+    <include src="./src/components/Templates/Admin/Columns/Tabular/HbsTemplates/ForFilesOnly.html"></include>
+
+    <include src="./src/components/Templates/Admin/Columns/Tabular/HbsTemplates/ForItemsOnly.html"></include>
+
+
+    <script>
+        //HbsTemplateForScreensWithSubTableColumnsOnly
+        class jClassForHbs {
+            static FillPartialFromScriptInHtml = ({ inHtmlHbsScriptId }) => {
+                let jVarLocalHbsTemplate = document.getElementById(inHtmlHbsScriptId);
+
+                if (jVarLocalHbsTemplate !== null) {
+                    Handlebars.registerPartial(inHtmlHbsScriptId, jVarLocalHbsTemplate.innerHTML);
+                };
+            };
+        };
+
+        let jVarLocalHbsTemplateForSubTableColumns = document.getElementById("HbsTemplateForSubTableColumns");
+        let jVarLocalHbsTemplateForColumns = document.getElementById("HbsTemplateForColumns");
+
+        let jVarLocalHbsTemplateForFiles = document.getElementById("HbsTemplateForFilesOnly");
+        jClassForHbs.FillPartialFromScriptInHtml({ inHtmlHbsScriptId: "HbsTemplateForScreensOnly" });
+        jClassForHbs.FillPartialFromScriptInHtml({ inHtmlHbsScriptId: "HbsTemplateForItemsOnly" });
+
+        let jVarLocalHbsTemplateForScreensWithSubTableColumnsOnly = document.getElementById("HbsTemplateForScreensWithSubTableColumnsOnly");
+        let jVarLocalHbsTemplateForColumnsForTogglesOnly = document.getElementById("HbsTemplateForColumnsForTogglesOnly");
+        let jVarLocalHbsTemplateForTableColumnsForTogglesOnly = document.getElementById("HbsTemplateForTableColumnsForTogglesOnly");
+
+        // jClassForHbs.FillPartialFromScriptInHtml({ inHtmlHbsScriptId: "HbsTemplateForTableColumnsForAllInOneWithValuesOnly" });
+
+        let jVarLocalHbsTemplateForTable = document.getElementById("HbsTemplateForTable");
+
+        Handlebars.registerHelper('ForSNo', function (item) {
+            return item + 1;
+        });
+
+        if (jVarLocalHbsTemplateForSubTableColumns !== null) {
+            Handlebars.registerPartial("HbsTemplateForSubTableColumns", jVarLocalHbsTemplateForSubTableColumns.innerHTML);
+        };
+
+        if (jVarLocalHbsTemplateForColumns !== null) {
+            Handlebars.registerPartial("HbsTemplateForColumns", jVarLocalHbsTemplateForColumns.innerHTML);
+        };
+
+        if (jVarLocalHbsTemplateForFiles !== null) {
+            Handlebars.registerPartial("HbsTemplateForFilesOnly", jVarLocalHbsTemplateForFiles.innerHTML);
+        };
+
+        if (jVarLocalHbsTemplateForScreensWithSubTableColumnsOnly !== null) {
+            Handlebars.registerPartial("HbsTemplateForScreensWithSubTableColumnsOnly", jVarLocalHbsTemplateForScreensWithSubTableColumnsOnly.innerHTML);
+        };
+
+        if (jVarLocalHbsTemplateForColumnsForTogglesOnly !== null) {
+            Handlebars.registerPartial("HbsTemplateForColumnsForTogglesOnly", jVarLocalHbsTemplateForColumnsForTogglesOnly.innerHTML);
+        };
+
+        if (jVarLocalHbsTemplateForTableColumnsForTogglesOnly !== null) {
+            Handlebars.registerPartial("HbsTemplateForTableColumnsForTogglesOnly", jVarLocalHbsTemplateForTableColumnsForTogglesOnly.innerHTML);
+        };
+
+        if (jVarLocalHbsTemplateForTable !== null) {
+            Handlebars.registerPartial("HbsTemplateForTable", jVarLocalHbsTemplateForTable.innerHTML);
+        };
+    </script>
+
+
+    <script>
+        let jFChangeHeaderActiveClass = () => {
+            let jVarLocalPathArray = window.location.pathname.split("/");
+            let jVarLocalHTMLName = jVarLocalPathArray[jVarLocalPathArray.length - 1];
+            jFChangeNavAnchorClass({ inClassName: jVarLocalHTMLName.split(".")[0] });
+        };
+
+        let jFChangeNavAnchorClass = ({ inClassName }) => {
+            let jVarLocalNavBarId = document.getElementById("NavBarId");
+            let jVarLocalAnchorNeeded = jVarLocalNavBarId.querySelector(`.${inClassName}AClass`);
+
+            if (jVarLocalAnchorNeeded !== null) {
+
+                if (jVarLocalAnchorNeeded.classList.contains("text-white")) {
+                    jVarLocalAnchorNeeded.classList.remove("text-white");
+                };
+
+                jVarLocalAnchorNeeded.classList.add("text-info");
+            };
+        };
+
+        jFChangeHeaderActiveClass();
+    </script>
+    <script src="../../../../Js/SubTableInfo/Tabular/Toggles/Toggles.js" type="module"></script>
+
+
+</body>
+
+</html>
