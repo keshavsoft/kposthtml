@@ -48,42 +48,6 @@ let StartFunc = ({ inSubRoute, inUserKey, inFirmKey, inTokenName, inModalId }) =
     };
 };
 
-
-let StartFunc1 = ({ inSubRoute, inUserKey, inFirmKey, inTokenName, inModalId }) => {
-    let jVarLocalLoginButtonOnModalId = document.getElementById("LoginButtonOnModalId");
-
-    if ((jVarLocalLoginButtonOnModalId == null) === false) { //Executes if variable is null OR undefined
-        jVarLocalLoginButtonOnModalId.addEventListener("click", async () => {
-            let LocalFromDomFunc = await CheckOnDomStartFunc({ inSubRoute, inUserKey, inFirmKey, inTokenName });
-
-            if (LocalFromDomFunc) {
-                let LocalFromCheckTokenStartFunc = CheckTokenStartFunc({ inUserKey, inFirmKey, inTokenName });
-
-                if (LocalFromCheckTokenStartFunc) {
-                    console.log("ssssssssss");
-                    let LocalModalId = inModalId;
-                    var myModalEl = document.getElementById(LocalModalId);
-
-                    var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instance
-
-                    modal.hide();
-
-                    // this.Login.LocalStorage.FirmDetails({ inUserName, inFirmDetails: FetchDataJson });
-                };
-            };
-        });
-    };
-
-    let jVarLocalHeaderLoginAnchorId = document.getElementById("HeaderLoginAnchorId");
-
-    if ((jVarLocalHeaderLoginAnchorId == null) === false) { //Executes if variable is null OR undefined
-
-        //  jVarLocalHeaderLoginAnchorId.addEventListener("click", GlobalFuncsForLogin.Login.LogOut);
-
-    };
-};
-
-
 let LocalButtonClickFunc = async ({ inSubRoute, inUserKey, inFirmKey, inTokenName, inModalId }) => {
     let LocalFromDomFunc = await CheckOnDomStartFunc({ inSubRoute, inUserKey, inFirmKey, inTokenName });
 
