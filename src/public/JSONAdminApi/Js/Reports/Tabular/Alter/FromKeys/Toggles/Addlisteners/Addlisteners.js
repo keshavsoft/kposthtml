@@ -8,8 +8,9 @@ let jFUpdateFunc = () => {
 };
 let jFLocalClickFunc = (event) => {
     let jVarLocalCurrentTarget = event.currentTarget;
-    let jVarLocalItemName = jVarLocalCurrentTarget.data.item;
-    let jVarLocalvoucherName = jVarLocalCurrentTarget.data.voucher;
+    let jVarLocalItemName = jVarLocalCurrentTarget.dataset.item;
+
+    let jVarLocalvoucherName = jVarLocalCurrentTarget.dataset.voucher;
 
     let jVarLocalColsestTr = jVarLocalCurrentTarget.closest("tr");
     let jVarLocalFolderName = jVarLocalColsestTr.querySelector('[name="FolderName"]');
